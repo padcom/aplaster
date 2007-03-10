@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - common" default="all">
+  <target name="all" depends="compile,translate"/>
+  <target name="clean">
+    <delete defaultexcludes="false">
+      <include name="**/*.~*"/>
+      <include name="**/*.dcu"/>
+      <include name="**/*.dsk"/>
+      <include name="**/*.drc"/>
+      <include name="**/*.map"/>
+      <include name="**/*.po~"/>
+      <include name="**/*.pot"/>
+      <include name="cfged.exe"/>
+      <include name="cfged.mo"/>
+      <include name="cfged_pl.mo"/>
+    </delete>
+  </target>
+  <target name="compile">
+    <dcc source="cfged.dpr"/>
+  </target>
+  <target name="translate">
+    <exec executable="dxgettext.exe" arguments="-q Resources.pas --so cfged.pot"/>
+    <exec executable="msgmerge.exe" arguments="-q -U cfged.po cfged.pot"/>
+    <exec executable="msgfmt.exe" arguments="cfged.po -o cfged.mo"/>
+    <exec executable="msgmerge.exe" arguments="-q -U cfged_pl.po cfged.pot"/>
+    <exec executable="msgfmt.exe" arguments="cfged_pl.po -o cfged_pl.mo"/>
+  </target>
+</project>

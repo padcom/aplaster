@@ -1,0 +1,91 @@
+
+  AplaSter system definitions.
+  Copyright (C) 2005 Aplaline.
+
+
+
+1. System components.
+
+   The system is divided into 6 components:
+     a) module containing only basic routines for inputs and outputs
+     b) server controlling the modules
+     c) database server holding configuration data (multiuser)
+     d) network configuration editor
+     e) user data editor (people, people groups, time plans, aso.)
+     f) activity monitor
+
+2. Module.
+
+   Module should contain only base functionality together with the ability to
+   receive and send commands from/to server. No configuration is to be stored
+   in the module. All configuration data (ie. network params, device params)
+   are to be sent from the server at module start.
+   
+   But in case a complicated, time-critical operation an extra functionality 
+   can be implemented to simplify network configuration.
+   Examples: Digital output timeout control, relay timeout control, 
+             Motor lock control, RSxxx data output.
+
+3. Server.
+
+   The server should be totaly event-driven. All events should be programmed
+   using PascalScript for flexibility.
+   
+   There should be additional layer of objects that implement scripting, ie.
+   TRelay -> TPSRelay. This layer is to be explicitly build after the
+   network configuration.
+   
+4. Database server.
+
+   The database server should be simple, yet powerfull and free. What could be
+   of use are database server events to tell the network paries that some data
+   has been modified, added or deleted.
+   Proposal: Firebird (accepted)
+   
+   Everything that can be executed on the database server should be done so to
+   shorten server needs.
+
+5. Network configuration editor.
+
+   The network configuration editor should be devided into 2 pieces:
+     a) structure editor
+     b) event handlers (script) editor
+     
+6. Common data editor.
+
+   TODO.
+
+7. Activity monitor.
+
+   An activity monitor connects to server and receives informations about changes
+   of input states of module interfaces. In addition the server itself can send
+   some messages to implicity control the monitor.
+   To visualize elements that don't fit into the network configuration (like 
+   doors, switches, aso.) the activity monitor acceses the database and decides
+   what should be visualized. This way the client is a little bit thicker but has
+   full control of visualized objects.
+
+8. Compilers and software components.
+
+   All PC applications should be written in Delphi. 
+   Components available for this project:
+     - Borland's VCL (in an unmodified form)
+     - PxLib (padcom.no-ip.org/svn/pxlib/trunk)
+     - PxVCL (padcom.no-ip.org/svn/pxvcl/trunk)
+     - SynEdit (synedit.sourceforge.net)
+     - PascalScript from RemObjects (www.remobjects.com)
+     - UIB2 (www.progdigy.com/modules.php?name=UIB)
+   Additional components have to be freeware, or at least be under $50.
+
+   Module firmware is to be compiled using Small Device C Compiler 
+   (sdcc.sourceforge.net) and GNU Pic Utilities (gputils.sourceforge.net) 
+   package.
+
+   Setup component will be created with InnoSetup 5.x (www.innosetup.org)
+
+   Documentation will be created using DocBook stylesheets. The PDF and HTML
+   version will be compiled using the FOP/XALAN package
+   (xmlgraphics.apache.org/fop) and a set of predefined styles (dook-fo.xsl
+   and book-html.xsl from the docbook build package).
+
+   

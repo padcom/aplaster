@@ -1,0 +1,90 @@
+# modsim language file.
+# Copyright (C) 2005 Aplaline
+# This file is distributed under the same license as the AplaSter package.
+# Matthias Hryniszak <matthias@hryniszak.de>, 2005.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2006-08-30 03:24\n"
+"PO-Revision-Date: 2005-08-20 21:00\n"
+"Last-Translator: Matthias Hryniszak <matthias@hryniszak.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: dxgettext 1.2.1 beta 4\n"
+
+#. Programmer's name for it: SModuleSimulator
+#: Resources.pas:17 
+msgid "Module simulator"
+msgstr ""
+
+#. Programmer's name for it: SAnalogInput
+#: Resources.pas:18 
+msgid "Analog input"
+msgstr ""
+
+#. Programmer's name for it: SDigitalInput
+#: Resources.pas:19 
+msgid "Digital input"
+msgstr ""
+
+#. Programmer's name for it: SDigitalOutput
+#: Resources.pas:20 
+msgid "Digital output"
+msgstr ""
+
+#. Programmer's name for it: SRelay
+#: Resources.pas:21 
+msgid "Relay"
+msgstr ""
+
+#. Programmer's name for it: SWiegand
+#: Resources.pas:22 
+msgid "Wiegand"
+msgstr ""
+
+#. Programmer's name for it: SRS232
+#: Resources.pas:23 
+msgid "RS232"
+msgstr ""
+
+#. Programmer's name for it: SMotor
+#: Resources.pas:24 
+msgid "Motor"
+msgstr ""
+
+#. Programmer's name for it: SSend
+#: Resources.pas:25 
+msgid "Send"
+msgstr ""
+
+#. Programmer's name for it: SDebug1Hint
+#: Resources.pas:27 
+msgid "Close RELAY1 after 50 for 100 break by DI0 and terminate by DI1"
+msgstr ""
+
+#. Programmer's name for it: SDebug2Hint
+#: Resources.pas:28 
+msgid "Open RELAY1"
+msgstr ""
+
+#. Programmer's name for it: SDebug3Hint
+#: Resources.pas:29 
+msgid "Close DIGITAL1"
+msgstr ""
+
+#. Programmer's name for it: SDebug4Hint
+#: Resources.pas:30 
+msgid "Open DIGITAL1"
+msgstr ""
+
+#. Programmer's name for it: SDebug5Hint
+#: Resources.pas:31 
+msgid "Start MOTOR0 after 100 for 200 break by DI3 terminate by DI4"
+msgstr ""
+
+#. Programmer's name for it: SDebug6Hint
+#: Resources.pas:32 
+msgid "Stop MOTOR0"
+msgstr ""

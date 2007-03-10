@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster" default="all">
+  <target name="all">
+    <want dir="psimp" target="all"/>
+    <want dir="common" target="all"/>
+    <want dir="cfged" target="all"/>
+    <want dir="module-sim" target="all"/>
+    <want dir="monitor" target="all"/>
+    <want dir="server" target="all"/>
+    <want dir="setup" target="all"/>
+  </target>
+  <target name="clean">
+    <delete file="**/*.~*"/>
+    <delete file="**/*.dcu"/>
+    <want dir="psimp" target="clean"/>
+    <want dir="common" target="clean"/>
+    <want dir="cfged" target="clean"/>
+    <want dir="module-sim" target="clean"/>
+    <want dir="monitor" target="clean"/>
+    <want dir="server" target="clean"/>
+    <want dir="setup" target="clean"/>
+  </target>
+</project>

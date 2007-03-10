@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="Windows-1250" ?>
+
+<DataFile Name="ConfigFile" Signature="ASCF" Version="1.00" XmlMethods="True" DataByNameMethod="1">
+
+  <!-- Network topology definition -->
+
+  <DataRecordEx Id="1" Name="GlobalData" Single="1">
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Code" />
+  </DataRecordEx>
+
+  <DataRecordEx Id="2" Name="ServerData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="IP" />
+    <StringPart Id="2" Name="Title" />
+    <StringPart Id="3" Name="Description" />
+    <StringPart Id="4" Name="OnStart" />
+    <StringPart Id="5" Name="OnStop" />
+  </DataRecordEx>
+
+  <DataRecordEx Id="3" Name="ModuleData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="FolderId" Type="TIdentifier" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="IP" />
+    <StringPart Id="4" Name="Netmask" />
+    <StringPart Id="5" Name="MAC" />
+    <StringPart Id="6" Name="OnInitialized" />
+    <StringPart Id="7" Name="OnConnected" />
+    <StringPart Id="8" Name="OnDisconnected" />
+  </DataRecordEx>
+
+  <DataRecordEx Id="4" Name="AnalogInputData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+      <Field Name="DeltaChange" Type="Word" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+    <StringPart Id="4" Name="OnData"/>
+  </DataRecordEx>
+
+  <DataRecordEx Id="5" Name="DigitalInputData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+    <StringPart Id="4" Name="OnOpen"/>
+    <StringPart Id="5" Name="OnClose"/>
+  </DataRecordEx>
+
+  <DataRecordEx Id="6" Name="DigitalOutputData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+  </DataRecordEx>
+
+  <DataRecordEx Id="7" Name="RelayData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+  </DataRecordEx>
+
+  <DataRecordEx Id="8" Name="WiegandData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+      <Field Name="DataBits" Type="Byte" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+    <StringPart Id="4" Name="OnData"/>
+  </DataRecordEx>
+
+  <DataRecordEx Id="9" Name="RS232Data" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+      <Field Name="Bitrate" Type="Byte" />
+      <Field Name="DataBits" Type="Byte" />
+      <Field Name="Parity" Type="Byte" />
+      <Field Name="StopBits" Type="Byte" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+    <StringPart Id="4" Name="OnData"/>
+  </DataRecordEx>
+
+  <DataRecordEx Id="10" Name="RS485Data" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+      <Field Name="Bitrate" Type="Byte" />
+      <Field Name="DataBits" Type="Byte" />
+      <Field Name="Parity" Type="Byte" />
+      <Field Name="StopBits" Type="Byte" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+    <StringPart Id="4" Name="OnData"/>
+  </DataRecordEx>
+  
+  <DataRecordEx Id="11" Name="MotorData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="DevId" Type="Byte" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="Connector" />
+  </DataRecordEx>
+  
+  <DataRecordEx Id="12" Name="TimerData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ParentId" Type="TIdentifier" />
+      <Field Name="Interval" Type="TIdentifier" />
+      <Field Name="FolderId" Type="TIdentifier" />
+    </DataPart>
+    <DataPart Id="99" Name="D99">
+      <Field Name="Tag" Type="Integer" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+    <StringPart Id="3" Name="OnTimer" />
+  </DataRecordEx>
+
+  <DataRecordEx Id="13" Name="FolderData" RecordIDField="Id">
+    <DataPart Id="1" Name="D">
+      <Field Name="Id" Type="TIdentifier" />
+      <Field Name="ServerId" Type="TIdentifier" />
+    </DataPart>
+    <StringPart Id="1" Name="Title" />
+    <StringPart Id="2" Name="Description" />
+  </DataRecordEx>
+
+</DataFile>

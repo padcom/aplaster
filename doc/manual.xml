@@ -1,0 +1,39 @@
+<book>
+  <title>Aplaster manual</title>
+  <bookinfo>
+    <author>
+      <firstname>Maciej</firstname>
+      <surname>Hryniszak</surname>
+    </author>
+    <copyright>
+      <year>2005</year>
+      <holder>Aplaline - Maciej Hryniszak</holder>
+    </copyright>
+  </bookinfo>
+
+  <preface>
+    <title>Introduction</title>
+    <para>
+    
+    </para>
+  </preface>
+  
+  <chapter>
+    <title>Configuration editor</title>
+    <para>
+    </para>
+    
+    <sect1>
+      <title>User interface</title>
+      <para>
+      </para>
+    </sect1>
+    
+    <sect1>
+      <title>Server script</title>
+      <para>
+      </para>
+    </sect1>
+    
+  </chapter>
+</book>

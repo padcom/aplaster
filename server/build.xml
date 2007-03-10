@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - common" default="all">
+  <target name="all" depends="compile,translate"/>
+  <target name="clean">
+    <delete defaultexcludes="false">
+      <include name="**/*.~*"/>
+      <include name="**/*.dcu"/>
+      <include name="**/*.dsk"/>
+      <include name="**/*.drc"/>
+      <include name="**/*.map"/>
+      <include name="**/*.po~"/>
+      <include name="**/*.pot"/>
+      <include name="aplasvr.exe"/>
+      <include name="aplasvr.mo"/>
+      <include name="aplasvr_pl.mo"/>
+    </delete>
+  </target>
+  <target name="compile">
+    <dcc source="aplasvr.dpr"/>
+  </target>
+  <target name="translate">
+    <exec executable="dxgettext.exe" arguments="-q Resources.pas --so aplasvr.pot"/>
+    <exec executable="msgmerge.exe" arguments="-q -U aplasvr.po aplasvr.pot"/>
+    <exec executable="msgfmt.exe" arguments="aplasvr.po -o aplasvr.mo"/>
+  </target>
+</project>

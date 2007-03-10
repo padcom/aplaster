@@ -1,0 +1,305 @@
+# aplastsvr language file.
+# Copyright (C) 2005 Aplaline
+# This file is distributed under the same license as the AplaSter package.
+# Matthias Hryniszak <matthias@hryniszak.de>, 2005.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2006-02-20 02:43\n"
+"PO-Revision-Date: 2005-08-20 21:00\n"
+"Last-Translator: Matthias Hryniszak <matthias@hryniszak.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: dxgettext 1.2.1 beta 4\n"
+
+#. Programmer's name for it: SAplaServer
+#: Resources.pas:17
+msgid "AplaSter Server 1.0"
+msgstr ""
+
+#. Programmer's name for it: SError
+#: Resources.pas:18
+msgid "Error"
+msgstr ""
+
+#. Programmer's name for it: SModules
+#: Resources.pas:19
+msgid "Modules"
+msgstr ""
+
+#. Programmer's name for it: STitle
+#: Resources.pas:20
+msgid "Title"
+msgstr ""
+
+#. Programmer's name for it: SIPAddress
+#: Resources.pas:21
+msgid "IP Address"
+msgstr ""
+
+#. Programmer's name for it: SStatus
+#: Resources.pas:22
+msgid "Status"
+msgstr ""
+
+#. Programmer's name for it: SActive
+#: Resources.pas:23
+msgid "Active"
+msgstr ""
+
+#. Programmer's name for it: SInactive
+#: Resources.pas:24
+msgid "Inactive"
+msgstr ""
+
+#. Programmer's name for it: SResetModule
+#: Resources.pas:25
+msgid "Reset module"
+msgstr ""
+
+#. Programmer's name for it: SReloadConfiguration
+#: Resources.pas:26
+msgid "Reload configuration"
+msgstr ""
+
+#. Programmer's name for it: STerminateServer
+#: Resources.pas:27
+msgid "Terminate server"
+msgstr ""
+
+#. Programmer's name for it: SNoName
+#: Resources.pas:28
+msgid "No name"
+msgstr ""
+
+#. Programmer's name for it: SShowHide
+#: Resources.pas:29
+msgid "Show/Hide server window"
+msgstr ""
+
+#. Programmer's name for it: SErrorWhileGettingLocalIPAddress
+#: Resources.pas:30
+msgid "Error: %d while getting local IP address"
+msgstr ""
+
+#. Programmer's name for it: SErrorNo
+#: Resources.pas:31
+msgid "Error: %d"
+msgstr ""
+
+#. Programmer's name for it: SErrorCannotCreateSocket
+#: Resources.pas:32
+msgid "Error: cannot create socket"
+msgstr ""
+
+#. Programmer's name for it: SErrorCannotBindSocket
+#: Resources.pas:33
+msgid "Error: cannot bind socket (another instance already running?)"
+msgstr ""
+
+#. Programmer's name for it: SErrorCannotSelectSocketEvents
+#: Resources.pas:34
+msgid "Error: cannot select socket events"
+msgstr ""
+
+#. Programmer's name for it: SServerIPAddress
+#: Resources.pas:35
+msgid "Server IP address: %s"
+msgstr ""
+
+#. Programmer's name for it: SThisMachineHasNotBeenconfiguredAsServer
+#: Resources.pas:36
+msgid "This machine has not been configured as AplaSter server"
+msgstr ""
+
+#. Programmer's name for it: SScriptDebugger
+#: Resources.pas:38
+msgid "Script debugger"
+msgstr ""
+
+#. Programmer's name for it: SRun
+#: Resources.pas:39
+msgid "&Run"
+msgstr ""
+
+#. Programmer's name for it: SContinue
+#: Resources.pas:40
+msgid "&Continue"
+msgstr ""
+
+#. Programmer's name for it: SStepInto
+#: Resources.pas:41
+msgid "Step &into"
+msgstr ""
+
+#. Programmer's name for it: SStepOver
+#: Resources.pas:42
+msgid "Step &over"
+msgstr ""
+
+#. Programmer's name for it: SEvaluate
+#: Resources.pas:43
+msgid "&Evaluate"
+msgstr ""
+
+#. Programmer's name for it: SToggleBreakpoint
+#: Resources.pas:44
+msgid "&Toggle breakpoint"
+msgstr ""
+
+#. Programmer's name for it: SEvaluateModify
+#: Resources.pas:45
+msgid "Evaluate/Modify"
+msgstr ""
+
+#. Programmer's name for it: SExpression
+#: Resources.pas:46
+msgid "&Expression"
+msgstr ""
+
+#. Programmer's name for it: SResult
+#: Resources.pas:47
+msgid "&Result"
+msgstr ""
+
+#. Programmer's name for it: SNewValue
+#: Resources.pas:48
+msgid "&New value"
+msgstr ""
+
+#. Programmer's name for it: SServer
+#: Resources.pas:50
+msgid "Server"
+msgstr ""
+
+#. Programmer's name for it: SInvalidIPAddress
+#: Resources.pas:51
+msgid "Invalid IP address"
+msgstr ""
+
+#. Programmer's name for it: SNotConfigured
+#: Resources.pas:52
+msgid "Not configured"
+msgstr ""
+
+#. Programmer's name for it: STimer
+#: Resources.pas:53
+msgid "Timer"
+msgstr ""
+
+#. Programmer's name for it: SInvalidInterval
+#: Resources.pas:54
+msgid "Invalid interval"
+msgstr ""
+
+#. Programmer's name for it: SModule
+#: Resources.pas:55
+msgid "Module"
+msgstr ""
+
+#. Programmer's name for it: SInvalidNetmaskAddress
+#: Resources.pas:56
+msgid "Invalid netmask"
+msgstr ""
+
+#. Programmer's name for it: SMissingMACAddress
+#: Resources.pas:57
+msgid "Missing MAC address"
+msgstr ""
+
+#. Programmer's name for it: SInvalidMACAddress
+#: Resources.pas:58
+msgid "Invalid MAC address"
+msgstr ""
+
+#. Programmer's name for it: SAnalogInput
+#: Resources.pas:59
+msgid "Analog input"
+msgstr ""
+
+#. Programmer's name for it: SInvalidDeltaChangeValue
+#: Resources.pas:60
+msgid "Invalid DeltaChange value"
+msgstr ""
+
+#. Programmer's name for it: SDigitalInput
+#: Resources.pas:61
+msgid "Digital input"
+msgstr ""
+
+#. Programmer's name for it: SDigitalOutput
+#: Resources.pas:62
+msgid "Digital output"
+msgstr ""
+
+#. Programmer's name for it: SRelay
+#: Resources.pas:63
+msgid "Relay"
+msgstr ""
+
+#. Programmer's name for it: SWiegand
+#: Resources.pas:64
+msgid "Wiegand"
+msgstr ""
+
+#. Programmer's name for it: SInvalidDataBisValue
+#: Resources.pas:65
+msgid "Invalid DataBits value"
+msgstr ""
+
+#. Programmer's name for it: SRS232
+#: Resources.pas:66
+msgid "RS232"
+msgstr ""
+
+#. Programmer's name for it: SRS485
+#: Resources.pas:67
+msgid "RS485"
+msgstr ""
+
+#. Programmer's name for it: SMotor
+#: Resources.pas:68
+msgid "Motor"
+msgstr ""
+
+#. Programmer's name for it: SFolder
+#: Resources.pas:69
+msgid "Folder"
+msgstr ""
+
+#. Programmer's name for it: SUnknownElement
+#: Resources.pas:70
+msgid "Unknown element (%s)"
+msgstr ""
+
+#. Programmer's name for it: SOpen
+#: Resources.pas:72
+msgid "Open"
+msgstr ""
+
+#. Programmer's name for it: SClose
+#: Resources.pas:73
+msgid "Close"
+msgstr ""
+
+#. Programmer's name for it: SAnalogInputStatus
+#: Resources.pas:74
+msgid "Value: %d"
+msgstr ""
+
+#. Programmer's name for it: SRunning
+#: Resources.pas:75
+msgid "Running"
+msgstr ""
+
+#. Programmer's name for it: SNotRunning
+#: Resources.pas:76
+msgid "Not running"
+msgstr ""
+
+#. Programmer's name for it: SServerElements
+#: Resources.pas:78
+msgid "Server elements"
+msgstr ""

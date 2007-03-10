@@ -1,0 +1,804 @@
+# cfged language file.
+# Copyright (C) 2005 Aplaline
+# This file is distributed under the same license as the AplaSter package.
+# Matthias Hryniszak <matthias@hryniszak.de>, 2005.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2007-02-03 03:34\n"
+"PO-Revision-Date: 2006-08-30 02:58+0100\n"
+"Last-Translator: Matthias Hryniszak <matthias.hryniszak@aplaline.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: dxgettext 1.2.1 beta 4\n"
+
+#. Programmer's name for it: SConfigurationEditor
+#: Resources.pas:17 
+msgid "Configuration editor"
+msgstr "Edytor konfiguracji"
+
+#. Programmer's name for it: SConfiguration
+#: Resources.pas:18 
+msgid "Configuration"
+msgstr "Konfiguracja"
+
+#. Programmer's name for it: SCode
+#: Resources.pas:19 
+msgid "Code"
+msgstr "Skrypt"
+
+#. Programmer's name for it: SProperties
+#: Resources.pas:20 
+msgid "Properties"
+msgstr "Właściwości"
+
+#. Programmer's name for it: SEvents
+#: Resources.pas:21 
+msgid "Events"
+msgstr "Zdarzenia"
+
+#. Programmer's name for it: SInformation
+#: Resources.pas:22 
+msgid "Information"
+msgstr "Informacja"
+
+#. Programmer's name for it: SError
+#: Resources.pas:23 
+msgid "Error"
+msgstr "Błąd"
+
+#. Programmer's name for it: SQuestion
+#: Resources.pas:24 
+msgid "Question"
+msgstr "Pytanie"
+
+#. Programmer's name for it: SWarning
+#: Resources.pas:25 
+msgid "Warning"
+msgstr "Ostrzeżenie"
+
+#. Programmer's name for it: SConfirmation
+#: Resources.pas:26 
+msgid "Confirmation"
+msgstr "Potwierdź"
+
+#. Programmer's name for it: STitle
+#: Resources.pas:27 
+msgid "Title"
+msgstr "Tytuł"
+
+#. Programmer's name for it: SDescription
+#: Resources.pas:28 
+msgid "Description"
+msgstr "Opis"
+
+#. Programmer's name for it: STag
+#: Resources.pas:29 
+msgid "Tag"
+msgstr "Tag"
+
+#. Programmer's name for it: SInterval
+#: Resources.pas:30 
+msgid "Interval"
+msgstr "Interwał"
+
+#. Programmer's name for it: SBitrate
+#: Resources.pas:31 
+msgid "Bitrate"
+msgstr "Prędkość"
+
+#. Programmer's name for it: SDataBits
+#: Resources.pas:32 
+msgid "Data bits"
+msgstr "Bity danych"
+
+#. Programmer's name for it: SParity
+#: Resources.pas:33 
+msgid "Parity"
+msgstr "Parzystość"
+
+#. Programmer's name for it: SStopBits
+#: Resources.pas:34 
+msgid "Stop bits"
+msgstr "Bity stopu"
+
+#. Programmer's name for it: SDeltaChange
+#: Resources.pas:35 
+msgid "Delta change"
+msgstr "DeltaChange"
+
+#. Programmer's name for it: SIPAddress
+#: Resources.pas:36 
+msgid "IP address"
+msgstr "Adres IP"
+
+#. Programmer's name for it: SNetmask
+#: Resources.pas:37 
+msgid "Netmask"
+msgstr "Maska podsieci"
+
+#. Programmer's name for it: SMACAddress
+#: Resources.pas:38 
+msgid "MAC address"
+msgstr "Adres MAC"
+
+#. Programmer's name for it: SOnData
+#: Resources.pas:39 
+msgid "OnData"
+msgstr "OnData"
+
+#. Programmer's name for it: SOnOpen
+#: Resources.pas:40 
+msgid "OnOpen"
+msgstr "OnOpen"
+
+#. Programmer's name for it: SOnClose
+#: Resources.pas:41 
+msgid "OnClose"
+msgstr "OnClose"
+
+#. Programmer's name for it: SOnTimer
+#: Resources.pas:42 
+msgid "OnTimer"
+msgstr "OnTimer"
+
+#. Programmer's name for it: SOnBegin
+#: Resources.pas:43 
+msgid "OnBegin"
+msgstr "OnBegin"
+
+#. Programmer's name for it: SOnEnd
+#: Resources.pas:44 
+msgid "OnEnd"
+msgstr "OnEnd"
+
+#. Programmer's name for it: SOnStart
+#: Resources.pas:45 
+msgid "OnStart"
+msgstr "OnStart"
+
+#. Programmer's name for it: SOnStop
+#: Resources.pas:46 
+msgid "OnStop"
+msgstr "OnStop"
+
+#. Programmer's name for it: SOnConnected
+#: Resources.pas:47 
+msgid "OnConnected"
+msgstr "OnConnected"
+
+#. Programmer's name for it: SOnDisconnected
+#: Resources.pas:48 
+msgid "OnDisconnected"
+msgstr "OnDisconnected"
+
+#. Programmer's name for it: SOnInitialized
+#: Resources.pas:49 
+msgid "OnInitialized"
+msgstr "OnInitialized"
+
+#. Programmer's name for it: SErrorEventHandlerByThatNameNotFound
+#: Resources.pas:50 
+msgid "Error: Event handler by that name not found"
+msgstr "Błąd: Obsługa zdarzenia o tej nazwie nie została znaleziona"
+
+#. Programmer's name for it: SServer
+#: Resources.pas:51 
+msgid "Server"
+msgstr "Serwer"
+
+#. Programmer's name for it: SModule
+#: Resources.pas:52 
+msgid "Module"
+msgstr "Moduł"
+
+#. Programmer's name for it: SAnalogInput
+#: Resources.pas:53 
+msgid "Analog input"
+msgstr "Wejście analogowe"
+
+#. Programmer's name for it: SDigitalInput
+#: Resources.pas:54 
+msgid "Digital input"
+msgstr "Wejście cyfrowe"
+
+#. Programmer's name for it: SDigitalOutput
+#: Resources.pas:55 
+msgid "Digital output"
+msgstr "Wyjście cyfrowe"
+
+#. Programmer's name for it: SRelay
+#: Resources.pas:56 
+msgid "Relay"
+msgstr "Przekaźnik"
+
+#. Programmer's name for it: SWiegand
+#: Resources.pas:57 
+msgid "Wiegand"
+msgstr "Wiegand"
+
+#. Programmer's name for it: SRS232
+#: Resources.pas:58 
+msgid "RS232"
+msgstr "RS232"
+
+#. Programmer's name for it: SRS485
+#: Resources.pas:59 
+msgid "RS485"
+msgstr "RS485"
+
+#. Programmer's name for it: SMotor
+#: Resources.pas:60 
+msgid "Motor"
+msgstr "Silnik"
+
+#. Programmer's name for it: STimer
+#: Resources.pas:61 
+msgid "Timer"
+msgstr "Timer"
+
+#. Programmer's name for it: SFolder
+#: Resources.pas:62 
+msgid "Folder"
+msgstr "Folder"
+
+#. Programmer's name for it: SNoName
+#: Resources.pas:63 
+msgid "No name"
+msgstr "Bez nazwy"
+
+#. Programmer's name for it: SNotConfigured
+#: Resources.pas:64 
+msgid "not configured"
+msgstr "nie skonfigurowany"
+
+#. Programmer's name for it: SMissingMACAddress
+#: Resources.pas:65 
+msgid "missing MAC address"
+msgstr "brakuje adresu MAC"
+
+#. Parser strings
+#. Programmer's name for it: SOpeningBraceExpected
+#: Resources.pas:67 
+msgid "\"(\" expected but \"%s\" found"
+msgstr "Oczekiwano \"(\" a znaleziono \"%s\""
+
+#. Programmer's name for it: SColonOrCommaExpected
+#: Resources.pas:68 
+msgid "\":\" or \",\" expected but %s found"
+msgstr "Oczekiwano \":\" lub \",\" a znaleziono %s"
+
+#. Programmer's name for it: SSemicolonOrClosingBraceExpected
+#: Resources.pas:69 
+msgid "\";\" or \")\" expected but \"%d\" found"
+msgstr "Oczekiwano \";\" lub \")\" a znaleziono \"%d\""
+
+#. Programmer's name for it: SParameterNameExpected
+#: Resources.pas:70 
+msgid "Parameter name expected but \"%s\" found"
+msgstr "Oczekiwano nazwy parametru a znaleziono \"%s\""
+
+#. Programmer's name for it: STypeNameExpected
+#: Resources.pas:71 
+msgid "Type name expected but \"%s\" found"
+msgstr "Oczekiwano nazwy typu a znaleziono \"%s\""
+
+#. Programmer's name for it: SColonExpected
+#: Resources.pas:72 
+msgid "\":\" expected but \"%s\" found"
+msgstr "Oczekiwano \":\" a znaleziono \"%s\""
+
+#. Programmer's name for it: SSemicolonExpected
+#: Resources.pas:73 
+msgid "\";\" expected but \"%s\" found"
+msgstr "Oczekiwano \";\" a znaleziono \"%s\""
+
+#. Programmer's name for it: SSyntaxError
+#: Resources.pas:74 
+msgid "Syntax error"
+msgstr "Błąd składniowy"
+
+#. Programmer's name for it: SEnterEventHandlerName
+#: Resources.pas:75 
+msgid "Enter name for new event handler"
+msgstr "Podaj nazwę dla nowej procedury obsługi zdarzenia"
+
+#. Programmer's name for it: SName
+#: Resources.pas:76 
+msgid "Name"
+msgstr "Nazwa"
+
+#. Programmer's name for it: SErrorAProcedureByThatNameAlreadyExists
+#: Resources.pas:77 
+msgid "Error: a procedure by that name already exists"
+msgstr "Błąd: procedura o takiej nazwie już istnieje"
+
+#. Programmer's name for it: SErrorIsNotAValidEventHandlerName
+#: Resources.pas:78 
+msgid "Error: \"%s\" is not a valid handler name"
+msgstr "Błąd: \"%s\" nie jest poprawną nazwą procedury obsługi zdarzenia"
+
+#. Programmer's name for it: SInvalidIPAddress
+#: Resources.pas:79 
+msgid "Invalid IP address"
+msgstr "Niepoprawny adres IP"
+
+#. Programmer's name for it: SInvalidNetmaskAddress
+#: Resources.pas:80 
+msgid "Invalid network mask"
+msgstr "Niepoprawny adres podsieci"
+
+#. Programmer's name for it: SInvalidMACAddress
+#: Resources.pas:81 
+msgid "Invalid MAC address"
+msgstr "Niepoprawny adres MAC"
+
+#. Programmer's name for it: SInvalidInterval
+#: Resources.pas:82 
+msgid "Invalid interval"
+msgstr "Niepoprawny interwał"
+
+#. Programmer's name for it: SInvalidDeltaChangeValue
+#: Resources.pas:83 
+msgid "Invalid DeltaChange value"
+msgstr "Niepoprawna wartość DeltaChange"
+
+#. Programmer's name for it: SInvalidDataBisValue
+#: Resources.pas:84 
+msgid "%d is not in the valid DataBits range (16..128)"
+msgstr "%d nie jest w zakresie dopuszczalnych wartości (16..128)"
+
+#. Programmer's name for it: SConfigurationHasBeenChangedSaveChanges
+#: Resources.pas:85 
+msgid "Current configuration has been modifed. do you whant to save changes?"
+msgstr ""
+"Aktualna konfiguracja została zmodyfikowana. Czy chcesz zapisać zmiany?"
+
+#. Programmer's name for it: SOpenNetworkConfiguration
+#: Resources.pas:86 
+msgid "Open network configuration..."
+msgstr "Otwórz konfigurację sieci..."
+
+#. Programmer's name for it: SSaveNetworkConfigurationAs
+#: Resources.pas:87 
+msgid "Save network configuration as..."
+msgstr "Zapisz konfigurację sieci jako..."
+
+#. Programmer's name for it: SConfigurationFilter
+#: Resources.pas:88 
+msgid ""
+"Network configurations (*.cfg;*.xml)|*.cfg;*.xml|Network configuration "
+"binary (*.cfg)|*.cfg|Network configuration source (*.xml)|*.xml|All files (*."
+"*)|*.*"
+msgstr ""
+"Pliki konfiguracji sieci (*.cfg;*.xml)|*.cfg;*.xml|Konfiguracje binarne (*."
+"cfg)|*.cfg|Konfiguracje źródłowe (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*"
+
+#. Programmer's name for it: SThereHasBeenAnErrorWhileLoadingNetworkConfiguration
+#: Resources.pas:89 
+msgid ""
+"There has been an error while loading network configuration.\n"
+"\n"
+"%s"
+msgstr ""
+"Wystąpił błąd podczas wczytywania konfiguracji sieci.\n"
+"\n"
+"%s"
+
+#. Programmer's name for it: SFile
+#: Resources.pas:91 
+msgid "&File"
+msgstr "&Plik"
+
+#. Programmer's name for it: SNew
+#: Resources.pas:92 
+msgid "&New"
+msgstr "&Nowy"
+
+#. Programmer's name for it: SNewHint
+#: Resources.pas:93 
+msgid "Create a new network configuration"
+msgstr "Tworzy nową konfigurację sieci"
+
+#. Programmer's name for it: SOpen
+#: Resources.pas:94 
+msgid "&Open"
+msgstr "&Otwórz"
+
+#. Programmer's name for it: SOpenhint
+#: Resources.pas:95 
+msgid "Open a previously saved network configuration"
+msgstr "Wczytuje poprzednio zapamiętaną konfigurację sieci"
+
+#. Programmer's name for it: SSave
+#: Resources.pas:96 
+msgid "&Save"
+msgstr "&Zapisz"
+
+#. Programmer's name for it: SSaveHint
+#: Resources.pas:97 
+msgid "Save the current network configuration"
+msgstr "Zapisuje aktualną konfigurację sieci"
+
+#. Programmer's name for it: SSaveAs
+#: Resources.pas:98 
+msgid "Save &as"
+msgstr "Zapisz &jako"
+
+#. Programmer's name for it: SSAveAsHint
+#: Resources.pas:99 
+msgid "Save the current network configuration with a new file name"
+msgstr "Zapisuje aktualną konfigurację sieci pod nową nazwą pliku"
+
+#. Programmer's name for it: SCommitConfiguration
+#: Resources.pas:100 
+msgid "Commit"
+msgstr "Zatwierdź"
+
+#. Programmer's name for it: SCommitConfigurationHint
+#: Resources.pas:101 
+msgid "Commit configuration"
+msgstr "Zatwierdza konfigurację sieci"
+
+#. Programmer's name for it: SRetriveCurrentConfiguration
+#: Resources.pas:102 
+msgid "Retrieve current"
+msgstr "Pobierz aktualną konfigurację"
+
+#. Programmer's name for it: SRetriveCurrentConfigurationHint
+#: Resources.pas:103 
+msgid "Retrieve current configuration"
+msgstr "Pobiera aktualną konfigurację sieci"
+
+#. Programmer's name for it: SExit
+#: Resources.pas:104 
+msgid "E&xit"
+msgstr "&Wyjście"
+
+#. Programmer's name for it: SExitHint
+#: Resources.pas:105 
+msgid "Closes the network configuration editor"
+msgstr "Zamyka edytor konfiguracji sieci"
+
+#. Programmer's name for it: SEdit
+#: Resources.pas:107 
+msgid "&Edit"
+msgstr "&Edycja"
+
+#. Programmer's name for it: SEditHint
+#: Resources.pas:108 
+msgid "Edit operations"
+msgstr "Operacje edycyjne"
+
+#. Programmer's name for it: SAddServer
+#: Resources.pas:109 
+msgid "Add &server"
+msgstr "Dodaj &serwer"
+
+#. Programmer's name for it: SAddServerHint
+#: Resources.pas:110 
+msgid "Create a new server"
+msgstr "Dodaje nowy serwer"
+
+#. Programmer's name for it: SAddTimer
+#: Resources.pas:111 
+msgid "Add &timer"
+msgstr "Dodaj &timer"
+
+#. Programmer's name for it: SAddTimerHint
+#: Resources.pas:112 
+msgid "Create a new timer"
+msgstr "Dodaje nowy timer"
+
+#. Programmer's name for it: SAddModule
+#: Resources.pas:113 
+msgid "Add &module"
+msgstr "Dodaj &moduł"
+
+#. Programmer's name for it: SAddModuleHint
+#: Resources.pas:114 
+msgid "Create a new module"
+msgstr "Dodaje nowy moduł"
+
+#. Programmer's name for it: SAddFolder
+#: Resources.pas:115 
+msgid "Add &folder"
+msgstr "Dodaj &folder"
+
+#. Programmer's name for it: SAddFolderHint
+#: Resources.pas:116 
+msgid "Create a new folder"
+msgstr "Dodaje nowy folder"
+
+#. Programmer's name for it: SDeleteSelectedItem
+#. Programmer's name for it: SDeleteSelectedItemHint
+#: Resources.pas:117  Resources.pas:118
+msgid "Delete selected item"
+msgstr "Usuń zaznaczony element"
+
+#. Programmer's name for it: SHelp
+#: Resources.pas:120 
+msgid "&Help"
+msgstr "P&omoc"
+
+#. Programmer's name for it: SHelpHint
+#: Resources.pas:121 
+msgid "Help"
+msgstr "Pomoc"
+
+#. Programmer's name for it: SAbout
+#: Resources.pas:123 
+msgid "&About..."
+msgstr "&O programie..."
+
+#. Programmer's name for it: SAboutHint
+#: Resources.pas:124 
+msgid "Show informations about this application"
+msgstr "Pokazuje informacje o aplikacji"
+
+#. Programmer's name for it: SAboutBoxContent
+#: Resources.pas:126 
+msgid "TODO: information about the application"
+msgstr ""
+
+#. Programmer's name for it: SAboutBox
+#: Resources.pas:127 
+msgid "About..."
+msgstr "O programie..."
+
+#. Programmer's name for it: SAreYouSureYouWantToDeleteThisServerAndAllItsSubcomponents
+#: Resources.pas:129 
+msgid "Are you sure you want to delete this server and all it's subcomponents?"
+msgstr ""
+"Czy jesteś pewien, że chcesz usunąć ten serwer i wszystkie jego "
+"podkomponenty?"
+
+#. Programmer's name for it: SAreYouSureYouWantToDeleteThisTimer
+#: Resources.pas:130 
+msgid "Are you sure you want to delete this timer?"
+msgstr "Czy jesteś pewien, że chcesz usunąć ten timer?"
+
+#. Programmer's name for it: SAreYouSureYouWantToDeleteThisModule
+#: Resources.pas:131 
+msgid "Are you sure you want to delete this module?"
+msgstr "Czy jesteś pewien, że chcesz usunąć ten moduł?"
+
+#. Programmer's name for it: SAreYouSureYouWantToDeleteThisFolder
+#: Resources.pas:132 
+msgid "Are you sure you want to delete this folder?"
+msgstr "Czy jesteś pewien, że chcesz usunąć ten folder?"
+
+#. Programmer's name for it: SEditorPosition
+#: Resources.pas:134 
+msgid "Line: %d  Column: %d"
+msgstr "Linia: %d  Kolumna: %d"
+
+#. Programmer's name for it: SRecordingMacro
+#: Resources.pas:135 
+msgid "Recording macro..."
+msgstr "Nagrywam makro..."
+
+#. Programmer's name for it: SCut
+#: Resources.pas:137 
+msgid "C&ut"
+msgstr "W&ytnij"
+
+#. Programmer's name for it: SCopy
+#: Resources.pas:138 
+msgid "&Copy"
+msgstr "&Kopiuj"
+
+#. Programmer's name for it: SPaste
+#: Resources.pas:139 
+msgid "&Paste"
+msgstr "&Wklej"
+
+#. Programmer's name for it: SSelectAll
+#: Resources.pas:140 
+msgid "Select &all"
+msgstr "&Zaznacz wszystko"
+
+#. Programmer's name for it: SScriptDebugger
+#: Resources.pas:142 
+msgid "PascalScript debugger"
+msgstr "Odpluskwiacz PascalScript"
+
+#. Programmer's name for it: SRun
+#: Resources.pas:143 
+msgid "&Run"
+msgstr "&Uruchom"
+
+#. Programmer's name for it: SCompile
+#: Resources.pas:144 
+msgid "&Compile"
+msgstr "&Kompiluj"
+
+#. Programmer's name for it: SExecute
+#: Resources.pas:145 
+msgid "&Execute"
+msgstr "&Wykonaj"
+
+#. Programmer's name for it: STerminate
+#: Resources.pas:146 
+msgid "&Terminate"
+msgstr "&Przerwij"
+
+#. Programmer's name for it: SStepOver
+#: Resources.pas:147 
+msgid "Step &over"
+msgstr "Przejdź &nad"
+
+#. Programmer's name for it: SStepInto
+#: Resources.pas:148 
+msgid "Step &into"
+msgstr "Przejdź &przez"
+
+#. Programmer's name for it: SToggleBreakpoint
+#: Resources.pas:149 
+msgid "&Toggle breakpoint"
+msgstr "P&rzełącz pułapkę"
+
+#. Programmer's name for it: SEvaluate
+#: Resources.pas:150 
+msgid "E&valuate"
+msgstr "&Wylicz"
+
+#. Programmer's name for it: SScriptHasBeenModofiedSaveChanges
+#: Resources.pas:151 
+msgid "The script has been modified. Do you want to save the changes now?"
+msgstr "Skrypt został zmodyfikowany. Czy chcesz zapisać zmiany?"
+
+#. Programmer's name for it: SDialogFilter
+#: Resources.pas:152 
+msgid "Pascal Script (*.psc)|*.psc|All files (*.*)|*.*"
+msgstr "Pascal Script (*.psc)|*.psc|Wszystkie pliki (*.*)|*.*"
+
+#. Programmer's name for it: SAboutText
+#: Resources.pas:153 
+msgid "About application..."
+msgstr "O programie..."
+
+#. Programmer's name for it: SOutput
+#: Resources.pas:154 
+msgid "Output"
+msgstr "Wyjście"
+
+#. Programmer's name for it: SExpression
+#: Resources.pas:155 
+msgid "&Expression"
+msgstr "&Wyrażenie"
+
+#. Programmer's name for it: SResult
+#: Resources.pas:156 
+msgid "&Result"
+msgstr "&Rezultat"
+
+#. Programmer's name for it: SNewValue
+#: Resources.pas:157 
+msgid "&New value"
+msgstr "&Nowa wartość"
+
+#. Programmer's name for it: SWindow
+#: Resources.pas:158 
+msgid "&Window"
+msgstr "&Okno"
+
+#. Programmer's name for it: SEvaluateModify
+#: Resources.pas:159 
+msgid "Evaluate/Modify"
+msgstr "Wylicz/Modyfikuj"
+
+#. Programmer's name for it: SGetValue
+#: Resources.pas:160 
+msgid "Enter text (Readln)"
+msgstr "Wprowadź tekst (Readln)"
+
+#. Programmer's name for it: SValue
+#: Resources.pas:161 
+msgid "Value"
+msgstr "Wartość"
+
+#. Programmer's name for it: SToolbar
+#: Resources.pas:162 
+msgid "Toolbar"
+msgstr "Pasek narzędzi"
+
+#. Programmer's name for it: SUndo
+#: Resources.pas:163 
+msgid "&Undo"
+msgstr "&Cofnij"
+
+#. Programmer's name for it: SRedo
+#: Resources.pas:164 
+msgid "&Redo"
+msgstr "&Ponów"
+
+#. Parser strings
+#. Programmer's name for it: SSymbolExpected
+#: Resources.pas:167 
+msgid "Symbol expected but \"%s\" found"
+msgstr "Oczekiwano symbolu a znaleziono \"%s\""
+
+#. Programmer's name for it: SFunctionsAndProcedures
+#: Resources.pas:169 
+msgid "Functions and procedures"
+msgstr "Funkcje i procedury"
+
+#. Programmer's name for it: SList
+#: Resources.pas:170 
+msgid "List"
+msgstr "Lista"
+
+#. Programmer's name for it: SOk
+#: Resources.pas:171 
+msgid "Ok"
+msgstr "Ok"
+
+#. Programmer's name for it: SCancel
+#: Resources.pas:172 
+msgid "Cancel"
+msgstr "Anuluj"
+
+#. Programmer's name for it: STools
+#: Resources.pas:174 
+msgid "&Tools"
+msgstr "&Narzędzia"
+
+#. Programmer's name for it: SToolsHint
+#: Resources.pas:175 
+msgid "Additional tools"
+msgstr "Dodatkowe narzędzia"
+
+#. Programmer's name for it: SFunctionsAndProceduresList
+#: Resources.pas:176 
+msgid "Functions and procedures list"
+msgstr "Lista funkcji i procedur"
+
+#. Programmer's name for it: SType
+#: Resources.pas:177 
+msgid "Type"
+msgstr "Typ"
+
+#. Programmer's name for it: SLine
+#: Resources.pas:178 
+msgid "Line"
+msgstr "Linia"
+
+#. Programmer's name for it: SDebuggerIsStillRunningTerminate
+#: Resources.pas:180 
+msgid "Debugger is still running. Do you want to terminate?"
+msgstr "Debugger jest ciągle aktywny. Czy chcesz zakończyć jego działanie?"
+
+#. Programmer's name for it: SPascalScript
+#: Resources.pas:182 
+msgid "&PascalScript"
+msgstr "&PascalScript"
+
+#. Programmer's name for it: SPascalScriptHint
+#: Resources.pas:183 
+msgid "Enable controling of network configuration using PascalScript"
+msgstr "Umożliwia kontrolę konfoguracji sieci używając PascalScript"
+
+#. Programmer's name for it: SUnknownElement
+#: Resources.pas:185 
+msgid "Unknown element"
+msgstr "Nieznany element"
+
+#. server script resourcestrings
+#. Programmer's name for it: SErrorWhileGettingLocalIPAddress
+#: Resources.pas:188 
+msgid "Error: %d while getting local IP address"
+msgstr "Błąd nr %d podczas pobierania lokalnego adresu IP"
+
+#. Programmer's name for it: SErrorNo
+#: Resources.pas:189 
+msgid "Error: %d"
+msgstr "Błąd nr %d"
+
+#. Programmer's name for it: SCompileScript
+#: Resources.pas:190 
+msgid "Compile script"
+msgstr "Kompiluj"

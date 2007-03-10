@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - module simulator" default="all">
+  <target name="all" depends="compile,translate"/>
+  <target name="clean">
+    <delete defaultexcludes="false">
+      <include name="**/*.~*"/>
+      <include name="**/*.dcu"/>
+      <include name="**/*.dsk"/>
+      <include name="**/*.drc"/>
+      <include name="**/*.map"/>
+      <include name="**/*.po~"/>
+      <include name="**/*.pot"/>
+      <include name="modsim.exe"/>
+      <include name="modsim.mo"/>
+      <include name="modsim_pl.mo"/>
+    </delete>
+  </target>
+  <target name="compile">
+    <dcc source="modsim.dpr"/>
+  </target>
+  <target name="translate">
+    <exec executable="dxgettext.exe" arguments="-q Resources.pas --so modsim.pot"/>
+    <exec executable="msgmerge.exe" arguments="-q -U modsim.po modsim.pot"/>
+    <exec executable="msgfmt.exe" arguments="modsim.po -o modsim.mo"/>
+    <exec executable="msgmerge.exe" arguments="-q -U modsim_pl.po modsim.pot"/>
+    <exec executable="msgfmt.exe" arguments="modsim_pl.po -o modsim_pl.mo"/>
+  </target>
+</project>

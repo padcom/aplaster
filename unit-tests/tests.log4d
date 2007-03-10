@@ -1,0 +1,6 @@
+log4d.appender.logfile=TLogFileAppender
+log4d.appender.logfile.fileName=tests.log
+log4d.appender.logfile.append=false
+log4d.appender.logfile.layout=TLogSimpleLayout
+
+log4d.rootLogger=all,logfile

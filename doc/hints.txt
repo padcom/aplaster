@@ -1,0 +1,15 @@
+
+Hints to program the AplaSter system.
+-------------------------------------
+
+1. Waiting loops.
+
+   To program a waiting loop in the script the loop must have a call to 
+   "Suspend" procedure to give the system a chance to process other messages.
+   Even if the loop isn't looping forever it's good to call the "Suspend"
+   procedure as it gives the system more flexibility. Otherwise, current 
+   event handler is blocking the system as long as it's processing.
+   
+
+   
+   

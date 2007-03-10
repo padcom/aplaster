@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2006-02-20 02:43\n"
+"PO-Revision-Date: 2005-09-19 21:37\n"
+"Last-Translator: Somebody <your.email@address.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: dxgettext 1.2\n"
+
+#. Programmer's name for it: SMonitorTitle
+#: Resources.pas:13
+msgid "AplaSter Monitor v1.0"
+msgstr ""
+
+#. Programmer's name for it: SServers
+#: Resources.pas:14
+msgid "Servers"
+msgstr ""
+
+#. Programmer's name for it: SDoors
+#: Resources.pas:15
+msgid "Doors"
+msgstr ""
+
+#. Programmer's name for it: SMessages
+#: Resources.pas:16
+msgid "Messages"
+msgstr ""
+
+#. Programmer's name for it: SLive
+#: Resources.pas:17
+msgid "Live"
+msgstr ""
+
+#. Programmer's name for it: SArchive
+#: Resources.pas:18
+msgid "Archive"
+msgstr ""
+
+#. Programmer's name for it: SFile
+#: Resources.pas:20
+msgid "&File"
+msgstr ""
+
+#. Programmer's name for it: SExit
+#: Resources.pas:21
+msgid "E&xit"
+msgstr ""
+
+#. Programmer's name for it: SWindow
+#: Resources.pas:22
+msgid "&Window"
+msgstr ""
+
+#. Programmer's name for it: STileHorizontal
+#: Resources.pas:23
+msgid "Tile &horizontal"
+msgstr ""
+
+#. Programmer's name for it: STileVertical
+#: Resources.pas:24
+msgid "Tile &vertical"
+msgstr ""
+
+#. Programmer's name for it: SCascade
+#: Resources.pas:25
+msgid "&Cascade"
+msgstr ""
+
+#. Programmer's name for it: SMinimizeAll
+#: Resources.pas:26
+msgid "Minimize &all"
+msgstr ""
+
+#. Programmer's name for it: SCriticalError
+#: Resources.pas:28
+msgid "Critical error"
+msgstr ""
+
+#. Programmer's name for it: SErrorWhileConnectingToDatabaseServer
+#: Resources.pas:29
+msgid "Error while connecting to database server - application terminated"
+msgstr ""
+
+#. Programmer's name for it: SServer
+#: Resources.pas:31
+msgid "Server"
+msgstr ""
+
+#. Programmer's name for it: SInvalidIPAddress
+#: Resources.pas:32
+msgid "Invalid IP address"
+msgstr ""
+
+#. Programmer's name for it: SInvalidNetmaskAddress
+#: Resources.pas:33
+msgid "Invalid network mask"
+msgstr ""
+
+#. Programmer's name for it: SInvalidMACAddress
+#: Resources.pas:34
+msgid "Invalid MAC address"
+msgstr ""
+
+#. Programmer's name for it: SInvalidInterval
+#: Resources.pas:35
+msgid "Invalid interval"
+msgstr ""
+
+#. Programmer's name for it: SInvalidDeltaChangeValue
+#: Resources.pas:36
+msgid "Invalid DeltaChange value"
+msgstr ""
+
+#. Programmer's name for it: SInvalidDataBisValue
+#: Resources.pas:37
+msgid "%d is not in the valid DataBits range (16..128)"
+msgstr ""
+
+#. Programmer's name for it: SNotConfigured
+#: Resources.pas:38
+msgid "not configured"
+msgstr ""
+
+#. Programmer's name for it: SMissingMACAddress
+#: Resources.pas:39
+msgid "missing MAC address"
+msgstr ""
+
+#. Programmer's name for it: SModule
+#: Resources.pas:40
+msgid "Module"
+msgstr ""
+
+#. Programmer's name for it: SAnalogInput
+#: Resources.pas:41
+msgid "Analog input"
+msgstr ""
+
+#. Programmer's name for it: SDigitalInput
+#: Resources.pas:42
+msgid "Digital input"
+msgstr ""
+
+#. Programmer's name for it: SDigitalOutput
+#: Resources.pas:43
+msgid "Digital output"
+msgstr ""
+
+#. Programmer's name for it: SRelay
+#: Resources.pas:44
+msgid "Relay"
+msgstr ""
+
+#. Programmer's name for it: SWiegand
+#: Resources.pas:45
+msgid "Wiegand"
+msgstr ""
+
+#. Programmer's name for it: SRS232
+#: Resources.pas:46
+msgid "RS232"
+msgstr ""
+
+#. Programmer's name for it: SRS485
+#: Resources.pas:47
+msgid "RS485"
+msgstr ""
+
+#. Programmer's name for it: SMotor
+#: Resources.pas:48
+msgid "Motor"
+msgstr ""
+
+#. Programmer's name for it: STimer
+#: Resources.pas:49
+msgid "Timer"
+msgstr ""
+
+#. Programmer's name for it: SFolder
+#: Resources.pas:50
+msgid "Folder"
+msgstr ""
+
+#. Programmer's name for it: SNoName
+#: Resources.pas:51
+msgid "No name"
+msgstr ""
+
+#. Programmer's name for it: SUnknownElement
+#: Resources.pas:52
+msgid "Unknown element"
+msgstr ""

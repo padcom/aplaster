@@ -1,0 +1,599 @@
+<ConfigFile Signature="ASCF" Version="1.00" Created="20050827" Modified="20051114">
+  <IdGenerator LastId="2147483705"/>
+
+  <GlobalData>
+    <Tag Value="0"/>
+    <Code Value="{$DEFINE DEBUG}\|\|procedure TestOpen(Sender: TPSDigitalInput);  \|var\|  I: Integer;\|begin\|  for I := 0 to Sender.Module.RelayCount - 1 do\|    Sender.Module.Relays[I].Control(False, False, 0, 0, nil, nil); \|// or like this\|//    Sender.Module.Relays[I].Open;\|end;\|\|procedure TestClose(Sender: TPSDigitalInput);\|var\|  I: Integer;\|begin\|  for I := 0 to Sender.Module.RelayCount - 1 do\|    Sender.Module.Relays[I].Control(True, True, 0, 0, nil, nil);\|// or like this\|//    Sender.Module.Relays[I].Close; \|end;\|\|procedure Test2Open(Sender: TPSDigitalInput);\|var\|  I: Integer;\|begin\|  for I := 0 to Sender.Module.DigitalOutputCount - 1 do\|    Sender.Module.DigitalOutputs[I].Control((i mod 2) = 0, (i mod 2) = 0, 0, 0, \|      Sender.Module.DigitalInputs[0], Sender.Module.DigitalInputs[1]);\|end;\|\|procedure Test2Close(Sender: TPSDigitalInput);\|var\|  I: Integer;\|begin\|  for I := 0 to Sender.Module.DigitalOutputCount - 1 do\|    Sender.Module.DigitalOutputs[I].Control((i mod 2) = 1, (i mod 2) = 1, 0, 0, \|      Sender.Module.DigitalInputs[0], Sender.Module.DigitalInputs[1]);\|end;\|\|// -----------------------------------------------------------------------------\|// Server\|// -----------------------------------------------------------------------------\|\|procedure ServerStarted(Sender: TPSServer);\|begin\|  // perform operations on server start\|{$IFDEF DEBUG}\|  Log(\'The server \"\' + Sender.Title + \'\" has started\');\|{$ENDIF}  \|end;\|\|procedure ServerStopped(Sender: TPSServer);\|begin\|  // perform operations on server stop\|{$IFDEF DEBUG}\|  Log(\'The server \"\' + Sender.Title + \'\" has stopped\');\|{$ENDIF}  \|end;\|\|// -----------------------------------------------------------------------------\|// Module\|// -----------------------------------------------------------------------------\|\|procedure ModuleConnected(Sender: TPSModule);\|begin\|  // perform operations after a module is connected\|{$IFDEF DEBUG}\|  Log(\'The module \"\' + Sender.Title + \'\" is connected now\');\|{$ENDIF}  \|end;\|\|procedure ModuleDisconnected(Sender: TPSModule);\|begin\|  // perform operations after a module has been disconnected\|{$IFDEF DEBUG}\|  Log(\'The module \"\' + Sender.Title + \'\" is disconnected now\');\|{$ENDIF}  \|end;\|\|procedure ModuleInitialized(Sender: TPSModule);\|begin\|  // perform operations after a module has been initialized\|{$IFDEF DEBUG}\|  Log(\'The module \"\' + Sender.Title + \'\" has been initialized\');\|{$ENDIF}  \|end;\|\|// -----------------------------------------------------------------------------\|// Timer\|// -----------------------------------------------------------------------------\|\|var\|  Counter: Integer;\|\|procedure TimerOnTimer(Sender: TPSTimer);\|begin\|  // perform operations after a timeout has been achieved  \|{$IFDEF DEBUG}\|  Log(\'The timer \"\' + Sender.Title + \'\" has achieved the timeout\');\|{$ENDIF}  \|  Counter := Counter + 1;\|  if Counter = 30 then\|    Sender.Stop\|  else\|    Log(\'Couner = \' + IntToStr(Counter));\|end;\|\|procedure Test3Close(Sender: TPSDigitalInput);\|begin\|  Sender.Server.Timers[0].Start;\|  Counter := 0;\|end;\|\|// -----------------------------------------------------------------------------\|// Devices on module\|// -----------------------------------------------------------------------------\|\|procedure DoorMCOpen(Sender: TPSDigitalInput);\|begin\|  // perform operations after the door has been opened\|{$IFDEF DEBUG}\|  Log(\'The door has been opened\');\|{$ENDIF}  \|end;\|\|procedure DoorMCClose(Sender: TPSDigitalInput);\|begin\|  // perform operations after the door has been closed\|{$IFDEF DEBUG}\|  Log(\'The door has been closed\');\|{$ENDIF}  \|end;\|\|procedure DoorLOpen(Sender: TPSDigitalInput);\|begin\|  // perform operations after the lock has been opened\|{$IFDEF DEBUG}\|  Log(\'The lock has been opened\');\|{$ENDIF}  \|end;\|\|procedure DoorLClose(Sender: TPSDigitalInput);\|begin\|  // perform operations after the lock has been closed\|{$IFDEF DEBUG}\|  Log(\'The lock has been closed\');\|{$ENDIF}  \|end;\|\|procedure ReaderData(Sender: TPSWiegand; Data: Integer);\|begin\|  // perform operations after the reader has read some data\|{$IFDEF DEBUG}\|  Log(\'The reader \"\' + Sender.Title + \'\" has read some data (possibly an ID)\');\|{$ENDIF}  \|end;              \|\|procedure AnalogInput0Data(Sender: TPSAnalogInput; Data: Integer);\|begin\|//  Log(\'AnalogInput \' + Sender.Title + \' data = \' + IntToStr(Data));\|  Log(\'AnalogInput data = \' + Sender.Title + \' \' + IntToStr(Data));\|end;\|\|procedure StartMotor(Sender: TPSDigitalInput);\|begin\|  Sender.Module.Motors[0].Start(0, 100, 200, \|    Sender.Module.DigitalInputs[3], Sender.Module.DigitalInputs[4], 0); \|end;\|\|procedure CheckDigiIn4(Sender: TPSDigitalInput);\|begin\|  Log(\'Waiting for digiin 5 to close...\');\|  repeat\|    Suspend;\|  until Sender.Module.DigitalInputs[4].State;\|  Log(\'CheckDigiIn4() finished.\');\|end;\|\|procedure DigiInClose(Sender: TPSDigitalInput);\|begin\|  Log(\'CheckDigiClose().\');\|end;\|\|procedure RS232OnData(Sender: TPSRS232; Data: Char);\|begin\|  Log(\'RS232 (\' + Sender.Title + \') has received a character \"\' + Data + \'\"\');\|end;"/>
+  </GlobalData>
+
+  <ServerData>
+    <Id Value="2147483650"/>
+    <Tag Value="0"/>
+    <IP Value="192.168.0.2"/>
+    <Title Value="Home"/>
+    <Description Value=""/>
+    <OnStart Value="ServerStarted"/>
+    <OnStop Value="ServerStopped"/>
+  </ServerData>
+
+  <TimerData>
+    <Id Value="2147483651"/>
+    <ParentId Value="2147483650"/>
+    <Interval Value="100"/>
+    <FolderId Value="2147483701"/>
+    <Tag Value="0"/>
+    <Title Value="Timer for testing"/>
+    <Description Value=""/>
+    <OnTimer Value="TimerOnTimer"/>
+  </TimerData>
+
+  <ModuleData>
+    <Id Value="2147483653"/>
+    <ParentId Value="2147483650"/>
+    <FolderId Value="2147483702"/>
+    <Tag Value="0"/>
+    <Title Value="Main entrance"/>
+    <Description Value=""/>
+    <IP Value="127.0.0.1"/>
+    <Netmask Value="255.255.255.0"/>
+    <MAC Value="45:34:11:FF:33:A4"/>
+    <OnInitialized Value="ModuleInitialized"/>
+    <OnConnected Value="ModuleConnected"/>
+    <OnDisconnected Value="ModuleDisconnected"/>
+  </ModuleData>
+
+  <AnalogInputData>
+    <Id Value="2147483654"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="1"/>
+    <DeltaChange Value="1"/>
+    <Tag Value="0"/>
+    <Title Value="Test AN0"/>
+    <Description Value=""/>
+    <Connector Value="X-2/1"/>
+    <OnData Value="AnalogInput0Data"/>
+  </AnalogInputData>
+
+  <AnalogInputData>
+    <Id Value="2147483655"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="2"/>
+    <DeltaChange Value="1"/>
+    <Tag Value="0"/>
+    <Title Value="Test AN1"/>
+    <Description Value=""/>
+    <Connector Value="X-2/2"/>
+    <OnData Value="AnalogInput0Data"/>
+  </AnalogInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483656"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="3"/>
+    <Tag Value="0"/>
+    <Title Value="Door (MC)"/>
+    <Description Value=""/>
+    <Connector Value="X-3/1"/>
+    <OnOpen Value="DoorMCOpen"/>
+    <OnClose Value="DoorMCClose"/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483657"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="4"/>
+    <Tag Value="0"/>
+    <Title Value="Door (L)"/>
+    <Description Value=""/>
+    <Connector Value="X-3/2"/>
+    <OnOpen Value="DoorLOpen"/>
+    <OnClose Value="DoorLClose"/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483658"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="5"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/3"/>
+    <OnOpen Value=""/>
+    <OnClose Value="StartMotor"/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483659"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="6"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/4"/>
+    <OnOpen Value=""/>
+    <OnClose Value="CheckDigiIn4"/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483660"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="7"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/5"/>
+    <OnOpen Value=""/>
+    <OnClose Value="DigiInClose"/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483661"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="8"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/6"/>
+    <OnOpen Value=""/>
+    <OnClose Value="Test3Close"/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483662"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="9"/>
+    <Tag Value="0"/>
+    <Title Value="Test2"/>
+    <Description Value=""/>
+    <Connector Value="X-3/7"/>
+    <OnOpen Value="Test2Open"/>
+    <OnClose Value="Test2Close"/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483663"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="10"/>
+    <Tag Value="0"/>
+    <Title Value="Test1"/>
+    <Description Value=""/>
+    <Connector Value="X-3/8"/>
+    <OnOpen Value="TestOpen"/>
+    <OnClose Value="TestClose"/>
+  </DigitalInputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483664"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="11"/>
+    <Tag Value="0"/>
+    <Title Value="Reader inside (Green LED)"/>
+    <Description Value=""/>
+    <Connector Value="X-4/1"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483665"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="12"/>
+    <Tag Value="0"/>
+    <Title Value="Reader inside (Red LED)"/>
+    <Description Value=""/>
+    <Connector Value="X-4/2"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483666"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="13"/>
+    <Tag Value="0"/>
+    <Title Value="Reader outside (Green LED)"/>
+    <Description Value=""/>
+    <Connector Value="X-4/3"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483667"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="14"/>
+    <Tag Value="0"/>
+    <Title Value="Reader outside (Red LED)"/>
+    <Description Value=""/>
+    <Connector Value="X-4/4"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483668"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="15"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/5"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483669"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="16"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/6"/>
+  </DigitalOutputData>
+
+  <RelayData>
+    <Id Value="2147483670"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="17"/>
+    <Tag Value="0"/>
+    <Title Value="Door (Lock)"/>
+    <Description Value=""/>
+    <Connector Value="X-5/1..2"/>
+  </RelayData>
+
+  <RelayData>
+    <Id Value="2147483671"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="18"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-5/3..4"/>
+  </RelayData>
+
+  <RelayData>
+    <Id Value="2147483672"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="19"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-5/5..6"/>
+  </RelayData>
+
+  <WiegandData>
+    <Id Value="2147483673"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="20"/>
+    <DataBits Value="32"/>
+    <Tag Value="0"/>
+    <Title Value="Reader inside"/>
+    <Description Value=""/>
+    <Connector Value="X-6/1..2"/>
+    <OnData Value="ReaderData"/>
+  </WiegandData>
+
+  <WiegandData>
+    <Id Value="2147483674"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="21"/>
+    <DataBits Value="32"/>
+    <Tag Value="0"/>
+    <Title Value="Reader outside"/>
+    <Description Value=""/>
+    <Connector Value="X-7/1..2"/>
+    <OnData Value="ReaderData"/>
+  </WiegandData>
+
+  <RS232Data>
+    <Id Value="2147483675"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="22"/>
+    <Bitrate Value="2"/>
+    <DataBits Value="1"/>
+    <Parity Value="0"/>
+    <StopBits Value="0"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-8/1..3"/>
+    <OnData Value="RS232OnData"/>
+  </RS232Data>
+
+  <MotorData>
+    <Id Value="2147483676"/>
+    <ParentId Value="2147483653"/>
+    <DevId Value="25"/>
+    <Tag Value="0"/>
+    <Title Value="Motor (Lock)"/>
+    <Description Value=""/>
+    <Connector Value="X-9/1..2"/>
+  </MotorData>
+
+  <ModuleData>
+    <Id Value="2147483677"/>
+    <ParentId Value="2147483650"/>
+    <FolderId Value="2147483703"/>
+    <Tag Value="0"/>
+    <Title Value="Chief\'s biuro"/>
+    <Description Value=""/>
+    <IP Value="192.168.2.201"/>
+    <Netmask Value="255.255.255.0"/>
+    <MAC Value="45:34:11:FF:33:A5"/>
+    <OnInitialized Value=""/>
+    <OnConnected Value=""/>
+    <OnDisconnected Value=""/>
+  </ModuleData>
+
+  <AnalogInputData>
+    <Id Value="2147483678"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="1"/>
+    <DeltaChange Value="1"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-2/1"/>
+    <OnData Value=""/>
+  </AnalogInputData>
+
+  <AnalogInputData>
+    <Id Value="2147483679"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="2"/>
+    <DeltaChange Value="1"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-2/2"/>
+    <OnData Value=""/>
+  </AnalogInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483680"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="3"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/1"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483681"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="4"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/2"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483682"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="5"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/3"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483683"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="6"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/4"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483684"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="7"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/5"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483685"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="8"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/6"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483686"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="9"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/7"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalInputData>
+    <Id Value="2147483687"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="10"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-3/8"/>
+    <OnOpen Value=""/>
+    <OnClose Value=""/>
+  </DigitalInputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483688"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="11"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/1"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483689"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="12"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/2"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483690"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="13"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/3"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483691"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="14"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/4"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483692"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="15"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/5"/>
+  </DigitalOutputData>
+
+  <DigitalOutputData>
+    <Id Value="2147483693"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="16"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-4/6"/>
+  </DigitalOutputData>
+
+  <RelayData>
+    <Id Value="2147483694"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="17"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-5/1..2"/>
+  </RelayData>
+
+  <RelayData>
+    <Id Value="2147483695"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="18"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-5/3..4"/>
+  </RelayData>
+
+  <RelayData>
+    <Id Value="2147483696"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="19"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-5/5..6"/>
+  </RelayData>
+
+  <WiegandData>
+    <Id Value="2147483697"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="20"/>
+    <DataBits Value="32"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-6/1..2"/>
+    <OnData Value=""/>
+  </WiegandData>
+
+  <WiegandData>
+    <Id Value="2147483698"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="21"/>
+    <DataBits Value="32"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-7/1..2"/>
+    <OnData Value=""/>
+  </WiegandData>
+
+  <RS232Data>
+    <Id Value="2147483699"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="22"/>
+    <Bitrate Value="2"/>
+    <DataBits Value="1"/>
+    <Parity Value="0"/>
+    <StopBits Value="0"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-8/1..3"/>
+    <OnData Value=""/>
+  </RS232Data>
+
+  <MotorData>
+    <Id Value="2147483700"/>
+    <ParentId Value="2147483677"/>
+    <DevId Value="25"/>
+    <Tag Value="0"/>
+    <Title Value=""/>
+    <Description Value=""/>
+    <Connector Value="X-9/1..2"/>
+  </MotorData>
+
+  <FolderData>
+    <Id Value="2147483701"/>
+    <ServerId Value="2147483650"/>
+    <Title Value="Folder for timer"/>
+    <Description Value=""/>
+  </FolderData>
+
+  <FolderData>
+    <Id Value="2147483702"/>
+    <ServerId Value="2147483650"/>
+    <Title Value="Folder for main entrance module"/>
+    <Description Value=""/>
+  </FolderData>
+
+  <FolderData>
+    <Id Value="2147483703"/>
+    <ServerId Value="2147483650"/>
+    <Title Value="Folder for chief\'s biuro module"/>
+    <Description Value=""/>
+  </FolderData>
+
+</ConfigFile>

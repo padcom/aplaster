@@ -1,0 +1,32 @@
+
+TODO list for AplaSter project.
+  
+
+1. Module simulator.
+   - test
+
+2. Module.
+   - finish module hardware
+   - finish module firmware
+   - possibly add a http server to visualize module states
+   - make digital output driver more realistic since now it's using
+     shared pins (USART pins)
+
+3. Server.
+   - test (especially motor, wiegand and RSxxx devices)
+
+4. Network configurator.
+   - think about runtime timers
+   
+5. Common data editor.
+
+6. Activity monitor.
+
+7. Setup.
+
+8. Icons.
+   - Server
+   - Module simulator
+   - Common data editor
+   - Activity monitor
+   
