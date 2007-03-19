@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster.Server" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+	<target name="all" depends="translate,compile"/>
+
+	<target name="clean">
+		<delete>
+			<fileset>
+				<include name="aplasvr.exe"/>
+				<include name="aplasvr.dsk"/>
+				<include name="*.dcu"/>
+				<include name="*.~*"/>
+				<include name="*.mo"/>
+				<include name="*.pot"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="translate">
+		<dxgettext outputfile="aplasvr.pot"/>
+		<msgmerge project="aplasvr.po" template="aplasvr.pot"/>
+		<msgfmt project="aplasvr.po" outputfile="aplasvr.mo"/>
+	</target>
+
+	<target name="compile">
+		<dcc project="aplasvr.dpr"/>
+	</target>
+</project>

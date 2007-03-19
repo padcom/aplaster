@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster.Common" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+	<target name="all" depends="generate"/>
+
+	<target name="clean">
+		<delete>
+			<fileset>
+				<include name="ConfigFile.pas"/>
+				<include name="uPSI_Config.pas"/>
+				<include name="uPSI_ConfigFile.pas"/>
+				<include name="APLASTER.FDB"/>
+				<include name="*.dcu"/>
+				<include name="*.~*"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="generate">
+		<erisgen project="ConfigFile.xdf"/>
+		<exec program="../psimp/psimp.exe" commandline="Config.pas"/>
+		<exec program="../psimp/psimp.exe" commandline="ConfigFile.pas"/>
+	</target>
+</project>

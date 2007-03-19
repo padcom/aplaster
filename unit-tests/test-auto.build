@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster.Tests" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+	<target name="all" depends="compile,test"/>
+
+	<target name="clean">
+		<delete>
+			<fileset>
+				<include name="test-auto.exe"/>
+				<include name="test-auto.dsk"/>
+				<include name="tests.exe"/>
+				<include name="tests.dsk"/>
+				<include name="**/*.dcu"/>
+				<include name="**/*.~*"/>
+				<include name="**/*.log"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="compile">
+		<dcc project="test-auto.dpr"/>
+	</target>
+
+	<target name="test" depends="compile">
+		<exec program="test-auto.exe"/>
+	</target>
+</project>
