@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <project name="Aplaster" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
-	<target name="all" depends="prebuild,test,compile"/>
+	<target name="all" depends="prebuild,test,compile,manual"/>
 
 	<target name="clean">
 		<nant buildfile="psimp/psimp.build" target="clean"/>
@@ -13,6 +13,7 @@
 		<nant buildfile="server/aplasvr.build" target="clean"/>
 		<nant buildfile="setup/setup.build" target="clean"/>
 		<nant buildfile="unit-tests/test-auto.build" target="clean"/>
+		<nant buildfile="doc/manual/manual.build" target="clean"/>
 	</target>
 
 	<target name="compile" depends="prebuild">
@@ -31,6 +32,10 @@
 
 	<target name="test" depends="prebuild">
 		<nant buildfile="unit-tests/test-auto.build" target="all"/>
+	</target>
+
+	<target name="manual" depends="prebuild">
+		<nant buildfile="doc/manual/manual.build" target="all"/>
 	</target>
 </project>
 
