@@ -8,7 +8,7 @@
 	</target>
 
 	<target name="generate">
-		<style in="manual.xml" out="manual.html" style="docbook/book-html.xsl"/>
+		<style in="manual.xml" out="manual.html" style="../docbook/book-html.xsl"/>
 	</target>
 
 </project>
