@@ -6,9 +6,7 @@
 	<target name="clean">
 		<delete>
 			<fileset>
-				<include name="test-auto.exe"/>
-				<include name="test-auto.dsk"/>
-				<include name="tests.exe"/>
+				<include name="tests.dll"/>
 				<include name="tests.dsk"/>
 				<include name="**/*.dcu"/>
 				<include name="**/*.~*"/>
@@ -18,10 +16,10 @@
 	</target>
 
 	<target name="compile">
-		<dcc project="test-auto.dpr"/>
+		<dcc project="tests.dpr"/>
 	</target>
 
 	<target name="test" depends="compile">
-		<exec program="test-auto.exe"/>
+		<dunit assembly="tests.dll"/>
 	</target>
 </project>

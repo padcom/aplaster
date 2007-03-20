@@ -1,6 +1,0 @@
-log4d.appender.logfile=TLogFileAppender
-log4d.appender.logfile.fileName=test-auto.log
-log4d.appender.logfile.append=false
-log4d.appender.logfile.layout=TLogSimpleLayout
-
-log4d.rootLogger=all,logfile
