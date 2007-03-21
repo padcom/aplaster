@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 
 <project name="Aplaster" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+	<property name="dcc" value="dcc32.exe" unless="${property::exists('dcc')}"/>
+
 	<target name="all" depends="prebuild,test,compile,manual"/>
 
 	<target name="clean">
@@ -38,5 +40,3 @@
 		<nant buildfile="doc/manual/manual.build" target="all"/>
 	</target>
 </project>
-
-

@@ -3,6 +3,8 @@
 <project name="Aplaster.PascalScriptImporter" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
 	<target name="all" depends="compile"/>
 
+	<property name="dcc" value="dcc32.exe" unless="${property::exists('dcc')}"/>
+
 	<target name="clean">
 		<delete>
 			<fileset>
@@ -15,6 +17,6 @@
 	</target>
 
 	<target name="compile">
-		<dcc project="psimp.dpr"/>
+		<dcc project="psimp.dpr" compiler="${dcc}"/>
 	</target>
 </project>
