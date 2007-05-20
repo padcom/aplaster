@@ -179,21 +179,9 @@ type
   private
     { Private declarations }
     FConfig: TConfig;
-    FDatabaseServerEditor: TEditor;
-    FServerEditor: TEditor;
-    FModuleEditor: TEditor;
-    FAnalogInputEditor: TEditor;
-    FDigitalInputEditor: TEditor;
-    FDigitalOutputEditor: TEditor;
-    FRelayEditor: TEditor;
-    FWiegandEditor: TEditor;
-    FRS232Editor: TEditor;
-    FRS485Editor: TEditor;
-    FMotorEditor: TEditor;
-    FTimerEditor: TEditor;
-    FFolderEditor: TEditor;
     FConfigTreeDisplayer: TConfigTreeDisplayer;
     FChanging: Boolean;
+    FEditors: TEditorList;
     function CheckFileSaved: Boolean;
     function SelectPopupMenu(Node: TTreeNode): TPopupMenu;
     function SelectedServer: TServer;
@@ -215,6 +203,7 @@ type
     function ConfirmModuleDeletion(Module: TModule): Boolean;
     procedure CreateConfigurationObject;
     procedure CreatePropertyEditors;
+    procedure DestroyPropertyEditors;
     procedure CreateConfigTreeDisplayer;
   protected
     property Config: TConfig read FConfig;
@@ -538,18 +527,32 @@ end;
 
 procedure TFrmMain.CreatePropertyEditors;
 begin
-  FServerEditor := TServerEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FModuleEditor := TModuleEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FAnalogInputEditor := TAnalogInputEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FDigitalInputEditor := TDigitalInputEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FDigitalOutputEditor := TDigitalOutputEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FRelayEditor := TRelayEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FWiegandEditor := TWiegandEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FRS232Editor := TRS232Editor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FRS485Editor := TRS485Editor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FMotorEditor := TMotorEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FTimerEditor := TTimerEditor.Create(FConfig, PpeNetworkItem, EdtCode);
-  FFolderEditor := TFolderEditor.Create(FConfig, PpeNetworkItem, EdtCode);
+  FEditors := TEditorList.Create;
+  FEditors.RegisterEditor(TServer, TServerEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TModule, TModuleEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TAnalogInput, TAnalogInputEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TDigitalInput, TDigitalInputEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TDigitalOutput, TDigitalOutputEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TRelay, TRelayEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TWiegand, TWiegandEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TRS232, TRS232Editor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TRS485, TRS485Editor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TMotor, TMotorEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TTimer, TTimerEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+  FEditors.RegisterEditor(TFolder, TFolderEditor.Create(FConfig, PpeNetworkItem, EdtCode));
+end;
+
+procedure TFrmMain.DestroyPropertyEditors;
+var
+  Editor: TEditor;
+begin
+  while FEditors.Count > 0 do
+  begin
+    Editor := FEditors[0];
+    FEditors.UnregisterEditor(Editor);
+    Editor.Free;
+  end;
+  FreeAndNil(FEditors);
 end;
 
 procedure TFrmMain.CreateConfigTreeDisplayer;
@@ -576,20 +579,8 @@ end;
 
 procedure TFrmMain.FormDestroy(Sender: TObject);
 begin
+  DestroyPropertyEditors;
   FreeAndNil(FConfigTreeDisplayer);
-  FreeAndNil(FFolderEditor);
-  FreeAndNil(FMotorEditor);
-  FreeAndNil(FTimerEditor);
-  FreeAndNil(FRS485Editor);
-  FreeAndNil(FRS232Editor);
-  FreeAndNil(FWiegandEditor);
-  FreeAndNil(FRelayEditor);
-  FreeAndNil(FDigitalOutputEditor);
-  FreeAndNil(FDigitalInputEditor);
-  FreeAndNil(FAnalogInputEditor);
-  FreeAndNil(FModuleEditor);
-  FreeAndNil(FServerEditor);
-  FreeAndNil(FDatabaseServerEditor);
   FreeAndNil(FConfig);
 end;
 
@@ -730,89 +721,32 @@ begin
 end;
 
 procedure TFrmMain.PpeNetworkItemGetProperties(Sender, Data: TObject; Group: Word; var Properties: TProperties);
+var
+  Editor: TEditor;
 begin
-  if Data is TServer then
-    FServerEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TTimer then
-    FTimerEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TModule then
-    FModuleEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TAnalogInput then
-    FAnalogInputEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TDigitalInput then
-    FDigitalInputEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TDigitalOutput then
-    FDigitalOutputEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TRelay then
-    FRelayEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TWiegand then
-    FWiegandEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TRS232 then
-    FRS232Editor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TRS485 then
-    FRS485Editor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TMotor then
-    FMotorEditor.GetProperties(Sender, Data, Group, Properties)
-  else if Data is TFolder then
-    FFolderEditor.GetProperties(Sender, Data, Group, Properties)
+  Editor := FEditors.ByClass[Data.ClassType];
+  if Assigned(Editor) then
+    Editor.GetProperties(Sender, Data, Group, Properties)
   else
     SetLength(Properties, 0);
 end;
 
 procedure TFrmMain.PpeNetworkItemGetPropertyValue(Sender, Data: TObject; Group: Word; Prop: TProperty; var Value: WideString);
+var
+  Editor: TEditor;
 begin
-  if Data is TServer then
-    FServerEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TTimer then
-    FTimerEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TModule then
-    FModuleEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TAnalogInput then
-    FAnalogInputEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TDigitalInput then
-    FDigitalInputEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TDigitalOutput then
-    FDigitalOutputEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TRelay then
-    FRelayEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TWiegand then
-    FWiegandEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TRS232 then
-    FRS232Editor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TRS485 then
-    FRS485Editor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TMotor then
-    FMotorEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TFolder then
-    FFolderEditor.GetPropertyValue(Sender, Data, Group, Prop, Value)
+  Editor := FEditors.ByClass[Data.ClassType];
+  if Assigned(Editor) then
+    Editor.GetPropertyValue(Sender, Data, Group, Prop, Value);
 end;
 
 procedure TFrmMain.PpeNetworkItemSetPropertyValue(Sender, Data: TObject; Group: Word; Prop: TProperty; Value: WideString);
+var
+  Editor: TEditor;
 begin
-  if Data is TServer then
-    FServerEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TTimer then
-    FTimerEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TModule then
-    FModuleEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TAnalogInput then
-    FAnalogInputEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TDigitalInput then
-    FDigitalInputEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TDigitalOutput then
-    FDigitalOutputEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TRelay then
-    FRelayEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TWiegand then
-    FWiegandEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TRS232 then
-    FRS232Editor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TRS485 then
-    FRS485Editor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TMotor then
-    FMotorEditor.SetPropertyValue(Sender, Data, Group, Prop, Value)
-  else if Data is TFolder then
-    FFolderEditor.SetPropertyValue(Sender, Data, Group, Prop, Value);
+  Editor := FEditors.ByClass[Data.ClassType];
+  if Assigned(Editor) then
+    Editor.SetPropertyValue(Sender, Data, Group, Prop, Value);
 
   FConfig.ConfigFile.Modified := True;
   TrvNetworkStructure.Invalidate;
@@ -820,87 +754,30 @@ begin
 end;
 
 procedure TFrmMain.PpeNetworkItemPropertyButtonClick(Sender: TObject; Data: TObject; Group: Word; Prop: TProperty; ButtonId: Cardinal);
+var
+  Editor: TEditor;
 begin
-  if Data is TServer then
-    FServerEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TTimer then
-    FTimerEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TModule then
-    FModuleEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TAnalogInput then
-    FAnalogInputEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TDigitalInput then
-    FDigitalInputEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TDigitalOutput then
-    FDigitalOutputEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TRelay then
-    FRelayEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TWiegand then
-    FWiegandEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TRS232 then
-    FRS232Editor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TRS485 then
-    FRS485Editor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TMotor then
-    FMotorEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
-  else if Data is TFolder then
-    FFolderEditor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId)
+  Editor := FEditors.ByClass[Data.ClassType];
+  if Assigned(Editor) then
+    Editor.PropertyButtonClick(Sender, Data, Group, Prop, ButtonId);
 end;
 
 procedure TFrmMain.PpeNetworkItemUpdateListBoxContent(Sender, Data: TObject; Group: Word; Prop: TProperty; Items: TStrings; var ItemIndex: Integer);
+var
+  Editor: TEditor;
 begin
-  if Data is TServer then
-    FServerEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TTimer then
-    FTimerEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TModule then
-    FModuleEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TAnalogInput then
-    FAnalogInputEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TDigitalInput then
-    FDigitalInputEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TDigitalOutput then
-    FDigitalOutputEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TRelay then
-    FRelayEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TWiegand then
-    FWiegandEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TRS232 then
-    FRS232Editor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TRS485 then
-    FRS485Editor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TMotor then
-    FMotorEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
-  else if Data is TFolder then
-    FFolderEditor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex)
+  Editor := FEditors.ByClass[Data.ClassType];
+  if Assigned(Editor) then
+    Editor.UpdateListBoxContent(Sender, Data, Group, Prop, Items, ItemIndex);
 end;
 
 procedure TFrmMain.PpeNetworkItemEditorDblClick(Sender, Data: TObject; Group: Word; Prop: TProperty);
+var
+  Editor: TEditor;
 begin
-  if Data is TServer then
-    FServerEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TTimer then
-    FTimerEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TModule then
-    FModuleEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TAnalogInput then
-    FAnalogInputEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TDigitalInput then
-    FDigitalInputEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TDigitalOutput then
-    FDigitalOutputEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TRelay then
-    FRelayEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TWiegand then
-    FWiegandEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TRS232 then
-    FRS232Editor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TRS485 then
-    FRS485Editor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TMotor then
-    FMotorEditor.EditorDblClick(Sender, Data, Group, Prop)
-  else if Data is TFolder then
-    FFolderEditor.EditorDblClick(Sender, Data, Group, Prop)
+  Editor := FEditors.ByClass[Data.ClassType];
+  if Assigned(Editor) then
+    Editor.EditorDblClick(Sender, Data, Group, Prop);
 end;
 
 procedure TFrmMain.PpeNetworkItemPropertySelected(Sender, Data: TObject; Group: Word; Prop: TProperty);

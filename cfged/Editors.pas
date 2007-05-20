@@ -48,6 +48,17 @@ type
     property Editor: TPropertyEditor read FEditor;
   end;
 
+  TEditorList = class (TList)
+  private
+    function GetItemByClass(EditedClass: TClass): TEditor; overload;
+    function GetItemByIndex(Index: Integer): TEditor; overload;
+  public
+    procedure RegisterEditor(EditedClass: TClass; Editor: TEditor);
+    procedure UnregisterEditor(Editor: TEditor);
+    property Items[Index: Integer]: TEditor read GetItemByIndex; default;
+    property ByClass[EditedClass: TClass]: TEditor read GetItemByClass; 
+  end;
+
   TServerEditor = class (TEditor)
   protected
     function CheckOnStartStopParams(EventId: TIdentifier; Item: TProcFunc): Boolean;
@@ -88,6 +99,7 @@ type
   private
     function CheckOnDataParams(EventId: TIdentifier; Item: TProcFunc): Boolean;
   public
+
     procedure GetProperties(Sender, Data: TObject; Group: Word; var Properties: TProperties); override;
     procedure GetPropertyValue(Sender, Data: TObject; Group: Word; Prop: TProperty; var Value: WideString); override;
     procedure SetPropertyValue(Sender, Data: TObject; Group: Word; Prop: TProperty; Value: WideString); override;
@@ -303,6 +315,61 @@ end;
 destructor TEditor.Destroy;
 begin
   inherited Destroy;
+end;
+
+{ TEditorList }
+
+{ Private declarations }
+
+type
+  TEditorAssociation = class (TObject)
+    EditedClass: TClass;
+    Editor: TEditor;
+  end;
+
+function TEditorList.GetItemByClass(EditedClass: TClass): TEditor;
+var
+  I: Integer;
+begin
+  Result := nil;
+  for I := 0 to Count - 1 do
+    if TEditorAssociation(Get(I)).EditedClass = EditedClass then
+    begin
+      Result := TEditorAssociation(Get(I)).Editor;
+      Break;
+    end;
+end;
+
+function TEditorList.GetItemByIndex(Index: Integer): TEditor;
+begin
+  Result := (TObject(Get(Index)) as TEditorAssociation).Editor;
+end;
+
+{ Public declarations }
+
+procedure TEditorList.RegisterEditor(EditedClass: TClass; Editor: TEditor);
+var
+  Association: TEditorAssociation;
+begin
+  Assert(ByClass[EditedClass] = nil, Format('Error: editor for %s is already registered', [EditedClass.ClassName]));
+  Association := TEditorAssociation.Create;
+  Association.EditedClass := EditedClass;
+  Association.Editor := Editor;
+  Add(Association);
+end;
+
+procedure TEditorList.UnregisterEditor(Editor: TEditor);
+var
+  I: Integer;
+begin
+  for I := 0 to Count - 1 do
+    if TEditorAssociation(Get(I)).Editor = Editor then
+    begin
+      TObject(Get(I)).Free;
+      Delete(I);
+      Exit;
+    end;
+  Assert(False, 'Error: editor not registered');
 end;
 
 { TServerEditor }
