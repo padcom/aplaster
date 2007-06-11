@@ -393,16 +393,16 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 4);
-      Properties[0] := MakeProperty(propidServerDataTitle, STitle);
-      Properties[1] := MakeProperty(propidServerDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidServerDataTag, STag);
-      Properties[3] := MakeProperty(propidServerDataIP, SIPAddress);
+      Properties[0] := TPropertyEditor.MakeProperty(propidServerDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidServerDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidServerDataTag, STag);
+      Properties[3] := TPropertyEditor.MakeProperty(propidServerDataIP, SIPAddress);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 2);
-      Properties[0] := MakeProperty(propidServerDataOnStart, SOnStart, 1);
-      Properties[1] := MakeProperty(propidServerDataOnStop, SOnStop, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidServerDataOnStart, SOnStart, 1);
+      Properties[1] := TPropertyEditor.MakeProperty(propidServerDataOnStop, SOnStop, 1);
     end;
   end;
 end;
@@ -545,15 +545,15 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 4);
-      Properties[0] := MakeProperty(propidTimerDataTitle, STitle);
-      Properties[1] := MakeProperty(propidTimerDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidTimerDataInterval, SInterval);
-      Properties[3] := MakeProperty(propidTimerDataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidTimerDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidTimerDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidTimerDataInterval, SInterval);
+      Properties[3] := TPropertyEditor.MakeProperty(propidTimerDataTag, STag);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 1);
-      Properties[0] := MakeProperty(propidTimerDataOnTimer, SOnTimer, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidTimerDataOnTimer, SOnTimer, 1);
     end;
   end;
 end;
@@ -669,19 +669,19 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 6);
-      Properties[0] := MakeProperty(propidModuleDataTitle, STitle);
-      Properties[1] := MakeProperty(propidModuleDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidModuleDataTag, STag);
-      Properties[3] := MakeProperty(propidModuleDataIP, SIPAddress);
-      Properties[4] := MakeProperty(propidModuleDataNetmask, SNetmask);
-      Properties[5] := MakeProperty(propidModuleDataMAC, SMACAddress);
+      Properties[0] := TPropertyEditor.MakeProperty(propidModuleDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidModuleDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidModuleDataTag, STag);
+      Properties[3] := TPropertyEditor.MakeProperty(propidModuleDataIP, SIPAddress);
+      Properties[4] := TPropertyEditor.MakeProperty(propidModuleDataNetmask, SNetmask);
+      Properties[5] := TPropertyEditor.MakeProperty(propidModuleDataMAC, SMACAddress);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 3);
-      Properties[0] := MakeProperty(propidModuleDataOnConnected, SOnConnected, 1);
-      Properties[1] := MakeProperty(propidModuleDataOnDisconnected, SOnDisconnected, 1);
-      Properties[2] := MakeProperty(propidModuleDataOnInitialized, SOnInitialized, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidModuleDataOnConnected, SOnConnected, 1);
+      Properties[1] := TPropertyEditor.MakeProperty(propidModuleDataOnDisconnected, SOnDisconnected, 1);
+      Properties[2] := TPropertyEditor.MakeProperty(propidModuleDataOnInitialized, SOnInitialized, 1);
     end;
   end;
 end;
@@ -860,15 +860,15 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 4);
-      Properties[0] := MakeProperty(propidAnalogInputDataTitle, STitle);
-      Properties[1] := MakeProperty(propidAnalogInputDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidAnalogInputDataDeltaChange, SDeltaChange);
-      Properties[3] := MakeProperty(propidAnalogInputDataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidAnalogInputDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidAnalogInputDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidAnalogInputDataDeltaChange, SDeltaChange);
+      Properties[3] := TPropertyEditor.MakeProperty(propidAnalogInputDataTag, STag);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 1);
-      Properties[0] := MakeProperty(propidAnalogInputDataOnData, SOnData, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidAnalogInputDataOnData, SOnData, 1);
     end;
   end;
 end;
@@ -984,15 +984,15 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 3);
-      Properties[0] := MakeProperty(propidDigitalInputDataTitle, STitle);
-      Properties[1] := MakeProperty(propidDigitalInputDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidDigitalInputDataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidDigitalInputDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidDigitalInputDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidDigitalInputDataTag, STag);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 2);
-      Properties[0] := MakeProperty(propidDigitalInputDataOnOpen, SOnOpen, 1);
-      Properties[1] := MakeProperty(propidDigitalInputDataOnClose, SOnClose, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidDigitalInputDataOnOpen, SOnOpen, 1);
+      Properties[1] := TPropertyEditor.MakeProperty(propidDigitalInputDataOnClose, SOnClose, 1);
     end;
   end;
 end;
@@ -1120,9 +1120,9 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 3);
-      Properties[0] := MakeProperty(propidDigitalOutputDataTitle, STitle);
-      Properties[1] := MakeProperty(propidDigitalOutputDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidDigitalOutputDataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidDigitalOutputDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidDigitalOutputDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidDigitalOutputDataTag, STag);
     end;
     GROUP_EVENTS:
       SetLength(Properties, 0);
@@ -1187,9 +1187,9 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 3);
-      Properties[0] := MakeProperty(propidRelayDataTitle, STitle);
-      Properties[1] := MakeProperty(propidRelayDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidRelayDataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidRelayDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidRelayDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidRelayDataTag, STag);
     end;
     GROUP_EVENTS:
       SetLength(Properties, 0);
@@ -1266,15 +1266,15 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 4);
-      Properties[0] := MakeProperty(propidWiegandDataTitle, STitle);
-      Properties[1] := MakeProperty(propidWiegandDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidWiegandDataDataBits, SDataBits);
-      Properties[3] := MakeProperty(propidWiegandDataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidWiegandDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidWiegandDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidWiegandDataDataBits, SDataBits);
+      Properties[3] := TPropertyEditor.MakeProperty(propidWiegandDataTag, STag);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 1);
-      Properties[0] := MakeProperty(propidWiegandDataOnData, SOnData, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidWiegandDataOnData, SOnData, 1);
     end;
   end;
 end;
@@ -1391,18 +1391,18 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 7);
-      Properties[0] := MakeProperty(propidRS232DataTitle, STitle);
-      Properties[1] := MakeProperty(propidRS232DataDescription, SDescription);
-      Properties[2] := MakeProperty(propidRS232DataBitrate, SBitrate, 1);
-      Properties[3] := MakeProperty(propidRS232DataDataBits, SDataBits, 1);
-      Properties[4] := MakeProperty(propidRS232DataParity, SParity , 1);
-      Properties[5] := MakeProperty(propidRS232DataStopBits, SStopBits, 1);
-      Properties[6] := MakeProperty(propidRS232DataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidRS232DataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidRS232DataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidRS232DataBitrate, SBitrate, 1);
+      Properties[3] := TPropertyEditor.MakeProperty(propidRS232DataDataBits, SDataBits, 1);
+      Properties[4] := TPropertyEditor.MakeProperty(propidRS232DataParity, SParity , 1);
+      Properties[5] := TPropertyEditor.MakeProperty(propidRS232DataStopBits, SStopBits, 1);
+      Properties[6] := TPropertyEditor.MakeProperty(propidRS232DataTag, STag);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 1);
-      Properties[0] := MakeProperty(propidRS232DataOnData, SOnData, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidRS232DataOnData, SOnData, 1);
     end;
   end;
 end;
@@ -1579,18 +1579,18 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 7);
-      Properties[0] := MakeProperty(propidRS485DataTitle, STitle);
-      Properties[1] := MakeProperty(propidRS485DataDescription, SDescription);
-      Properties[2] := MakeProperty(propidRS485DataBitrate, SBitrate, 1);
-      Properties[3] := MakeProperty(propidRS485DataDataBits, SDataBits, 1);
-      Properties[4] := MakeProperty(propidRS485DataParity, SParity , 1);
-      Properties[5] := MakeProperty(propidRS485DataStopBits, SStopBits, 1);
-      Properties[6] := MakeProperty(propidRS485DataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidRS485DataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidRS485DataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidRS485DataBitrate, SBitrate, 1);
+      Properties[3] := TPropertyEditor.MakeProperty(propidRS485DataDataBits, SDataBits, 1);
+      Properties[4] := TPropertyEditor.MakeProperty(propidRS485DataParity, SParity , 1);
+      Properties[5] := TPropertyEditor.MakeProperty(propidRS485DataStopBits, SStopBits, 1);
+      Properties[6] := TPropertyEditor.MakeProperty(propidRS485DataTag, STag);
     end;
     GROUP_EVENTS:
     begin
       SetLength(Properties, 1);
-      Properties[0] := MakeProperty(propidRS485DataOnData, SOnData, 1);
+      Properties[0] := TPropertyEditor.MakeProperty(propidRS485DataOnData, SOnData, 1);
     end;
   end;
 end;
@@ -1755,9 +1755,9 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 3);
-      Properties[0] := MakeProperty(propidMotorDataTitle, STitle);
-      Properties[1] := MakeProperty(propidMotorDataDescription, SDescription);
-      Properties[2] := MakeProperty(propidMotorDataTag, STag);
+      Properties[0] := TPropertyEditor.MakeProperty(propidMotorDataTitle, STitle);
+      Properties[1] := TPropertyEditor.MakeProperty(propidMotorDataDescription, SDescription);
+      Properties[2] := TPropertyEditor.MakeProperty(propidMotorDataTag, STag);
     end;
     GROUP_EVENTS:
       SetLength(Properties, 0);
@@ -1824,7 +1824,7 @@ begin
     GROUP_PROPERTIES:
     begin
       SetLength(Properties, 1);
-      Properties[0] := MakeProperty(propidFolderDataTitle, STitle);
+      Properties[0] := TPropertyEditor.MakeProperty(propidFolderDataTitle, STitle);
     end;
     GROUP_EVENTS: ;
   end;
