@@ -187,6 +187,7 @@ type
 
     // device handlers
     procedure CreateDevices;
+    function GetDigitalInput(DevId: Integer): TSpeedButton;
     procedure DigitalOutput(Sender: TObject);
     procedure Relay(Sender: TObject);
     procedure Motor(Sender: TObject);
@@ -266,7 +267,10 @@ begin
 
   // map pointers to buffer
   Header := @Buffer[0];
-  Data := @Buffer[SizeOf(TPacketHeader)];
+  if Header^.DataSize > 0 then
+    Data := @Buffer[SizeOf(TPacketHeader)]
+  else
+    Data := nil;
 
   // check data retrieval begin
   if Length(Buffer) < SizeOf(TPacketHeader) + Header^.DataSize then
@@ -669,6 +673,30 @@ begin
   end;
 end;
 
+function TFrmMain.GetDigitalInput(DevId: Integer): TSpeedButton;
+begin
+  case DevId of
+    DID_DIGITALINPUT0:
+      Result := DI0;
+    DID_DIGITALINPUT1:
+      Result := DI1;
+    DID_DIGITALINPUT2:
+      Result := DI2;
+    DID_DIGITALINPUT3:
+      Result := DI3;
+    DID_DIGITALINPUT4:
+      Result := DI4;
+    DID_DIGITALINPUT5:
+      Result := DI5;
+    DID_DIGITALINPUT6:
+      Result := DI6;
+    DID_DIGITALINPUT7:
+      Result := DI7;
+    else
+      Result := nil;
+  end;
+end;
+
 procedure TFrmMain.DigitalOutput(Sender: TObject);
 var
   I: Integer;
@@ -719,44 +747,8 @@ begin
       DID_DIGITALOUTPUT5:
         DigitalOutputDev := DO5;
     end;
-    BreakDev := nil;
-    case DigitalOutput^.BreakDevId of
-      DID_DIGITALINPUT0:
-        BreakDev := DI0;
-      DID_DIGITALINPUT1:
-        BreakDev := DI1;
-      DID_DIGITALINPUT2:
-        BreakDev := DI2;
-      DID_DIGITALINPUT3:
-        BreakDev := DI3;
-      DID_DIGITALINPUT4:
-        BreakDev := DI4;
-      DID_DIGITALINPUT5:
-        BreakDev := DI5;
-      DID_DIGITALINPUT6:
-        BreakDev := DI6;
-      DID_DIGITALINPUT7:
-        BreakDev := DI7;
-    end;
-    TerminateDev := nil;
-    case DigitalOutput^.TerminateDevId of
-      DID_DIGITALINPUT0:
-        TerminateDev := DI0;
-      DID_DIGITALINPUT1:
-        TerminateDev := DI1;
-      DID_DIGITALINPUT2:
-        TerminateDev := DI2;
-      DID_DIGITALINPUT3:
-        TerminateDev := DI3;
-      DID_DIGITALINPUT4:
-        TerminateDev := DI4;
-      DID_DIGITALINPUT5:
-        TerminateDev := DI5;
-      DID_DIGITALINPUT6:
-        TerminateDev := DI6;
-      DID_DIGITALINPUT7:
-        TerminateDev := DI7;
-    end;
+    BreakDev := GetDigitalInput(DigitalOutput^.BreakDevId);
+    TerminateDev := GetDigitalInput(DigitalOutput^.TerminateDevId);
 
     case DigitalOutput^.State of
       DIGITAL_OUTPUT_DISABLED:
@@ -847,44 +839,8 @@ begin
       DID_RELAY2:
         RelayDev := RE2;
     end;
-    BreakDev := nil;
-    case Relay^.BreakDevId of
-      DID_DIGITALINPUT0:
-        BreakDev := DI0;
-      DID_DIGITALINPUT1:
-        BreakDev := DI1;
-      DID_DIGITALINPUT2:
-        BreakDev := DI2;
-      DID_DIGITALINPUT3:
-        BreakDev := DI3;
-      DID_DIGITALINPUT4:
-        BreakDev := DI4;
-      DID_DIGITALINPUT5:
-        BreakDev := DI5;
-      DID_DIGITALINPUT6:
-        BreakDev := DI6;
-      DID_DIGITALINPUT7:
-        BreakDev := DI7;
-    end;
-    TerminateDev := nil;
-    case Relay^.TerminateDevId of
-      DID_DIGITALINPUT0:
-        TerminateDev := DI0;
-      DID_DIGITALINPUT1:
-        TerminateDev := DI1;
-      DID_DIGITALINPUT2:
-        TerminateDev := DI2;
-      DID_DIGITALINPUT3:
-        TerminateDev := DI3;
-      DID_DIGITALINPUT4:
-        TerminateDev := DI4;
-      DID_DIGITALINPUT5:
-        TerminateDev := DI5;
-      DID_DIGITALINPUT6:
-        TerminateDev := DI6;
-      DID_DIGITALINPUT7:
-        TerminateDev := DI7;
-    end;
+    BreakDev := GetDigitalInput(Relay^.BreakDevId);
+    TerminateDev := GetDigitalInput(Relay^.TerminateDevId);
 
     case Relay^.State of
       RELAY_DISABLED:
@@ -968,44 +924,8 @@ begin
       DID_MOTOR0:
         MotorDev := GbxMotor;
     end;
-    BreakDev := nil;
-    case Motor^.BreakDevId of
-      DID_DIGITALINPUT0:
-        BreakDev := DI0;
-      DID_DIGITALINPUT1:
-        BreakDev := DI1;
-      DID_DIGITALINPUT2:
-        BreakDev := DI2;
-      DID_DIGITALINPUT3:
-        BreakDev := DI3;
-      DID_DIGITALINPUT4:
-        BreakDev := DI4;
-      DID_DIGITALINPUT5:
-        BreakDev := DI5;
-      DID_DIGITALINPUT6:
-        BreakDev := DI6;
-      DID_DIGITALINPUT7:
-        BreakDev := DI7;
-    end;
-    TerminateDev := nil;
-    case Motor^.TerminateDevId of
-      DID_DIGITALINPUT0:
-        TerminateDev := DI0;
-      DID_DIGITALINPUT1:
-        TerminateDev := DI1;
-      DID_DIGITALINPUT2:
-        TerminateDev := DI2;
-      DID_DIGITALINPUT3:
-        TerminateDev := DI3;
-      DID_DIGITALINPUT4:
-        TerminateDev := DI4;
-      DID_DIGITALINPUT5:
-        TerminateDev := DI5;
-      DID_DIGITALINPUT6:
-        TerminateDev := DI6;
-      DID_DIGITALINPUT7:
-        TerminateDev := DI7;
-    end;
+    BreakDev := GetDigitalInput(Motor^.BreakDevId);
+    TerminateDev := GetDigitalInput(Motor^.TerminateDevId);
 
     case Motor^.State of
       MOTOR_DISABLED:
