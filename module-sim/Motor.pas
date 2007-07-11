@@ -3,7 +3,7 @@ unit Motor;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls,
+  Classes, SysUtils, ExtCtrls, Log4D,
   Device, DeviceIds, Protocol;
 
 const
@@ -37,6 +37,7 @@ type
     function GetDigitalInputState(DevId: Byte): Boolean;
     procedure SetMotorState(DevId: Byte; State: Integer);
   protected
+    class function Log: TLogLogger;
     procedure Run(Sender: TObject);
   public
     constructor Create(AOwner: TComponent); override;
@@ -97,6 +98,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TMotor.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TMotor.Run(Sender: TObject);
 begin

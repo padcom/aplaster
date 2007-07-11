@@ -23,17 +23,15 @@ type
 
   TOptionsBase = class (TPxCommandLineParser)
   private
-    FLog: TLogLogger;
     function GetConfigSource: TConfigSource;
     function GetConfigFileName: String;
     function GetDBServer: string;
     function GetDBDatabase: string;
   protected
+    class function Log: TLogLogger;
     procedure CreateOptions; override;
     procedure AfterParseOptions; override;
-    property Log: TLogLogger read FLog;
   public
-    constructor Create;
     property ConfigSource: TConfigSource read GetConfigSource;
     property ConfigFileName: String read GetConfigFileName;
     property DBServer: string read GetDBServer;
@@ -80,6 +78,11 @@ end;
 
 { Protected declarations }
 
+class function TOptionsBase.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
 procedure TOptionsBase.CreateOptions;
 begin
   with AddOption(TPxStringOption.Create('s', 'dbserver')) do
@@ -94,16 +97,8 @@ begin
   end;
 end;
 
-procedure TOptionsBase.AfterParseOptions; 
+procedure TOptionsBase.AfterParseOptions;
 begin
-end;
-
-{ Public declarations }
-
-constructor TOptionsBase.Create;
-begin
-  inherited Create;
-  FLog := TLogLogger.GetLogger(ClassType);
 end;
 
 end.

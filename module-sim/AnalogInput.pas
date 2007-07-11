@@ -3,7 +3,7 @@ unit AnalogInput;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes, SysUtils, Log4D,
   Device, DeviceIds, Protocol;
 
 type
@@ -15,6 +15,8 @@ type
     FOnSendCommand: TSendCommandEvent;
     procedure SetValue(const Value: Word);
     procedure SendCommand(Command, DevId, DataSize: Byte; Data: Pointer);
+  protected
+    class function Log: TLogLogger;
   public
     constructor Create(AOwner: TComponent); override;
     procedure CmdGetStatus;
@@ -47,6 +49,13 @@ procedure TAnalogInput.SendCommand(Command, DevId, DataSize: Byte; Data: Pointer
 begin
   if Assigned(OnSendCommand) then
     OnSendCommand(Command, DevId, DataSize, Data);
+end;
+
+{ Protected declarations }
+
+class function TAnalogInput.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
 end;
 
 { Public declarations }

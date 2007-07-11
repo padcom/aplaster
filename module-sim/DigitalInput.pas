@@ -3,7 +3,8 @@ unit DigitalInput;
 interface
 
 uses
-  Classes, SysUtils, Device, DeviceIds, Protocol;
+  Classes, SysUtils, Log4D,
+  Device, DeviceIds, Protocol;
 
 type
   TDigitalInput = class (TComponent)
@@ -13,6 +14,8 @@ type
     FOnSendCommand: TSendCommandEvent;
     procedure SetStatus(Value: Byte);
     procedure SendCommand(Command, DevId, DataSize: Byte; Data: Pointer);
+  protected
+    class function Log: TLogLogger;
   public
     constructor Create(AOwner: TComponent); override;
     procedure CmdGetStatus;
@@ -45,6 +48,13 @@ procedure TDigitalInput.SendCommand(Command, DevId, DataSize: Byte; Data: Pointe
 begin
   if Assigned(OnSendCommand) then
     OnSendCommand(Command, DevId, DataSize, Data);
+end;
+
+{ Protected declarations }
+
+class function TDigitalInput.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
 end;
 
 { Public declarations }

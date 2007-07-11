@@ -10,7 +10,7 @@ unit ViewBuilders;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls,
+  Classes, SysUtils, ComCtrls, Log4D,
   PxDataFile,
   Config;
 
@@ -19,6 +19,7 @@ type
   private
     FConfig: TConfig;
   protected
+    class function Log: TLogLogger;
     procedure AddFoldersNodes(Nodes: TTreeNodes; Root: TTreeNode; Folders: TFolderList);
     procedure AddTimersNodes(Nodes: TTreeNodes; Root: TTreeNode; Timers: TTimerList; FolderId: TIdentifier = 0);
     procedure AddModulesNodes(Nodes: TTreeNodes; Root: TTreeNode; Modules: TModuleList; FolderId: TIdentifier = 0);
@@ -61,6 +62,13 @@ uses
 { TNetworkViewBuilder }
 
 { Protected declarations }
+
+{ Protected declarations }
+
+class function TNetworkViewBuilder.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TNetworkViewBuilder.AddFoldersNodes(Nodes: TTreeNodes; Root: TTreeNode; Folders: TFolderList);
 var

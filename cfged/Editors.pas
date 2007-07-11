@@ -7,7 +7,7 @@ unit Editors;
 interface
 
 uses
-  Windows, Classes, SysUtils, Dialogs,
+  Windows, Classes, SysUtils, Dialogs, Log4D,
   PropertyEditor, SynEdit,
   PxDataFile,
   Config, ConfigFile, PasUtils;
@@ -31,6 +31,7 @@ type
     FEditor: TPropertyEditor;
     FCodeEditor: TSynEdit;
   protected
+    class function Log: TLogLogger;
     function CheckEventHandler(Name: WideString): WideString;
     procedure GetEventHandlerList(CheckParamList: TCheckParamListCallback; EventId: TIdentifier; EventHandlers: TStrings; CurrentHandler: WideString; var CurrentIndex: Integer);
     function CreateGotoEventHandler(CheckParamList: TCheckParamListCallback; EventId: TIdentifier; Parameters: String; var CurrentHandler: String): Integer;
@@ -204,6 +205,11 @@ uses
 { Private declarations }
 
 { Protected declarations }
+
+class function TEditor.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 function TEditor.CheckEventHandler(Name: WideString): WideString;
 var

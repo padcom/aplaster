@@ -3,7 +3,7 @@ unit DigitalOutput;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls,
+  Classes, SysUtils, ExtCtrls, Log4D,
   Device, DeviceIds, Protocol;
 
 const
@@ -39,6 +39,7 @@ type
     function GetDigitalInputState(DevId: Byte): Boolean;
     procedure SetDigitalOutputState(DevId: Byte; State: Boolean);
   protected
+    class function Log: TLogLogger;
     procedure Run(Sender: TObject);
   public
     constructor Create(AOwner: TComponent); override;
@@ -98,6 +99,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TDigitalOutput.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TDigitalOutput.Run(Sender: TObject);
 begin

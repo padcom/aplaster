@@ -9,7 +9,6 @@ program aplasvr;
 
 {$IFOPT D+}
   {$DEFINE DEBUG}
-  {$DEFINE ENABLE_CONSOLE_LOGGING}
   {$DEFINE ENABLE_SCRIPT_DEBUGGER}
 {$ELSE}
   {$I config.inc}
@@ -17,6 +16,7 @@ program aplasvr;
 
 uses
   FastMM4,
+  Log4D,
   Windows,
   Forms,
   SysUtils,
@@ -45,6 +45,8 @@ var
   Mutex: THandle;
 
 begin
+  TLogPropertyConfigurator.Configure(ChangeFileExt(ParamStr(0), '.log4d'));
+
   // allow only one instance of the server
   Mutex := CreateMutex(nil, True, 'APLASVR');
   if GetLastError = ERROR_ALREADY_EXISTS then

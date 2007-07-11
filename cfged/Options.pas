@@ -14,15 +14,16 @@ unit Options;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes, SysUtils, Log4D,
   PxCommandLine, PxSettings,
   OptionsBase;
-  
+
 type
   TOptions = class (TOptionsBase)
   private
     function GetConfigFileName: string;
   protected
+    class function Log: TLogLogger;
     procedure CreateOptions; override;
     procedure AfterParseOptions; override;
   public
@@ -44,6 +45,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TOptions.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TOptions.CreateOptions;
 begin

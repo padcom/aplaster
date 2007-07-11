@@ -101,7 +101,7 @@ DebugSourceDirs=
 UsePackages=0
 [Parameters]
 RunParams=/nologo tests.dll
-HostApplication=dunit.exe
+HostApplication=X:\bin\dunit.exe
 Launcher=
 UseLauncher=0
 DebugCWD=

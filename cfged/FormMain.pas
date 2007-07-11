@@ -16,7 +16,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ActnList, ComCtrls, ImgList, StdCtrls, ExtCtrls, Grids, Menus,
-  ToolWin, Editors,
+  ToolWin, Editors, Log4D,
   SynEdit, SynEditHighlighter, SynHighlighterPas, SynEditPlugins, SynMacroRecorder, SynEditTypes,
   uPSComponent, uPSCompiler,
   PropertyEditor,
@@ -206,6 +206,7 @@ type
     procedure DestroyPropertyEditors;
     procedure CreateConfigTreeDisplayer;
   protected
+    class function Log: TLogLogger;
     property Config: TConfig read FConfig;
   public
     { Public declarations }
@@ -558,6 +559,13 @@ end;
 procedure TFrmMain.CreateConfigTreeDisplayer;
 begin
   FConfigTreeDisplayer := TConfigTreeDisplayerForCfgEd.Create;
+end;
+
+{ Protected declarations }
+
+class function TFrmMain.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
 end;
 
 { Public declarations }

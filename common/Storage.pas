@@ -14,17 +14,23 @@ unit Storage;
 interface
 
 uses
-  Windows, Classes, SysUtils,
+  Windows, Classes, SysUtils, Log4D,
   JvUIB,
   PxSettings;
 
 type
   TFileStorage = class (TObject)
+  protected
+    class function Log: TLogLogger;
+  public
     procedure Load(FileName: String; S: TStream); virtual; abstract;
     procedure Save(FileName: String; S: TStream); virtual; abstract;
   end;
 
   TFileStorageFactory = class (TObject)
+  protected
+    class function Log: TLogLogger;
+  public
     class function CreateFileStorage: TFileStorage;
   end;
 
@@ -51,7 +57,23 @@ uses
 
 { TFileStorage }
 
+{ Protected declarations }
+
+class function TFileStorage.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
 { TFileStorageFactory }
+
+{ Protected declarations }
+
+class function TFileStorageFactory.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
+{ Public declarations }
 
 class function TFileStorageFactory.CreateFileStorage: TFileStorage;
 begin

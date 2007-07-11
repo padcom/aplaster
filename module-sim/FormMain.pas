@@ -15,7 +15,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, Buttons, ComCtrls,
+  Dialogs, ExtCtrls, StdCtrls, Buttons, ComCtrls, Log4D,
   Winsock, Protocol, Network,
   AnalogInput, DigitalInput, DigitalOutput, Relay, Motor;
 
@@ -106,6 +106,7 @@ type
     // device handlers
     procedure CreateDevices;
   protected
+    class function Log: TLogLogger;
     procedure WndProc(var Msg: TMessage); override;
   public
     { Public declarations }
@@ -367,6 +368,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TFrmMain.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TFrmMain.WndProc(var Msg: TMessage);
 var

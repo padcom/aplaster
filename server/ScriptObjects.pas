@@ -71,6 +71,8 @@ type
     FSend: TSendPacketMethod;
     function GetServer: TPSServer;
   protected
+    // Logging facility
+    class function Log: TLogLogger;
     // get local ip address
     function GetLocalIp: string;
     // create a scripting parameter containing an object
@@ -89,8 +91,6 @@ type
     //   procedure _event_name(Sender: _class_);
     // it's the most used event type so one procedure makes it easier to use
     procedure ExecuteNotifyEvent(Event: string);
-    // Logger instance
-    property Log: TLogLogger read FLog;
   public
     constructor Create(AParent: TPSItem; AConfigItem: TConfigItem; ASendPacketMethod: TSendPacketMethod); virtual;
     destructor Destroy; override;
@@ -554,6 +554,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TPSItem.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 function TPSItem.GetLocalIP: String;
 var

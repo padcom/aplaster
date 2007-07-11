@@ -14,13 +14,15 @@ unit ConfigManipulator;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes, SysUtils, Log4D,
   Config, Storage;
 
 type
   TConfigManipulator = class (TObject)
   private
     FConfig: TConfig;
+  protected
+    class function Log: TLogLogger;
   public
     // instance access
     class function Instance(Config: TConfig): TConfigManipulator;
@@ -65,6 +67,15 @@ uses
   DeviceIds, Options;
 
 { TConfigManipulator }
+
+{ Protected declarations }
+
+class function TConfigManipulator.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
+{ Public declarations }
 
 var
   _ConfigManipulator: TConfigManipulator;

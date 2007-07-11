@@ -19,6 +19,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ImgList, Winsock, ShellApi, Menus, ExtCtrls,
+  Log4D,
   uPSRuntime, uPSComponent, uPSComponent_Default, uPSI_BaseTypes,
   ScriptObjects, Config, Network;
 
@@ -65,6 +66,7 @@ type
     procedure DisplayModules;
     procedure ReloadConfig;
   protected
+    class function Log: TLogLogger;
     procedure CreateParams(var Params: TCreateParams); override;
     procedure WndProc(var Msg: TMessage); override;
   public
@@ -271,6 +273,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TFrmMain.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TFrmMain.CreateParams(var Params: TCreateParams);
 begin

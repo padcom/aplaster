@@ -14,7 +14,7 @@ unit ConfigFactory;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes, SysUtils, Log4D,
   Config, Storage;
 
 type
@@ -28,6 +28,8 @@ type
     class function CreateRS232(Module: TModule; DevId: Integer; Bitrate, DataBits, Parity, StopBits: Integer; Connector: WideString): TRS232;
     class function CreateRS485(Module: TModule; DevId: Integer; Bitrate, DataBits, Parity, StopBits: Integer; Connector: WideString): TRS485;
     class function CreateMotor(Module: TModule; DevId: Integer; Connector: WideString): TMotor;
+  protected
+    class function Log: TLogLogger;
   public
     // main objects creation function
     class function CreateServer(Config: TConfig): TServer;
@@ -111,6 +113,13 @@ begin
   Result.D.ParentId := Module.Id;
   Result.D.DevId := DevId;
   Result.D.Connector := Connector;
+end;
+
+{ Protected declarations }
+
+class function TConfigFactory.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
 end;
 
 { Public declarations }

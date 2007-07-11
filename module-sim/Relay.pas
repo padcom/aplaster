@@ -3,7 +3,7 @@ unit Relay;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls, 
+  Classes, SysUtils, ExtCtrls, Log4D, 
   Device, DeviceIds, Protocol;
 
 const
@@ -39,6 +39,7 @@ type
     function GetDigitalInputState(DevId: Byte): Boolean;
     procedure SetRelayState(DevId: Byte; State: Boolean);
   protected
+    class function Log: TLogLogger;
     procedure Run(Sender: TObject);
   public
     constructor Create(AOwner: TComponent); override;
@@ -98,6 +99,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TRelay.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TRelay.Run(Sender: TObject);
 begin

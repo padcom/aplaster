@@ -1,0 +1,7 @@
+log4d.appender.logfile=TLogFileAppender
+log4d.appender.logfile.append=false
+log4d.appender.logfile.fileName=tests.log
+log4d.appender.logfile.layout=TLogPatternLayout
+log4d.appender.logfile.layout.pattern=%C.%M %F:%L %-5p %c [%l] - %m%n
+
+log4d.rootLogger=debug,logfile

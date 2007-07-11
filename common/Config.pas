@@ -14,7 +14,7 @@ unit Config;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes, SysUtils, Log4D,
   PxDataFile,
   ConfigFile;
 
@@ -60,6 +60,7 @@ type
     FItems: TConfigItemList;
     function GetId: TIdentifier;
   protected
+    class function Log: TLogLogger;
     procedure UpdateLists; virtual;
   public
     constructor Create(AConfig: TConfig; AParent: TConfigItem; ADataObject: TPxDataRecord); virtual;
@@ -85,6 +86,7 @@ type
     FFolders: TFolderList;
     function GetData: TServerData;
   protected
+    class function Log: TLogLogger;
     procedure UpdateLists; override;
   public
     constructor Create(AConfig: TConfig; AParent: TConfigItem; ADataObject: TPxDataRecord); override;
@@ -114,6 +116,7 @@ type
     FMotors: TMotorList;
     function GetData: TModuleData;
   protected
+    class function Log: TLogLogger;
     procedure UpdateLists; override;
   public
     constructor Create(AConfig: TConfig; AParent: TConfigItem; ADataObject: TPxDataRecord); override;
@@ -140,6 +143,7 @@ type
   private
     function GetModule: TModule;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; virtual; abstract;
   public
     property Module: TModule read GetModule;
@@ -150,6 +154,7 @@ type
   private
     function GetData: TAnalogInputData;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TAnalogInputData read GetData;
@@ -166,6 +171,7 @@ type
   private
     function GetData: TDigitalInputData;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TDigitalInputData read GetData;
@@ -182,6 +188,7 @@ type
   private
     function GetData: TDigitalOutputData;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TDigitalOutputData read GetData;
@@ -198,6 +205,7 @@ type
   private
     function GetData: TRelayData;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TRelayData read GetData;
@@ -214,6 +222,7 @@ type
   private
     function GetData: TWiegandData;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TWiegandData read GetData;
@@ -230,6 +239,7 @@ type
   private
     function GetData: TRS232Data;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TRS232Data read GetData;
@@ -246,6 +256,7 @@ type
   private
     function GetData: TRS485Data;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TRS485Data read GetData;
@@ -262,6 +273,7 @@ type
   private
     function GetData: TMotorData;
   protected
+    class function Log: TLogLogger;
     function GetDevId: Byte; override;
   public
     property D: TMotorData read GetData;
@@ -277,6 +289,8 @@ type
   TTimer = class (TConfigItem)
   private
     function GetData: TTimerData;
+  protected
+    class function Log: TLogLogger;
   public
     property D: TTimerData read GetData;
   end;
@@ -295,6 +309,7 @@ type
     function GetData: TFolderData;
     function GetServer: TServer;
   protected
+    class function Log: TLogLogger;
     procedure UpdateLists; override;
   public
     constructor Create(AConfig: TConfig; AParent: TConfigItem; ADataObject: TPxDataRecord); override;
@@ -302,7 +317,7 @@ type
     property D: TFolderData read GetData;
     property Server: TServer read GetServer;
     property Timers: TTimerList read FTimers;
-    property Modules: TModuleList read FModules; 
+    property Modules: TModuleList read FModules;
   end;
 
   TFolderList = class (TList)
@@ -317,6 +332,7 @@ type
     FConfigFile: TConfigFile;
     FServers: TServerList;
   protected
+    class function Log: TLogLogger;
     procedure RecreateServers;
     procedure RecreateTimers(Server: TServer);
     procedure RecreateModules(Server: TServer);
@@ -358,6 +374,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TConfigItem.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TConfigItem.UpdateLists;
 var
@@ -409,6 +430,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TServer.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TServer.UpdateLists;
 var
@@ -464,6 +490,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TModule.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TModule.UpdateLists;
 var
@@ -543,6 +574,13 @@ begin
   REsult := Parent as TModule;
 end;
 
+{ Protected declarations }
+
+class function TModuleDevice.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
 { TAnalogInput }
 
 { Private declarations }
@@ -553,6 +591,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TAnalogInput.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 function TAnalogInput.GetDevId: Byte;
 begin
@@ -579,6 +622,11 @@ end;
 
 { Protected declarations }
 
+class function TDigitalInput.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
 function TDigitalInput.GetDevId: Byte;
 begin
   Result := D.DevId;
@@ -603,6 +651,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TDigitalOutput.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 function TDigitalOutput.GetDevId: Byte;
 begin
@@ -629,6 +682,11 @@ end;
 
 { Protected declarations }
 
+class function TRelay.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
 function TRelay.GetDevId: Byte;
 begin
   Result := D.DevId;
@@ -653,6 +711,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TWiegand.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 function TWiegand.GetDevId: Byte;
 begin
@@ -679,6 +742,11 @@ end;
 
 { Protected declarations }
 
+class function TRS232.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
 function TRS232.GetDevId: Byte;
 begin
   Result := D.DevId;
@@ -703,6 +771,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TRS485.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 function TRS485.GetDevId: Byte;
 begin
@@ -729,6 +802,11 @@ end;
 
 { Protected declarations }
 
+class function TMotor.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
+
 function TMotor.GetDevId: Byte;
 begin
   Result := D.DevId;
@@ -750,6 +828,13 @@ end;
 function TTimer.GetData: TTimerData;
 begin
   Result := DataObject as TTimerData;
+end;
+
+{ Protected declarations }
+
+class function TTimer.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
 end;
 
 { Public declarations }
@@ -778,6 +863,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TFolder.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TFolder.UpdateLists;
 var
@@ -824,6 +914,11 @@ end;
 { Private declarations }
 
 { Protected declarations }
+
+class function TConfig.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TConfig.RecreateServers;
 var

@@ -3,7 +3,7 @@ unit Network;
 interface
 
 uses
-  Windows, Messages, Winsock, Classes, SysUtils,
+  Windows, Messages, Winsock, Classes, SysUtils, Log4D,
   Protocol;
 
 const
@@ -19,6 +19,8 @@ type
     FRxSocket: TSocket;
     FTxSocket: TSocket;
     procedure CreateSockets(Handle: THandle);
+  protected
+    class function Log: TLogLogger;
   public
     constructor Create(AOwner: TComponent; Handle: THandle); reintroduce;
     destructor Destroy; override;
@@ -50,6 +52,13 @@ begin
   FTxSocket := socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   if FTxSocket = INVALID_SOCKET then
     raise Exception.CreateFmt('Error: cannot create socket (%d)', [WSAGetLastError]);
+end;
+
+{ Protected declarations }
+
+class function TNetwork.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
 end;
 
 { Public declarations }

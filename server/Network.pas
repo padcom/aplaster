@@ -14,7 +14,7 @@ unit Network;
 interface
 
 uses
-  Windows, Messages, Winsock, Classes, SysUtils, StrUtils,
+  Windows, Messages, Winsock, Classes, SysUtils, StrUtils, Log4D,
   PxDataFile,
   Config, ScriptObjects;
 
@@ -43,6 +43,7 @@ type
     FTxSocket: TSocket;
     function GetLocalIP: String;
   protected
+    class function Log: TLogLogger;
     procedure CreateSockets(hWindow: THandle);
   public
     constructor Create(hWindow: THandle; AConfig: TConfig);
@@ -81,6 +82,11 @@ begin
 end;
 
 { Protected declarations }
+
+class function TNetwork.Log: TLogLogger;
+begin
+  Result := TLogLogger.GetLogger(Self);
+end;
 
 procedure TNetwork.CreateSockets(hWindow: THandle);
 var

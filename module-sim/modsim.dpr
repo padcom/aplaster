@@ -9,6 +9,8 @@ program modsim;
 
 uses
   FastMM4,
+  Log4D,
+  SysUtils,
   Forms,
   PxGetText,
   DeviceIds in '..\common\DeviceIds.pas',
@@ -25,6 +27,8 @@ uses
 {$R *.res}
 
 begin
+  TLogPropertyConfigurator.Configure(ChangeFileExt(ParamStr(0), '.log4d'));
+
   LoadDefaultLang;
   Application.Initialize;
   Application.CreateForm(TFrmMain, FrmMain);
