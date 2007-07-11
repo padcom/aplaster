@@ -190,7 +190,10 @@ begin
 
   // initialize temporary pointers
   Header := @Buffer[0];
-  Data   := @Buffer[SizeOf(TPacketHeader)];
+  if Header^.DataSize > 0 then
+    Data := @Buffer[SizeOf(TPacketHeader)]
+  else
+    Data := nil;
 
   // check if all data has been received
   if Length(Buffer) <> SizeOf(TPacketHeader) + Header^.DataSize then
@@ -247,13 +250,18 @@ var
 begin
   // initialize temporary pointers
   Header := @Buffer[0];
-  Data_  := @Buffer[SizeOf(TPacketHeader)];
+  Header^.DataSize := DataSize;
+  if Header^.DataSize > 0 then
+    Data_ := @Buffer[SizeOf(TPacketHeader)]
+  else
+    Data_ := nil;
 
   // compose packet header
   Header^.Command  := Command;
   Header^.DevId    := DevId;
   Header^.DataSize := DataSize;
-  Move(Data^, Data_^, DataSize);
+  if Assigned(Data_) then
+    Move(Data^, Data_^, DataSize);
 
   // send buffer (header + data)
   Addr.sin_family := AF_INET;
