@@ -135,18 +135,18 @@ end;
 procedure TPSDigitalInputTest.TestGetStatus;
 begin
   DigitalInput.GetStatus;
-  Environment.CheckSendArgs(Environment.SendArgs, DigitalInput.Module.D.IP, CMD_DIGITAL_INPTUT_GET_STATUS, DigitalInput.D.DevId, 0);
+  Environment.CheckSendArgs(Environment.SendArgs, DigitalInput.Module.D.IP, CMD_DIGITAL_INPUT_GET_STATUS, DigitalInput.D.DevId, 0);
 end;
 
 procedure TPSDigitalInputTest.TestProcess;
 var
   Data: TDigitalInputStatusRec;
 begin
-  DigitalInput.Process(CMD_DIGITAL_INPTUT_OPEN, DigitalInput.D.DevId, nil, 0);
+  DigitalInput.Process(CMD_DIGITAL_INPUT_OPEN, DigitalInput.D.DevId, nil, 0);
   CheckEquals('OnDigitalInputOpen', Environment.Events.LastEvent);
-  DigitalInput.Process(CMD_DIGITAL_INPTUT_CLOSE, DigitalInput.D.DevId, nil, 0);
+  DigitalInput.Process(CMD_DIGITAL_INPUT_CLOSE, DigitalInput.D.DevId, nil, 0);
   CheckEquals('OnDigitalInputClose', Environment.Events.LastEvent);
-  DigitalInput.Process(CMD_DIGITAL_INPTUT_STATUS, DigitalInput.D.DevId, @Data, SizeOf(Data));
+  DigitalInput.Process(CMD_DIGITAL_INPUT_STATUS, DigitalInput.D.DevId, @Data, SizeOf(Data));
   CheckEquals('OnDigitalInputStatus', Environment.Events.LastEvent);
 end;
 

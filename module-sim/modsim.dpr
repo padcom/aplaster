@@ -14,6 +14,12 @@ uses
   DeviceIds in '..\common\DeviceIds.pas',
   Protocol in '..\common\Protocol.pas',
   Resources in 'Resources.pas',
+  Network in 'Network.pas',
+  AnalogInput in 'AnalogInput.pas',
+  DigitalInput in 'DigitalInput.pas',
+  DigitalOutput in 'DigitalOutput.pas',
+  Relay in 'Relay.pas',
+  Motor in 'Motor.pas',
   FormMain in 'FormMain.pas' {FrmMain};
 
 {$R *.res}

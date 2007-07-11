@@ -1349,17 +1349,17 @@ end;
 
 procedure TPSDigitalInput.GetStatus;
 begin
-  Send(Module.D.IP, CMD_DIGITAL_INPTUT_GET_STATUS, D.DevId, nil, 0);
+  Send(Module.D.IP, CMD_DIGITAL_INPUT_GET_STATUS, D.DevId, nil, 0);
 end;
 
 procedure TPSDigitalInput.Process(Command, DevId: Byte; Data: Pointer; DataSize: Byte);
 begin
   case Command of
-    CMD_DIGITAL_INPTUT_OPEN:
+    CMD_DIGITAL_INPUT_OPEN:
       OnOpen;
-    CMD_DIGITAL_INPTUT_CLOSE:
+    CMD_DIGITAL_INPUT_CLOSE:
       OnClose;
-    CMD_DIGITAL_INPTUT_STATUS:
+    CMD_DIGITAL_INPUT_STATUS:
       OnStatus(PByte(Data)^);
   end;
 end;

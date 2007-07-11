@@ -9,7 +9,7 @@
   <ServerData>
     <Id Value="2147483650"/>
     <Tag Value="0"/>
-    <IP Value="192.168.0.2"/>
+    <IP Value="127.0.0.1"/>
     <Title Value="Home"/>
     <Description Value=""/>
     <OnStart Value="ServerStarted"/>

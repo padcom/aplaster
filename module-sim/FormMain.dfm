@@ -52,7 +52,7 @@ object FrmMain: TFrmMain
       TabOrder = 0
       TickMarks = tmBoth
       TickStyle = tsNone
-      OnChange = AN0Change
+      OnChange = AnalogInputChange
     end
     object AN1: TTrackBar
       Left = 48
@@ -65,7 +65,7 @@ object FrmMain: TFrmMain
       TabOrder = 1
       TickMarks = tmBoth
       TickStyle = tsNone
-      OnChange = AN1Change
+      OnChange = AnalogInputChange
     end
   end
   object GbxDigitalInput: TGroupBox
@@ -83,7 +83,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 1
       Caption = 'DI0'
-      OnClick = DI0Click
+      OnClick = DigitalInputClick
     end
     object DI1: TSpeedButton
       Left = 48
@@ -93,7 +93,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 2
       Caption = 'DI1'
-      OnClick = DI1Click
+      OnClick = DigitalInputClick
     end
     object DI2: TSpeedButton
       Left = 88
@@ -103,7 +103,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 3
       Caption = 'DI2'
-      OnClick = DI2Click
+      OnClick = DigitalInputClick
     end
     object DI3: TSpeedButton
       Left = 128
@@ -113,7 +113,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 4
       Caption = 'DI3'
-      OnClick = DI3Click
+      OnClick = DigitalInputClick
     end
     object DI4: TSpeedButton
       Left = 168
@@ -123,7 +123,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 5
       Caption = 'DI4'
-      OnClick = DI4Click
+      OnClick = DigitalInputClick
     end
     object DI5: TSpeedButton
       Left = 208
@@ -133,7 +133,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 6
       Caption = 'DI5'
-      OnClick = DI5Click
+      OnClick = DigitalInputClick
     end
     object DI6: TSpeedButton
       Left = 248
@@ -143,7 +143,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 7
       Caption = 'DI6'
-      OnClick = DI6Click
+      OnClick = DigitalInputClick
     end
     object DI7: TSpeedButton
       Left = 288
@@ -153,7 +153,7 @@ object FrmMain: TFrmMain
       AllowAllUp = True
       GroupIndex = 8
       Caption = 'DI7'
-      OnClick = DI7Click
+      OnClick = DigitalInputClick
     end
   end
   object GbxDigitalOutput: TGroupBox
