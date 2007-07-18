@@ -1,7 +1,7 @@
 library Tests;
 
 uses
-  ShareMem, Windows, Log4D, Classes, SysUtils, TestFramework,
+  FastMM4, Windows, Log4D, Classes, SysUtils, TestFramework,
   ViewBuildersTest in 'test-cases\ViewBuildersTest.pas',
   ConfigTest in 'test-cases\ConfigTest.pas',
   ConfigFactoryTest in 'test-cases\ConfigFactoryTest.pas',
