@@ -39,4 +39,5 @@
 	<target name="manual" depends="prebuild">
 		<nant buildfile="doc/manual/manual.build" target="all"/>
 	</target>
+
 </project>
