@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="Aplaster - manual">
+<project name="Aplaster - manual" default="all">
   <xmlproperty file="../../properties.xml"/>
 
   <echo>${ant.project.name}</echo>
