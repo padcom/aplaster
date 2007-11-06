@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - manual">
+  <xmlproperty file="../../properties.xml"/>
+
+  <echo>${ant.project.name}</echo>
+
+	<target name="all" depends="generate"/>
+
+	<target name="clean">
+		<delete file="manual.html"/>
+	</target>
+
+	<target name="generate">
+	  <exec executable="${aplaster.xsltproc}">
+	    <arg value="-o"/>
+	    <arg value="manual.html"/>
+	    <arg value="../docbook/book-html.xsl"/>
+	    <arg value="manual.xml"/>
+	  </exec>
+	</target>
+
+</project>

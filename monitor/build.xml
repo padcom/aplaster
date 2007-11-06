@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - userland" default="all" basedir=".">
+  <xmlproperty file="../properties.xml"/>
+
+  <echo>${ant.project.name}</echo>
+
+  <target name="all" depends="compile,translate"/>
+
+  <target name="clean">
+    <delete>
+      <fileset dir=".">
+				<include name="monitor.exe"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile">
+    <exec executable="${aplaster.dcc}" failonerror="true">
+      <arg value="-q"/> 
+      <arg value="monitor.dpr"/>
+    </exec>
+  </target>
+
+  <target name="translate">
+    <exec executable="${aplaster.dxgettext}" failonerror="true">
+      <arg value="Resources.pas"/>
+      <arg value="--so"/>
+      <arg value="monitor.pot"/>
+    </exec>
+    <exec executable="${aplaster.msgmerge}" failonerror="true">
+      <arg value="-q"/>
+      <arg value="-U"/>
+      <arg value="monitor.po"/>
+      <arg value="monitor.pot"/>
+    </exec>
+    <exec executable="${aplaster.msgfmt}" failonerror="true">
+      <arg value="monitor.po"/>
+      <arg value="-o"/>
+      <arg value="monitor.mo"/>
+    </exec>
+    <exec executable="${aplaster.msgmerge}" failonerror="true">
+      <arg value="-q"/>
+      <arg value="-U"/>
+      <arg value="monitor_pl.po"/>
+      <arg value="monitor.pot"/>
+    </exec>
+    <exec executable="${aplaster.msgfmt}" failonerror="true">
+      <arg value="monitor_pl.po"/>
+      <arg value="-o"/>
+      <arg value="monitor_pl.mo"/>
+    </exec>
+  </target>
+</project>

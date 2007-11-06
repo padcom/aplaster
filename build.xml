@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster" default="all" basedir=".">
+  <tstamp>
+    <format property="date" pattern="yyyymmdd" />
+  </tstamp>
+  <xmlproperty file="properties.xml"/>
+  <target name="all">
+    <exec dir="psimp" executable="${aplaster.make}">
+      <arg value="all"/>
+    </exec>
+    <ant dir="psimp" target="all"/>
+    <ant dir="common" target="all"/>
+    <ant dir="unit-tests" target="all"/>
+    <ant dir="cfged" target="all"/>
+    <ant dir="module-sim" target="all"/>
+    <ant dir="doc/manual" target="all"/>
+    <ant dir="server" target="all"/>
+    <ant dir="setup" target="all"/>
+  </target>
+  <target name="clean">
+    <delete>
+      <fileset dir=".">
+				<include name="**/*.log"/>
+				<include name="**/*.dsk"/>
+				<include name="**/*.dcu"/>
+				<include name="**/*.~*"/>
+				<include name="**/*.mo"/>
+				<include name="**/*.pot"/>
+			</fileset>
+		</delete>
+    <exec dir="psimp" executable="${aplaster.make}">
+      <arg value="clean"/>
+    </exec>
+    <ant dir="psimp" target="clean"/>
+    <ant dir="common" target="clean"/>
+    <ant dir="unit-tests" target="clean"/>
+    <ant dir="cfged" target="clean"/>
+    <ant dir="module-sim" target="clean"/>
+    <ant dir="doc/manual" target="clean"/>
+    <ant dir="server" target="clean"/>
+    <ant dir="setup" target="clean"/>
+  </target>
+  <target name="zip-bin" depends="all">
+    <zip zipfile="aplaster-${date}-win32.zip" basedir=".">
+      <include name="setup/setup.exe"/>
+    </zip>
+  </target>
+  <target name="zip-src">
+    <zip zipfile="graphed-${date}.zip" basedir=".">
+      <include name="**/*.pas"/>
+      <include name="**/*.dfm"/>
+      <include name="**/*.dpr"/>
+      <include name="**/*.dof"/>
+      <include name="**/*.cfg"/>
+      <include name="**/*.xdf"/>
+      <include name="**/*.po"/>
+      <include name="**/build.xml"/>
+      <include name="common/icons/icons.bmp"/>
+      <include name="setup/setup.iss"/>
+    </zip>
+  </target>
+  <target name="zip" depends="zip-src,zip-bin"/>
+</project>

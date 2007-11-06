@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - pascal script import utility" default="all" basedir=".">
+  <xmlproperty file="../properties.xml"/>
+
+  <echo>${ant.project.name}</echo>
+
+  <target name="all" depends="compile"/>
+
+  <target name="clean">
+    <delete>
+      <fileset dir=".">
+				<include name="psimp.exe"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile">
+    <exec executable="${aplaster.dcc}" failonerror="true">
+      <arg value="-q"/> 
+      <arg value="psimp.dpr"/>
+    </exec>
+  </target>
+</project>

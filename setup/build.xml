@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - setup" default="all" basedir=".">
+  <xmlproperty file="../properties.xml"/>
+
+  <echo>${ant.project.name}</echo>
+
+  <target name="all" depends="compile"/>
+
+  <target name="clean">
+    <delete>
+      <fileset dir=".">
+				<include name="setup.exe"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile">
+    <exec executable="${aplaster.iscc}" failonerror="true">
+      <arg value="setup.iss"/>
+      <arg value="/q"/> 
+    </exec>
+  </target>
+</project>

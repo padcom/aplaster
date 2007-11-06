@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - unit tests" default="all" basedir=".">
+  <xmlproperty file="../properties.xml"/>
+
+  <echo>${ant.project.name}</echo>
+
+  <target name="all" depends="compile,test"/>
+
+  <target name="clean">
+    <delete>
+      <fileset dir=".">
+				<include name="tests.dll"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile">
+    <exec executable="${aplaster.dcc}" failonerror="true">
+      <arg value="-q"/> 
+      <arg value="tests.dpr"/>
+    </exec>
+  </target>
+
+  <target name="test" depends="compile">
+    <exec executable="${aplaster.dunit}" failonerror="true">
+      <arg value="tests.dll"/>
+    </exec>
+  </target>
+</project>

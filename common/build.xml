@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<project name="Aplaster - commons" default="all" basedir=".">
+  <xmlproperty file="../properties.xml"/>
+
+  <echo>${ant.project.name}</echo>
+
+  <target name="all" depends="compile"/>
+
+  <target name="clean">
+    <delete>
+      <fileset dir=".">
+				<include name="ConfigFile.pas"/>
+				<include name="uPSI_Config.pas"/>
+				<include name="uPSI_ConfigFile.pas"/>
+				<include name="APLASTER.FDB"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile">
+    <echo></echo>
+    <exec executable="${aplaster.erisgen}" failonerror="true">
+      <arg value="-i"/> 
+      <arg value="ConfigFile.xdf"/> 
+    </exec>
+    <exec executable="${basedir}/../psimp/psimp.exe" failonerror="true">
+      <arg value="Config.pas"/> 
+    </exec>
+    <exec executable="${basedir}/../psimp/psimp.exe" failonerror="true">
+      <arg value="ConfigFile.pas"/> 
+    </exec>
+  </target>
+</project>

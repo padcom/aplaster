@@ -1,0 +1,11 @@
+<aplaster>
+  <dcc>dcc32</dcc>
+  <erisgen>erisgen</erisgen>
+  <dxgettext>dxgettext</dxgettext>
+  <msgmerge>msgmerge</msgmerge>
+  <msgfmt>msgfmt</msgfmt>
+  <iscc>iscc</iscc>
+  <dunit>dunit-cli</dunit>
+  <xsltproc>xsltproc</xsltproc>
+  <make>gnumake</make>
+</aplaster>
