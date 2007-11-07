@@ -6,13 +6,14 @@
   </tstamp>
   <xmlproperty file="properties.xml"/>
   <target name="all">
-    <exec dir="psimp" executable="${aplaster.make}">
+    <exec dir="module" executable="${aplaster.make}">
       <arg value="all"/>
     </exec>
     <ant dir="psimp" target="all"/>
     <ant dir="common" target="all"/>
     <ant dir="unit-tests" target="all"/>
     <ant dir="cfged" target="all"/>
+    <ant dir="monitor" target="all"/>
     <ant dir="module-sim" target="all"/>
     <ant dir="doc/manual" target="all"/>
     <ant dir="server" target="all"/>
@@ -26,16 +27,18 @@
 				<include name="**/*.dcu"/>
 				<include name="**/*.~*"/>
 				<include name="**/*.mo"/>
+        <include name="**/*.po~"/>
 				<include name="**/*.pot"/>
 			</fileset>
 		</delete>
-    <exec dir="psimp" executable="${aplaster.make}">
+    <exec dir="module" executable="${aplaster.make}">
       <arg value="clean"/>
     </exec>
     <ant dir="psimp" target="clean"/>
     <ant dir="common" target="clean"/>
     <ant dir="unit-tests" target="clean"/>
     <ant dir="cfged" target="clean"/>
+    <ant dir="monitor" target="clean"/>
     <ant dir="module-sim" target="clean"/>
     <ant dir="doc/manual" target="clean"/>
     <ant dir="server" target="clean"/>

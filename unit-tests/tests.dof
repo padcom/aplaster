@@ -94,7 +94,7 @@ OutputDir=
 UnitOutputDir=
 PackageDLLOutputDir=
 PackageDCPOutputDir=
-SearchPath=..\common;..\cfged;..\server
+SearchPath=..\common;..\cfged;..\server;..\components\dunit\src;..\components\uib\source;..\components\pxvcl;..\components\pxlib;..\components\fastmm;..\components\log4d;..\components\synedit\source;..\components\pascalscript\source;..\components\regexpr\source
 Packages=vcl;rtl;vclx;VclSmp;vclshlctrls;RxCtl7
 Conditionals=
 DebugSourceDirs=
@@ -134,7 +134,8 @@ Comments=
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
-Count=3
-Item0=..\common;..\cfged;..\server
-Item1=..\common;..\cfged
-Item2=..\common
+Count=4
+Item0=..\common;..\cfged;..\server;..\components\dunit\src;..\components\uib\source;..\components\pxvcl;..\components\pxlib;..\components\fastmm;..\components\log4d;..\components\synedit\source;..\components\pascalscript\source;..\components\regexpr\source
+Item1=..\common;..\cfged;..\server
+Item2=..\common;..\cfged
+Item3=..\common

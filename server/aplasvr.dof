@@ -94,7 +94,7 @@ OutputDir=
 UnitOutputDir=.
 PackageDLLOutputDir=
 PackageDCPOutputDir=
-SearchPath=..\components\uib2;..\components\ps\source;..\components\pxlib
+SearchPath=..\components\uib\source;..\components\pascalscript\source;..\components\pxlib;..\components\pxvcl;..\components\synedit\source;..\components\log4d;..\components\fastmm;..\components\regexpr\source
 Packages=vcl;rtl;vclx;VclSmp;vclshlctrls
 Conditionals=
 DebugSourceDirs=
@@ -139,10 +139,14 @@ Item2=DEBUG
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
-Count=3
-Item0=..\components\uib2;..\components\ps\source;..\components\pxlib
-Item1=..\components\uib2;..\components\ps\source
-Item2=..\components\uib2
+Count=7
+Item0=..\components\uib\source;..\components\pascalscript\source;..\components\pxlib;..\components\pxvcl;..\components\synedit\source;..\components\log4d;..\components\fastmm;..\components\regexpr\source
+Item1=..\components\uib\source;..\components\pascalscript\source;..\components\pxlib;..\components\pxvcl;..\components\synedit\source;..\components\log4d;..\components\fastmm;..\components\regexpr
+Item2=..\components\uib\source;..\components\pascalscript\source;..\components\pxlib;..\components\pxvcl;..\components\synedit\source;..\components\log4d;..\components\fastmm
+Item3=..\components\uib\source;..\components\pascalscript\source;..\components\pxlib;..\components\pxvcl;..\components\synedit\source;..\components\log4d
+Item4=..\components\uib2;..\components\ps\source;..\components\pxlib
+Item5=..\components\uib2;..\components\ps\source
+Item6=..\components\uib2
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=.

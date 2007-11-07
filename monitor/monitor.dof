@@ -94,7 +94,7 @@ OutputDir=
 UnitOutputDir=.
 PackageDLLOutputDir=
 PackageDCPOutputDir=
-SearchPath=$(DELPHI)\Lib\Debug;..\common;..\components\uib2;..\components\padcom;..\components\pxlib
+SearchPath=$(DELPHI)\Lib\Debug;..\common;..\components\uib\source;..\components\fastmm;..\components\pxlib;..\components\log4d
 Packages=vcl;rtl;vclx;VclSmp;vclshlctrls
 Conditionals=
 DebugSourceDirs=
@@ -134,11 +134,13 @@ Comments=
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
-Count=4
-Item0=$(DELPHI)\Lib\Debug;..\common;..\components\uib2;..\components\padcom;..\components\pxlib
-Item1=..\common;..\components\uib2;..\components\padcom;..\components\pxlib
-Item2=..\common;..\components\uib2
-Item3=..\common
+Count=6
+Item0=$(DELPHI)\Lib\Debug;..\common;..\components\uib\source;..\components\fastmm;..\components\pxlib;..\components\log4d
+Item1=$(DELPHI)\Lib\Debug;..\common;..\components\uib\source;..\components\fastmm;..\components\pxlib
+Item2=$(DELPHI)\Lib\Debug;..\common;..\components\uib2;..\components\padcom;..\components\pxlib
+Item3=..\common;..\components\uib2;..\components\padcom;..\components\pxlib
+Item4=..\common;..\components\uib2
+Item5=..\common
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=.
