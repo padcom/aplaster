@@ -30,7 +30,8 @@ package SynEdit_D7_PE;
 requires
   vcl,
   vclx,
-  designide;
+  designide,
+  SynEdit_R7_PE;
 
 contains
   SynEditReg in '..\Source\SynEditReg.pas',
