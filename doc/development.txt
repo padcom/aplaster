@@ -1,0 +1,50 @@
+
+Development information for AplaSter project.
+  
+
+1. Installing prerequisites.
+
+   a) Borland Delphi 7 Personal Edition
+   b) Borland Delphi 7 Personal Edition Service Pack 1
+   c) Optional: GExperts 1.32
+   d) Optional: Delphi SpeedUp 2.8
+   e) Small Device C Compiler (SDCC) version 3.0.0
+   f) GNU PIC Utilities (gputils) 0.13.7
+   g) poEdit 1.4.6 (needed to translate the project)
+   h) dxgettext 1.2.2
+   i) Apache Ant (tested with 1.7.x and 1.8.x)
+   j) xsltproc.exe (from GnuWin32)
+
+2. Make sure you add all the tools to search path - otherwise you'll not be
+able to use the automated build.
+
+3. Compiling tools.
+
+To compile all the necessary bits and pieces that come in source form go into 
+the "components" folder and execute the "install.bat" command. This command 
+makes one very important assumption that you have installed Delphi 7 in its 
+default location (C:\Progra~1\Borland\Delphi7).
+
+After execution you'll have all the tools compiled into the same folder as the
+"install.bat" command itself and all the packages compiled to the default 
+packages folder (C:\Progra~1\Borland\Delphi7\Projects\Bpl)
+
+Copy the compiled tools somewhere within your path, for example C:\Windows
+
+4. Install packages into the IDE.
+
+Open Delphi IDE, from "Component" select "Install Packages...". 
+
+On the "Packages" tab click "Add", navigate to 
+C:\Progra~1\Borland\Delphi7\Projects\Bpl
+and add the following packages:
+
+JvUIBD7RPE.bpl
+PascalScript_Core_D7_Personal.bpl
+pxvcl_d7.bpl
+SynEdit_D7_PE.bpl
+
+5. Verify your installation.
+
+To verify everything is configured properly execute ant in project root.
+To verify your IDE is configured properly open the cfged\cfged.dpr project. 
