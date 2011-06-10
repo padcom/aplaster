@@ -121,7 +121,10 @@ var
 begin
   ListItem := GetListItem(Module);
   if Assigned(ListItem) then
+  begin
+    Module.AnalogInputs[0].GetStatus;
     ListItem.SubItems[1] := SActive;
+  end;
 end;
 
 procedure TUIEvents.OnModuleDisconnected(Module: TPSModule);

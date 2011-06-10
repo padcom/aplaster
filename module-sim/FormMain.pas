@@ -105,6 +105,7 @@ type
 
     // device handlers
     procedure CreateDevices;
+    procedure CollectDevicesStatus;
   protected
     class function Log: TLogLogger;
     procedure WndProc(var Msg: TMessage); override;
@@ -367,6 +368,12 @@ begin
     FMotor[I].Enabled := True;
 end;
 
+procedure TFrmMain.CollectDevicesStatus;
+begin
+  FAnalogInput[0].Value := AN0.Position;
+  FAnalogInput[1].Value := AN1.Position;
+end;
+
 { Protected declarations }
 
 class function TFrmMain.Log: TLogLogger;
@@ -408,6 +415,7 @@ begin
   AssignLanguage;
   FNetwork := TNetwork.Create(Self, Handle);
   CreateDevices;
+  InitializeDevicesStatus;
 end;
 
 procedure TFrmMain.FormDestroy(Sender: TObject);
