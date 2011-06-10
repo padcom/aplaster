@@ -19,7 +19,6 @@
   </target>
 
   <target name="compile">
-    <echo></echo>
     <exec executable="${aplaster.erisgen}" failonerror="true">
       <arg value="-i"/> 
       <arg value="ConfigFile.xdf"/> 
