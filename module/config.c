@@ -15,7 +15,7 @@
 // configuration bits
 // ----------------------------------------------------------------------------
 
-code char at __CONFIG1H conf1 = _OSC_HS_1H;  // Select HS OSC
-code char at __CONFIG4L conf2 = _LVP_OFF_4L; // Disable LVP
-code char at __CONFIG2H conf3 = _WDT_OFF_2H; // DIsable WDT
+__code char __at __CONFIG1H conf1 = _OSC_HS_1H;  // Select HS OSC
+__code char __at __CONFIG4L conf2 = _LVP_OFF_4L; // Disable LVP
+__code char __at __CONFIG2H conf3 = _WDT_OFF_2H; // DIsable WDT
 

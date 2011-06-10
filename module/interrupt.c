@@ -9,14 +9,14 @@
 
 // ----------------------------------------------------------------------------
 
-void isr_high_priority() interrupt 1
+void isr_high_priority() __interrupt 1
 {
 
 }
 
 // ----------------------------------------------------------------------------
 
-void isr_low_priority() interrupt 2
+void isr_low_priority() __interrupt 2
 {
   timer_isr();
 }
