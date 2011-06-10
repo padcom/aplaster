@@ -27,3 +27,8 @@ dcc32 -q -b JvUIBD7RPE.dpk
 
 cd ..\..\pascalscript\Source
 dcc32 -q -b PascalScript_Core_D7_Personal.dpk
+
+cd ..\..\tnt\Delphi\d7
+dcc32 -q -b TntUnicodeVcl_R70.dpk
+dcc32 -q -b TntUnicodeVcl_D70.dpk
+
