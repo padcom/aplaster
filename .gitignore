@@ -36,3 +36,4 @@ module/*.lst
 module/*.o
 module/*.hex
 module/*.cod
+*.zip
