@@ -144,8 +144,8 @@ begin
     RegisterProperty('MODIFIED', 'BOOLEAN', iptrw);
     RegisterProperty('SELLENGTH', 'INTEGER', iptrw);
     RegisterProperty('SELSTART', 'INTEGER', iptrw);
-    RegisterProperty('SELTEXT', 'STRING', iptrw);
-    RegisterProperty('TEXT', 'string', iptrw);
+    RegisterProperty('SELTEXT', 'String', iptrw);
+    RegisterProperty('TEXT', 'String', iptrw);
 
     {$IFNDEF PS_MINIVCL}
     RegisterMethod('procedure COPYTOCLIPBOARD');
@@ -176,7 +176,7 @@ begin
     RegisterProperty('PARENTFONT', 'Boolean', iptrw);
     RegisterProperty('PASSWORDCHAR', 'Char', iptrw);
     RegisterProperty('READONLY', 'Boolean', iptrw);
-    RegisterProperty('TEXT', 'string', iptrw);
+    RegisterProperty('TEXT', 'String', iptrw);
     RegisterProperty('ONCHANGE', 'TNotifyEvent', iptrw);
     RegisterProperty('ONCLICK', 'TNotifyEvent', iptrw);
     RegisterProperty('ONDBLCLICK', 'TNotifyEvent', iptrw);
@@ -285,7 +285,7 @@ begin
     RegisterProperty('CANVAS', 'TCANVAS', iptr);
     RegisterProperty('SELLENGTH', 'INTEGER', iptrw);
     RegisterProperty('SELSTART', 'INTEGER', iptrw);
-    RegisterProperty('SELTEXT', 'STRING', iptrw);
+    RegisterProperty('SELTEXT', 'String', iptrw);
     {$ENDIF}
   end;
 end;
@@ -303,7 +303,7 @@ begin
     RegisterProperty('PARENTCOLOR', 'Boolean', iptrw);
     RegisterProperty('PARENTFONT', 'Boolean', iptrw);
     RegisterProperty('SORTED', 'Boolean', iptrw);
-    RegisterProperty('TEXT', 'string', iptrw);
+    RegisterProperty('TEXT', 'String', iptrw);
     RegisterProperty('ONCHANGE', 'TNotifyEvent', iptrw);
     RegisterProperty('ONCLICK', 'TNotifyEvent', iptrw);
     RegisterProperty('ONDBLCLICK', 'TNotifyEvent', iptrw);

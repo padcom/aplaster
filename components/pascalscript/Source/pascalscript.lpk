@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <CONFIG>
-  <Package Version="2">
-    <Name Value="PascalScript"/>
+  <Package Version="3">
+    <Name Value="pascalscript"/>
     <Author Value="Carlo Kok"/>
     <CompilerOptions>
-      <Version Value="5"/>
+      <Version Value="10"/>
       <SearchPaths>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
@@ -27,7 +27,7 @@
     <Description Value="RemObjects Pascal Script 
 Created by Carlo Kok
 RemObjects Software
-Fixed for Lazarus by Bogus³aw Brandys
+Fixed for Lazarus by BogusÑ–aw Brandys
 "/>
     <License Value="*********************************************************************
 RemObjects Pascal Script
@@ -59,7 +59,7 @@ Carlo Kok
 RemObjects Software
 "/>
     <Version Build="1"/>
-    <Files Count="41">
+    <Files Count="39">
       <Item1>
         <Filename Value="uPSRuntime.pas"/>
         <UnitName Value="uPSRuntime"/>
@@ -73,8 +73,8 @@ RemObjects Software
         <Type Value="Include"/>
       </Item3>
       <Item4>
-        <Filename Value="license.txt"/>
-        <Type Value="Text"/>
+        <Filename Value="uPSR_stdctrls.pas"/>
+        <UnitName Value="uPSR_stdctrls"/>
       </Item4>
       <Item5>
         <Filename Value="PascalScript_Core_Reg.pas"/>
@@ -158,8 +158,8 @@ RemObjects Software
         <UnitName Value="uPSComponent_StdCtrls"/>
       </Item24>
       <Item25>
-        <Filename Value="uPSComponentExt.pas"/>
-        <UnitName Value="uPSComponentExt"/>
+        <Filename Value="uPSUtils.pas"/>
+        <UnitName Value="uPSUtils"/>
       </Item25>
       <Item26>
         <Filename Value="uPSDebugger.pas"/>
@@ -217,14 +217,6 @@ RemObjects Software
         <Filename Value="uPSR_std.pas"/>
         <UnitName Value="uPSR_std"/>
       </Item39>
-      <Item40>
-        <Filename Value="uPSR_stdctrls.pas"/>
-        <UnitName Value="uPSR_stdctrls"/>
-      </Item40>
-      <Item41>
-        <Filename Value="uPSUtils.pas"/>
-        <UnitName Value="uPSUtils"/>
-      </Item41>
     </Files>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="1">
@@ -234,7 +226,8 @@ RemObjects Software
       </Item1>
     </RequiredPkgs>
     <UsageOptions>
-      <UnitPath Value="$(PkgOutDir)\"/>
+      <IncludePath Value="."/>
+      <UnitPath Value="$(PkgOutDir)"/>
     </UsageOptions>
     <PublishOptions>
       <Version Value="2"/>

@@ -194,7 +194,7 @@ procedure SIRegisterTNOTEBOOK(Cl: TPSPascalCompiler);
 begin
   with Cl.AddClassN(cl.FindClass('TCUSTOMCONTROL'), 'TNOTEBOOK') do
   begin
-    RegisterProperty('ACTIVEPAGE', 'STRING', iptrw);
+    RegisterProperty('ACTIVEPAGE', 'String', iptrw);
     RegisterProperty('COLOR', 'TColor', iptrw);
     RegisterProperty('FONT', 'TFont', iptrw);
     RegisterProperty('PAGEINDEX', 'INTEGER', iptrw);

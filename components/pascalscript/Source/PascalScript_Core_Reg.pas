@@ -15,7 +15,7 @@ unit PascalScript_Core_Reg;
 interface
 
 {$IFNDEF FPC}
-  {$R PascalScript_Core_Glyphs.res}
+{$R PascalScript_Core_Glyphs.res}
 {$ENDIF}
 
 procedure Register;
@@ -28,7 +28,6 @@ uses
    LResources,
   {$ENDIF}
   uPSComponent,
-  uPSComponentExt,
   uPSDebugger,
   uPSComponent_Default,
  {$IFNDEF FPC}
@@ -53,8 +52,7 @@ begin
                                        TPSImport_Forms,
                                        TPSImport_Controls,
                                        TPSImport_StdCtrls,
-                                       TPSScriptExtension,
-                                       TPSCustumPlugin]);
+                                       TPSCustomPlugin]);
 end;
 
 

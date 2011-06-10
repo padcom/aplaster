@@ -16,6 +16,7 @@ procedure SIRegisterTBRUSH(Cl: TPSPascalCompiler);
 procedure SIRegisterTCanvas(cl: TPSPascalCompiler);
 procedure SIRegisterTGraphic(CL: TPSPascalCompiler);
 procedure SIRegisterTBitmap(CL: TPSPascalCompiler; Streams: Boolean);
+procedure SIRegisterTPicture(CL: TPSPascalCompiler);
 
 procedure SIRegister_Graphics(Cl: TPSPascalCompiler; Streams: Boolean);
 
@@ -50,7 +51,7 @@ begin
 {$ENDIF}
     RegisterProperty('Color', 'TColor', iptRW);
     RegisterProperty('Height', 'Integer', iptRW);
-    RegisterProperty('Name', 'string', iptRW);
+    RegisterProperty('Name', 'String', iptRW);
     RegisterProperty('Pitch', 'Byte', iptRW);
     RegisterProperty('Size', 'Integer', iptRW);
     RegisterProperty('PixelsPerInch', 'Integer', iptRW);
@@ -64,7 +65,7 @@ begin
   begin
     RegisterMethod('procedure Arc(X1, Y1, X2, Y2, X3, Y3, X4, Y4: Integer);');
     RegisterMethod('procedure Chord(X1, Y1, X2, Y2, X3, Y3, X4, Y4: Integer);');
-//    RegisterMethod('procedure Draw(X, Y: Integer; Graphic: TGraphic);');
+    RegisterMethod('procedure Draw(X, Y: Integer; Graphic: TGraphic);');
     RegisterMethod('procedure Ellipse(X1, Y1, X2, Y2: Integer);');
     RegisterMethod('procedure FillRect(const Rect: TRect);');
 {$IFNDEF CLX}
@@ -76,9 +77,9 @@ begin
     RegisterMethod('procedure Rectangle(X1, Y1, X2, Y2: Integer);');
     RegisterMethod('procedure Refresh;');
     RegisterMethod('procedure RoundRect(X1, Y1, X2, Y2, X3, Y3: Integer);');
-    RegisterMethod('function TextHeight(Text: string): Integer;');
-    RegisterMethod('procedure TextOut(X, Y: Integer; Text: string);');
-    RegisterMethod('function TextWidth(Text: string): Integer;');
+    RegisterMethod('function TextHeight(Text: String): Integer;');
+    RegisterMethod('procedure TextOut(X, Y: Integer; Text: String);');
+    RegisterMethod('function TextWidth(Text: String): Integer;');
 {$IFNDEF CLX}
     RegisterProperty('Handle', 'Integer', iptRw);
 {$ENDIF}
@@ -214,8 +215,8 @@ begin
   with CL.AddClassN(CL.FindClass('TPersistent'),'TGraphic') do
   begin
     RegisterMethod('constructor Create');
-    RegisterMethod('Procedure LoadFromFile( const Filename : string)');
-    RegisterMethod('Procedure SaveToFile( const Filename : string)');
+    RegisterMethod('Procedure LoadFromFile( const Filename : String)');
+    RegisterMethod('Procedure SaveToFile( const Filename : String)');
     RegisterProperty('Empty', 'Boolean', iptr);
     RegisterProperty('Height', 'Integer', iptrw);
     RegisterProperty('Modified', 'Boolean', iptrw);
@@ -258,16 +259,25 @@ begin
   end;
 end;
 
+procedure SIRegisterTPicture(CL: TPSPascalCompiler);
+begin
+  with CL.AddClassN(CL.FindClass('TPersistent'),'TPicture') do
+  begin
+    RegisterProperty('Bitmap','TBitmap',iptrw);
+  end;
+end;
+
 procedure SIRegister_Graphics(Cl: TPSPascalCompiler; Streams: Boolean);
 begin
   SIRegister_Graphics_TypesAndConsts(Cl);
   SIRegisterTGRAPHICSOBJECT(Cl);
+  SIRegisterTGraphic(Cl);
   SIRegisterTFont(Cl);
   SIRegisterTPEN(cl);
   SIRegisterTBRUSH(cl);
   SIRegisterTCanvas(cl);
-  SIRegisterTGraphic(Cl);
   SIRegisterTBitmap(Cl, Streams);
+  SIRegisterTPicture(cl);
 end;
 
 // PS_MINIVCL changes by Martijn Laan (mlaan at wintax _dot_ nl)

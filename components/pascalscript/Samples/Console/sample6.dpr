@@ -14,8 +14,11 @@ begin
   // Do something with Data
   ShowMessage(Data);
 end;
-
+{$IFDEF UNICODE}
+function ScriptOnExportCheck(Sender: TPSPascalCompiler; Proc: TPSInternalProcedure; const ProcDecl: AnsiString): Boolean;
+{$ELSE}
 function ScriptOnExportCheck(Sender: TPSPascalCompiler; Proc: TPSInternalProcedure; const ProcDecl: string): Boolean;
+{$ENDIF}
 {
   The OnExportCheck callback function is called for each function in the script
   (Also for the main proc, with '!MAIN' as a Proc^.Name). ProcDecl contains the
@@ -28,7 +31,7 @@ function ScriptOnExportCheck(Sender: TPSPascalCompiler; Proc: TPSInternalProcedu
 begin
   if Proc.Name = 'TEST' then // Check if the proc is the Test proc we want.
   begin
-    if not ExportCheck(Sender, Proc, [0, btString], [pmIn]) then // Check if the proc has the correct params.
+    if not ExportCheck(Sender, Proc, [0, {$IFDEF UNICODE}btUnicodeString{$ELSE}btString{$ENDIF}], [pmIn]) then // Check if the proc has the correct params.
     begin
       { Something is wrong, so cause an error at the declaration position of the proc. }
       Sender.MakeError('', ecTypeMismatch, '');
@@ -39,7 +42,11 @@ begin
   end else Result := True;
 end;
 
+{$IFDEF UNICODE}
+function ScriptOnUses(Sender: TPSPascalCompiler; const Name: AnsiString): Boolean;
+{$ELSE}
 function ScriptOnUses(Sender: TPSPascalCompiler; const Name: string): Boolean;
+{$ENDIF}
 { the OnUses callback function is called for each "uses" in the script.
   It's always called with the parameter 'SYSTEM' at the top of the script. 
   For example: uses ii1, ii2;   
@@ -64,7 +71,7 @@ var
   Exec: TPSExec;
    { TPSExec is the executer part of the scriptengine. It uses the output of
     the compiler to run a script. }
-  Data: string;
+  {$IFDEF UNICODE}Data: AnsiString;{$ELSE}Data: string;{$ENDIF}
 
   N: PIfVariant;
   { The variant in which we are going to store the parameter }

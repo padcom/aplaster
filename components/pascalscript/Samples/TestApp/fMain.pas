@@ -4,8 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, StdCtrls, uPSComponent, uPSCompiler, uPSUtils,
-  Menus, uPSRuntime;
+  ExtCtrls, StdCtrls, uPSComponent, uPSCompiler, Menus, uPSRuntime, Variants;
 
 type
   TForm1 = class(TForm)
@@ -25,7 +24,6 @@ type
     procedure Compile1Click(Sender: TObject);
     procedure PSScriptExecute(Sender: TPSScript);
   private
-    MyVar: Longint;
     { Private declarations }
   public
     { Public declarations }
@@ -47,7 +45,9 @@ uses
   uPSC_classes,
   uPSR_graphics,
   uPSR_controls,
-  uPSR_classes;
+  uPSR_classes,
+  uPSC_comobj,
+  uPSR_comobj;
 
 {$R *.DFM}
 
@@ -60,6 +60,7 @@ begin
   SIRegister_Controls(x);
   SIRegister_stdctrls(x);
   SIRegister_Forms(x);
+    SIRegister_ComObj(x);
 end;
 
 procedure TForm1.IFPS3ClassesPlugin1ExecImport(Sender: TObject; Exec: TIFPSExec;
@@ -71,6 +72,7 @@ begin
   RIRegister_Controls(x);
   RIRegister_stdctrls(x);
   RIRegister_Forms(x);
+    RIRegister_ComObj(exec);
 end;
 
 function ImportTest(S1: string; s2: Longint; s3: Byte; s4: word; var s5: string): string;
@@ -94,11 +96,11 @@ begin
   Sender.AddFunction(@MyWriteln, 'procedure Writeln(s: string);');
   Sender.AddFunction(@MyReadln, 'function Readln(question: string): string;');
   Sender.AddFunction(@ImportTest, 'function ImportTest(S1: string; s2: Longint; s3: Byte; s4: word; var s5: string): string;');
+  Sender.AddRegisteredVariable('vars', 'Variant');
   Sender.AddRegisteredVariable('Application', 'TApplication');
   Sender.AddRegisteredVariable('Self', 'TForm');
+  Sender.AddRegisteredVariable('Memo1', 'TMemo');
   Sender.AddRegisteredVariable('Memo2', 'TMemo');
-  Sender.AddRegisteredPTRVariable('Memo1', 'TMemo');
-  Sender.AddRegisteredPTRVariable('MyVar', 'Longint');
 end;
 
 procedure TForm1.Compile1Click(Sender: TObject);
@@ -119,6 +121,7 @@ procedure TForm1.Compile1Click(Sender: TObject);
       end;
     end;
   end;
+  var v: VAriant;
 begin
   Memo2.Lines.Clear;
   PSScript.Script.Assign(Memo1.Lines);
@@ -145,8 +148,7 @@ begin
   PSScript.SetVarToInstance('SELF', Self);
   PSScript.SetVarToInstance('MEMO1', Memo1);
   PSScript.SetVarToInstance('MEMO2', Memo2);
-  PSScript.SetPointerToData('MyVar', @MyVar, PSScript.FindBaseType(bts32));
-  PSScript.SetPointerToData('Memo1', @Memo1, PSScript.FindNamedType('TMemo'));
+  PPSVariantVariant(PSScript.GetVariable('VARS'))^.Data := VarArrayCreate([0, 1], varShortInt)
 end;
 
 end.

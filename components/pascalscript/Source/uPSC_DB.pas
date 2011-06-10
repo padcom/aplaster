@@ -115,8 +115,13 @@ With RegClassS(cl,'TCOMPONENT','TDATASET') do
   RegisterMethod('Procedure EDIT');
   RegisterMethod('Procedure ENABLECONTROLS');
 {$IFDEF DELPHI2006UP}
+{$IFDEF DELPHI2009UP}
+  RegisterMethod('Function FIELDBYNAME( const FIELDNAME : String): TFIELD');
+  RegisterMethod('Function FINDFIELD( const FIELDNAME : String) : TFIELD');
+{$ELSE}
   RegisterMethod('Function FIELDBYNAME( const FIELDNAME : WIDESTRING) : TFIELD');
   RegisterMethod('Function FINDFIELD( const FIELDNAME : WideString) : TFIELD');
+{$ENDIF}
 {$ELSE}
   RegisterMethod('Function FIELDBYNAME( const FIELDNAME : STRING) : TFIELD');
   RegisterMethod('Function FINDFIELD( const FIELDNAME : STRING) : TFIELD');
@@ -141,8 +146,8 @@ With RegClassS(cl,'TCOMPONENT','TDATASET') do
   RegisterMethod('Function ISLINKEDTO( DATASOURCE : TDATASOURCE) : BOOLEAN');
   RegisterMethod('Function ISSEQUENCED : BOOLEAN');
   RegisterMethod('Procedure LAST');
-  RegisterMethod('Function LOCATE( const KEYFIELDS : STRING; const KEYVALUES : VARIANT; OPTIONS : TLOCATEOPTIONS) : BOOLEAN');
-  RegisterMethod('Function LOOKUP( const KEYFIELDS : STRING; const KEYVALUES : VARIANT; const RESULTFIELDS : STRING) : VARIANT');
+  RegisterMethod('Function LOCATE( const KEYFIELDS : String; const KEYVALUES : VARIANT; OPTIONS : TLOCATEOPTIONS) : BOOLEAN');
+  RegisterMethod('Function LOOKUP( const KEYFIELDS : String; const KEYVALUES : VARIANT; const RESULTFIELDS : String) : VARIANT');
   RegisterMethod('Function MOVEBY( DISTANCE : INTEGER) : INTEGER');
   RegisterMethod('Procedure NEXT');
   RegisterMethod('Procedure OPEN');
@@ -170,7 +175,7 @@ With RegClassS(cl,'TCOMPONENT','TDATASET') do
   RegisterProperty('FIELDDEFLIST', 'TFIELDDEFLIST', iptr);
   RegisterProperty('FIELDS', 'TFIELDS', iptr);
   RegisterProperty('FIELDLIST', 'TFIELDLIST', iptr);
-  RegisterProperty('FIELDVALUES', 'VARIANT STRING', iptrw);
+  RegisterProperty('FIELDVALUES', 'VARIANT String', iptrw);
   RegisterProperty('FOUND', 'BOOLEAN', iptr);
 {$IFDEF DELPHI6UP}
   RegisterProperty('ISUNIDIRECTIONAL', 'BOOLEAN', iptr);
@@ -182,7 +187,7 @@ With RegClassS(cl,'TCOMPONENT','TDATASET') do
   RegisterProperty('RECORDSIZE', 'WORD', iptr);
   RegisterProperty('SPARSEARRAYS', 'BOOLEAN', iptrw);
   RegisterProperty('STATE', 'TDATASETSTATE', iptr);
-  RegisterProperty('FILTER', 'STRING', iptrw);
+  RegisterProperty('FILTER', 'String', iptrw);
   RegisterProperty('FILTERED', 'BOOLEAN', iptrw);
   RegisterProperty('FILTEROPTIONS', 'TFILTEROPTIONS', iptrw);
   RegisterProperty('ACTIVE', 'BOOLEAN', iptrw);
@@ -211,7 +216,8 @@ With RegClassS(cl,'TCOMPONENT','TDATASET') do
   RegisterProperty('ONFILTERRECORD', 'TFILTERRECORDEVENT', iptrw);
   RegisterProperty('ONNEWRECORD', 'TDATASETNOTIFYEVENT', iptrw);
   RegisterProperty('ONPOSTERROR', 'TDATASETERROREVENT', iptrw);
-  end;
+  SetDefaultPropery('FieldValues');
+ end;
 end;
 
 procedure SIRegisterTPARAMS(CL: TPSPascalCompiler);
@@ -221,14 +227,14 @@ With RegClassS(cl,'TCOLLECTION','TPARAMS') do
   RegisterMethod('Procedure ASSIGNVALUES( VALUE : TPARAMS)');
   RegisterMethod('Procedure ADDPARAM( VALUE : TPARAM)');
   RegisterMethod('Procedure REMOVEPARAM( VALUE : TPARAM)');
-  RegisterMethod('Function CREATEPARAM( FLDTYPE : TFIELDTYPE; const PARAMNAME : STRING; PARAMTYPE : TPARAMTYPE) : TPARAM');
+  RegisterMethod('Function CREATEPARAM( FLDTYPE : TFIELDTYPE; const PARAMNAME : String; PARAMTYPE : TPARAMTYPE) : TPARAM');
 //  RegisterMethod('Procedure GETPARAMLIST( LIST : TLIST; const PARAMNAMES : STRING)');
   RegisterMethod('Function ISEQUAL( VALUE : TPARAMS) : BOOLEAN');
-  RegisterMethod('Function PARSESQL( SQL : STRING; DOCREATE : BOOLEAN) : STRING');
-  RegisterMethod('Function PARAMBYNAME( const VALUE : STRING) : TPARAM');
-  RegisterMethod('Function FINDPARAM( const VALUE : STRING) : TPARAM');
+  RegisterMethod('Function PARSESQL( SQL : String; DOCREATE : BOOLEAN) : String');
+  RegisterMethod('Function PARAMBYNAME( const VALUE : String) : TPARAM');
+  RegisterMethod('Function FINDPARAM( const VALUE : String) : TPARAM');
   RegisterProperty('ITEMS', 'TPARAM INTEGER', iptrw);
-  RegisterProperty('PARAMVALUES', 'VARIANT STRING', iptrw);
+  RegisterProperty('PARAMVALUES', 'VARIANT String', iptrw);
   end;
 end;
 
@@ -241,7 +247,7 @@ With RegClassS(cl,'TCOLLECTIONITEM','TPARAM') do
   RegisterMethod('Procedure CLEAR');
 //  RegisterMethod('Procedure GETDATA( BUFFER : POINTER)');
   RegisterMethod('Function GETDATASIZE : INTEGER');
-  RegisterMethod('Procedure LOADFROMFILE( const FILENAME : STRING; BLOBTYPE : TBLOBTYPE)');
+  RegisterMethod('Procedure LOADFROMFILE( const FILENAME : String; BLOBTYPE : TBLOBTYPE)');
   RegisterMethod('Procedure LOADFROMSTREAM( STREAM : TSTREAM; BLOBTYPE : TBLOBTYPE)');
 //  RegisterMethod('Procedure SETBLOBDATA( BUFFER : POINTER; SIZE : INTEGER)');
 //  RegisterMethod('Procedure SETDATA( BUFFER : POINTER)');
@@ -259,21 +265,21 @@ With RegClassS(cl,'TCOLLECTIONITEM','TPARAM') do
   RegisterProperty('ASFLOAT', 'DOUBLE', iptrw);
   RegisterProperty('ASINTEGER', 'LONGINT', iptrw);
   RegisterProperty('ASSMALLINT', 'LONGINT', iptrw);
-  RegisterProperty('ASMEMO', 'STRING', iptrw);
-  RegisterProperty('ASSTRING', 'STRING', iptrw);
+  RegisterProperty('ASMEMO', 'String', iptrw);
+  RegisterProperty('ASSTRING', 'String', iptrw);
   RegisterProperty('ASTIME', 'TDATETIME', iptrw);
   RegisterProperty('ASWORD', 'LONGINT', iptrw);
   RegisterProperty('BOUND', 'BOOLEAN', iptrw);
   RegisterProperty('ISNULL', 'BOOLEAN', iptr);
-  RegisterProperty('NATIVESTR', 'STRING', iptrw);
-  RegisterProperty('TEXT', 'STRING', iptrw);
+  RegisterProperty('NATIVESTR', 'String', iptrw);
+  RegisterProperty('TEXT', 'String', iptrw);
   RegisterProperty('DATATYPE', 'TFIELDTYPE', iptrw);
 {$IFDEF DELPHI6UP}
   RegisterProperty('PRECISION', 'INTEGER', iptrw);
   RegisterProperty('NUMERICSCALE', 'INTEGER', iptrw);
   RegisterProperty('SIZE', 'INTEGER', iptrw);
 {$ENDIF}
-  RegisterProperty('NAME', 'STRING', iptrw);
+  RegisterProperty('NAME', 'String', iptrw);
   RegisterProperty('PARAMTYPE', 'TPARAMTYPE', iptrw);
   RegisterProperty('VALUE', 'VARIANT', iptrw);
   end;
@@ -297,7 +303,7 @@ procedure SIRegisterTREFERENCEFIELD(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TDATASETFIELD','TREFERENCEFIELD') do
   begin
-  RegisterProperty('REFERENCETABLENAME', 'STRING', iptrw);
+  RegisterProperty('REFERENCETABLENAME', 'String', iptrw);
   end;
 end;
 
@@ -332,7 +338,7 @@ With RegClassS(cl,'TFIELD','TOBJECTFIELD') do
   RegisterProperty('FIELDS', 'TFIELDS', iptr);
   RegisterProperty('FIELDVALUES', 'VARIANT INTEGER', iptrw);
   RegisterProperty('UNNAMED', 'BOOLEAN', iptr);
-  RegisterProperty('OBJECTTYPE', 'STRING', iptrw);
+  RegisterProperty('OBJECTTYPE', 'String', iptrw);
   end;
 end;
 
@@ -354,13 +360,13 @@ procedure SIRegisterTBLOBFIELD(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TFIELD','TBLOBFIELD') do
   begin
-  RegisterMethod('Procedure LOADFROMFILE( const FILENAME : STRING)');
+  RegisterMethod('Procedure LOADFROMFILE( const FILENAME : String)');
   RegisterMethod('Procedure LOADFROMSTREAM( STREAM : TSTREAM)');
-  RegisterMethod('Procedure SAVETOFILE( const FILENAME : STRING)');
+  RegisterMethod('Procedure SAVETOFILE( const FILENAME : String)');
   RegisterMethod('Procedure SAVETOSTREAM( STREAM : TSTREAM)');
   RegisterProperty('BLOBSIZE', 'INTEGER', iptr);
   RegisterProperty('MODIFIED', 'BOOLEAN', iptrw);
-  RegisterProperty('VALUE', 'STRING', iptrw);
+  RegisterProperty('VALUE', 'String', iptrw);
   RegisterProperty('TRANSLITERATE', 'BOOLEAN', iptrw);
   RegisterProperty('BLOBTYPE', 'TBLOBTYPE', iptrw);
 {$IFDEF DELPHI6UP}
@@ -376,8 +382,8 @@ With RegClassS(cl,'TNUMERICFIELD','TFMTBCDFIELD') do
   begin
   RegisterProperty('VALUE', 'TBCD', iptrw);
   RegisterProperty('CURRENCY', 'BOOLEAN', iptrw);
-  RegisterProperty('MAXVALUE', 'STRING', iptrw);
-  RegisterProperty('MINVALUE', 'STRING', iptrw);
+  RegisterProperty('MAXVALUE', 'String', iptrw);
+  RegisterProperty('MINVALUE', 'String', iptrw);
   RegisterProperty('PRECISION', 'INTEGER', iptrw);
   end;
 end;
@@ -435,7 +441,7 @@ Begin
 With RegClassS(cl,'TFIELD','TDATETIMEFIELD') do
   begin
   RegisterProperty('VALUE', 'TDATETIME', iptrw);
-  RegisterProperty('DISPLAYFORMAT', 'STRING', iptrw);
+  RegisterProperty('DISPLAYFORMAT', 'String', iptrw);
   end;
 end;
 
@@ -444,7 +450,7 @@ Begin
 With RegClassS(cl,'TFIELD','TBOOLEANFIELD') do
   begin
   RegisterProperty('VALUE', 'BOOLEAN', iptrw);
-  RegisterProperty('DISPLAYVALUES', 'STRING', iptrw);
+  RegisterProperty('DISPLAYVALUES', 'String', iptrw);
   end;
 end;
 
@@ -513,8 +519,8 @@ procedure SIRegisterTNUMERICFIELD(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TFIELD','TNUMERICFIELD') do
   begin
-  RegisterProperty('DISPLAYFORMAT', 'STRING', iptrw);
-  RegisterProperty('EDITFORMAT', 'STRING', iptrw);
+  RegisterProperty('DISPLAYFORMAT', 'String', iptrw);
+  RegisterProperty('EDITFORMAT', 'String', iptrw);
   end;
 end;
 
@@ -530,7 +536,7 @@ procedure SIRegisterTSTRINGFIELD(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TFIELD','TSTRINGFIELD') do
   begin
-  RegisterProperty('VALUE', 'STRING', iptrw);
+  RegisterProperty('VALUE', 'String', iptrw);
   RegisterProperty('FIXEDCHAR', 'BOOLEAN', iptrw);
   RegisterProperty('TRANSLITERATE', 'BOOLEAN', iptrw);
   end;
@@ -557,23 +563,23 @@ With RegClassS(cl,'TCOMPONENT','TFIELD') do
   RegisterProperty('ASDATETIME', 'TDATETIME', iptrw);
   RegisterProperty('ASFLOAT', 'DOUBLE', iptrw);
   RegisterProperty('ASINTEGER', 'LONGINT', iptrw);
-  RegisterProperty('ASSTRING', 'STRING', iptrw);
+  RegisterProperty('ASSTRING', 'String', iptrw);
   RegisterProperty('ASVARIANT', 'VARIANT', iptrw);
-  RegisterProperty('ATTRIBUTESET', 'STRING', iptrw);
+  RegisterProperty('ATTRIBUTESET', 'String', iptrw);
   RegisterProperty('CALCULATED', 'BOOLEAN', iptrw);
   RegisterProperty('CANMODIFY', 'BOOLEAN', iptr);
   RegisterProperty('CURVALUE', 'VARIANT', iptr);
   RegisterProperty('DATASET', 'TDATASET', iptrw);
   RegisterProperty('DATASIZE', 'INTEGER', iptr);
   RegisterProperty('DATATYPE', 'TFIELDTYPE', iptr);
-  RegisterProperty('DISPLAYNAME', 'STRING', iptr);
-  RegisterProperty('DISPLAYTEXT', 'STRING', iptr);
+  RegisterProperty('DISPLAYNAME', 'String', iptr);
+  RegisterProperty('DISPLAYTEXT', 'String', iptr);
   RegisterProperty('EDITMASK', 'TEDITMASK', iptrw);
   RegisterProperty('EDITMASKPTR', 'TEDITMASK', iptr);
-  RegisterProperty('EDITMASK', 'STRING', iptrw);
-  RegisterProperty('EDITMASKPTR', 'STRING', iptr);
+  RegisterProperty('EDITMASK', 'String', iptrw);
+  RegisterProperty('EDITMASKPTR', 'String', iptr);
   RegisterProperty('FIELDNO', 'INTEGER', iptr);
-  RegisterProperty('FULLNAME', 'STRING', iptr);
+  RegisterProperty('FULLNAME', 'String', iptr);
   RegisterProperty('ISINDEXFIELD', 'BOOLEAN', iptr);
   RegisterProperty('ISNULL', 'BOOLEAN', iptr);
   RegisterProperty('LOOKUP', 'BOOLEAN', iptrw);
@@ -583,27 +589,27 @@ With RegClassS(cl,'TCOMPONENT','TFIELD') do
   RegisterProperty('OLDVALUE', 'VARIANT', iptr);
   RegisterProperty('PARENTFIELD', 'TOBJECTFIELD', iptrw);
   RegisterProperty('SIZE', 'INTEGER', iptrw);
-  RegisterProperty('TEXT', 'STRING', iptrw);
+  RegisterProperty('TEXT', 'String', iptrw);
   RegisterProperty('VALIDCHARS', 'TFIELDCHARS', iptrw);
   RegisterProperty('VALUE', 'VARIANT', iptrw);
   RegisterProperty('ALIGNMENT', 'TALIGNMENT', iptrw);
   RegisterProperty('AUTOGENERATEVALUE', 'TAUTOREFRESHFLAG', iptrw);
-  RegisterProperty('CUSTOMCONSTRAINT', 'STRING', iptrw);
-  RegisterProperty('CONSTRAINTERRORMESSAGE', 'STRING', iptrw);
-  RegisterProperty('DEFAULTEXPRESSION', 'STRING', iptrw);
-  RegisterProperty('DISPLAYLABEL', 'STRING', iptrw);
+  RegisterProperty('CUSTOMCONSTRAINT', 'String', iptrw);
+  RegisterProperty('CONSTRAINTERRORMESSAGE', 'String', iptrw);
+  RegisterProperty('DEFAULTEXPRESSION', 'String', iptrw);
+  RegisterProperty('DISPLAYLABEL', 'String', iptrw);
   RegisterProperty('DISPLAYWIDTH', 'INTEGER', iptrw);
   RegisterProperty('FIELDKIND', 'TFIELDKIND', iptrw);
-  RegisterProperty('FIELDNAME', 'STRING', iptrw);
+  RegisterProperty('FIELDNAME', 'String', iptrw);
   RegisterProperty('HASCONSTRAINTS', 'BOOLEAN', iptr);
   RegisterProperty('INDEX', 'INTEGER', iptrw);
-  RegisterProperty('IMPORTEDCONSTRAINT', 'STRING', iptrw);
+  RegisterProperty('IMPORTEDCONSTRAINT', 'String', iptrw);
   RegisterProperty('LOOKUPDATASET', 'TDATASET', iptrw);
-  RegisterProperty('LOOKUPKEYFIELDS', 'STRING', iptrw);
-  RegisterProperty('LOOKUPRESULTFIELD', 'STRING', iptrw);
-  RegisterProperty('KEYFIELDS', 'STRING', iptrw);
+  RegisterProperty('LOOKUPKEYFIELDS', 'String', iptrw);
+  RegisterProperty('LOOKUPRESULTFIELD', 'String', iptrw);
+  RegisterProperty('KEYFIELDS', 'String', iptrw);
   RegisterProperty('LOOKUPCACHE', 'BOOLEAN', iptrw);
-  RegisterProperty('ORIGIN', 'STRING', iptrw);
+  RegisterProperty('ORIGIN', 'String', iptrw);
   RegisterProperty('PROVIDERFLAGS', 'TPROVIDERFLAGS', iptrw);
   RegisterProperty('READONLY', 'BOOLEAN', iptrw);
   RegisterProperty('REQUIRED', 'BOOLEAN', iptrw);
@@ -632,11 +638,11 @@ With RegClassS(cl,'TOBJECT','TFIELDS') do
   begin
   RegisterMethod('Constructor CREATE( ADATASET : TDATASET)');
   RegisterMethod('Procedure ADD( FIELD : TFIELD)');
-  RegisterMethod('Procedure CHECKFIELDNAME( const FIELDNAME : STRING)');
-  RegisterMethod('Procedure CHECKFIELDNAMES( const FIELDNAMES : STRING)');
+  RegisterMethod('Procedure CHECKFIELDNAME( const FIELDNAME : String)');
+  RegisterMethod('Procedure CHECKFIELDNAMES( const FIELDNAMES : String)');
   RegisterMethod('Procedure CLEAR');
-  RegisterMethod('Function FINDFIELD( const FIELDNAME : STRING) : TFIELD');
-  RegisterMethod('Function FIELDBYNAME( const FIELDNAME : STRING) : TFIELD');
+  RegisterMethod('Function FINDFIELD( const FIELDNAME : String) : TFIELD');
+  RegisterMethod('Function FIELDBYNAME( const FIELDNAME : String) : TFIELD');
   RegisterMethod('Function FIELDBYNUMBER( FIELDNO : INTEGER) : TFIELD');
   RegisterMethod('Procedure GETFIELDNAMES( LIST : TSTRINGS)');
   RegisterMethod('Function INDEXOF( FIELD : TFIELD) : INTEGER');
@@ -644,6 +650,7 @@ With RegClassS(cl,'TOBJECT','TFIELDS') do
   RegisterProperty('COUNT', 'INTEGER', iptr);
   RegisterProperty('DATASET', 'TDATASET', iptr);
   RegisterProperty('FIELDS', 'TFIELD INTEGER', iptrw);
+  SetDefaultPropery('FIELDS');
   end;
 end;
 
@@ -651,9 +658,10 @@ procedure SIRegisterTFIELDLIST(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TFLATLIST','TFIELDLIST') do
   begin
-  RegisterMethod('Function FIELDBYNAME( const NAME : STRING) : TFIELD');
-  RegisterMethod('Function FIND( const NAME : STRING) : TFIELD');
+  RegisterMethod('Function FIELDBYNAME( const NAME : String) : TFIELD');
+  RegisterMethod('Function FIND( const NAME : String) : TFIELD');
   RegisterProperty('FIELDS', 'TFIELD INTEGER', iptr);
+  SetDefaultPropery('FIELDS');
   end;
 end;
 
@@ -661,8 +669,8 @@ procedure SIRegisterTFIELDDEFLIST(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TFLATLIST','TFIELDDEFLIST') do
   begin
-  RegisterMethod('Function FIELDBYNAME( const NAME : STRING) : TFIELDDEF');
-  RegisterMethod('Function FIND( const NAME : STRING) : TFIELDDEF');
+  RegisterMethod('Function FIELDBYNAME( const NAME : String) : TFIELDDEF');
+  RegisterMethod('Function FIND( const NAME : String) : TFIELDDEF');
   RegisterProperty('FIELDDEFS', 'TFIELDDEF INTEGER', iptr);
   end;
 end;
@@ -683,12 +691,13 @@ With RegClassS(cl,'TDEFCOLLECTION','TINDEXDEFS') do
   begin
   RegisterMethod('Constructor CREATE( ADATASET : TDATASET)');
   RegisterMethod('Function ADDINDEXDEF : TINDEXDEF');
-  RegisterMethod('Function FIND( const NAME : STRING) : TINDEXDEF');
+  RegisterMethod('Function FIND( const NAME : String) : TINDEXDEF');
   RegisterMethod('Procedure UPDATE');
-  RegisterMethod('Function FINDINDEXFORFIELDS( const FIELDS : STRING) : TINDEXDEF');
-  RegisterMethod('Function GETINDEXFORFIELDS( const FIELDS : STRING; CASEINSENSITIVE : BOOLEAN) : TINDEXDEF');
-  RegisterMethod('Procedure ADD( const NAME, FIELDS : STRING; OPTIONS : TINDEXOPTIONS)');
+  RegisterMethod('Function FINDINDEXFORFIELDS( const FIELDS : String) : TINDEXDEF');
+  RegisterMethod('Function GETINDEXFORFIELDS( const FIELDS : String; CASEINSENSITIVE : BOOLEAN) : TINDEXDEF');
+  RegisterMethod('Procedure ADD( const NAME, FIELDS : String; OPTIONS : TINDEXOPTIONS)');
   RegisterProperty('ITEMS', 'TINDEXDEF INTEGER', iptrw);
+  SetDefaultPropery('ITEMS');
   end;
 end;
 
@@ -696,14 +705,14 @@ procedure SIRegisterTINDEXDEF(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TNAMEDITEM','TINDEXDEF') do
   begin
-  RegisterMethod('Constructor CREATE( OWNER : TINDEXDEFS; const NAME, FIELDS : STRING; OPTIONS : TINDEXOPTIONS)');
-  RegisterProperty('FIELDEXPRESSION', 'STRING', iptr);
-  RegisterProperty('CASEINSFIELDS', 'STRING', iptrw);
-  RegisterProperty('DESCFIELDS', 'STRING', iptrw);
-  RegisterProperty('EXPRESSION', 'STRING', iptrw);
-  RegisterProperty('FIELDS', 'STRING', iptrw);
+  RegisterMethod('Constructor CREATE( OWNER : TINDEXDEFS; const NAME, FIELDS : String; OPTIONS : TINDEXOPTIONS)');
+  RegisterProperty('FIELDEXPRESSION', 'String', iptr);
+  RegisterProperty('CASEINSFIELDS', 'String', iptrw);
+  RegisterProperty('DESCFIELDS', 'String', iptrw);
+  RegisterProperty('EXPRESSION', 'String', iptrw);
+  RegisterProperty('FIELDS', 'String', iptrw);
   RegisterProperty('OPTIONS', 'TINDEXOPTIONS', iptrw);
-  RegisterProperty('SOURCE', 'STRING', iptrw);
+  RegisterProperty('SOURCE', 'String', iptrw);
   RegisterProperty('GROUPINGLEVEL', 'INTEGER', iptrw);
   end;
 end;
@@ -714,12 +723,13 @@ With RegClassS(cl,'TDEFCOLLECTION','TFIELDDEFS') do
   begin
   RegisterMethod('Constructor CREATE( AOWNER : TPERSISTENT)');
   RegisterMethod('Function ADDFIELDDEF : TFIELDDEF');
-  RegisterMethod('Function FIND( const NAME : STRING) : TFIELDDEF');
+  RegisterMethod('Function FIND( const NAME : String) : TFIELDDEF');
   RegisterMethod('Procedure UPDATE');
-  RegisterMethod('Procedure ADD( const NAME : STRING; DATATYPE : TFIELDTYPE; SIZE : INTEGER; REQUIRED : BOOLEAN)');
+  RegisterMethod('Procedure ADD( const NAME : String; DATATYPE : TFIELDTYPE; SIZE : INTEGER; REQUIRED : BOOLEAN)');
   RegisterProperty('HIDDENFIELDS', 'BOOLEAN', iptrw);
   RegisterProperty('ITEMS', 'TFIELDDEF INTEGER', iptrw);
   RegisterProperty('PARENTDEF', 'TFIELDDEF', iptr);
+  SetDefaultPropery('ITEMS');
   end;
 end;
 
@@ -729,7 +739,7 @@ With RegClassS(cl,'TNAMEDITEM','TFIELDDEF') do
   begin
 //  RegisterMethod('Constructor CREATE( OWNER : TFIELDDEFS; const NAME : STRING; DATATYPE : TFIELDTYPE; SIZE : INTEGER; REQUIRED : BOOLEAN; FIELDNO : INTEGER)');
   RegisterMethod('Function ADDCHILD : TFIELDDEF');
-  RegisterMethod('Function CREATEFIELD( OWNER : TCOMPONENT; PARENTFIELD : TOBJECTFIELD; const FIELDNAME : STRING; CREATECHILDREN : BOOLEAN) : TFIELD');
+  RegisterMethod('Function CREATEFIELD( OWNER : TCOMPONENT; PARENTFIELD : TOBJECTFIELD; const FIELDNAME : String; CREATECHILDREN : BOOLEAN) : TFIELD');
   RegisterMethod('Function HASCHILDDEFS : BOOLEAN');
   RegisterProperty('FIELDCLASS', 'TFIELDCLASS', iptr);
   RegisterProperty('FIELDNO', 'INTEGER', iptrw);
@@ -749,9 +759,9 @@ Begin
 With RegClassS(cl,'TOWNEDCOLLECTION','TDEFCOLLECTION') do
   begin
 //  RegisterMethod('Constructor CREATE( ADATASET : TDATASET; AOWNER : TPERSISTENT; ACLASS : TCOLLECTIONITEMCLASS)');
-  RegisterMethod('Function FIND( const ANAME : STRING) : TNAMEDITEM');
+  RegisterMethod('Function FIND( const ANAME : String) : TNAMEDITEM');
   RegisterMethod('Procedure GETITEMNAMES( LIST : TSTRINGS)');
-  RegisterMethod('Function INDEXOF( const ANAME : STRING) : INTEGER');
+  RegisterMethod('Function INDEXOF( const ANAME : String) : INTEGER');
   RegisterProperty('DATASET', 'TDATASET', iptr);
   RegisterProperty('UPDATED', 'BOOLEAN', iptrw);
   end;
@@ -761,7 +771,7 @@ procedure SIRegisterTNAMEDITEM(CL: TPSPascalCompiler);
 Begin
 With RegClassS(cl,'TCOLLECTIONITEM','TNAMEDITEM') do
   begin
-  RegisterProperty('NAME', 'STRING', iptrw);
+  RegisterProperty('NAME', 'String', iptrw);
   end;
 end;
 
@@ -828,7 +838,7 @@ cl.addTypeS('TFIELDNOTIFYEVENT', 'Procedure ( SENDER : TFIELD)');
 cl.addTypeS('TFIELDGETTEXTEVENT', 'Procedure ( SENDER : TFIELD; var TEXT : S'
    +'TRING; DISPLAYTEXT : BOOLEAN)');
 cl.addTypeS('TFIELDSETTEXTEVENT', 'Procedure ( SENDER : TFIELD; const TEXT :'
-   +' STRING)');
+   +' String)');
 cl.addTypeS('TAUTOREFRESHFLAG', '( ARNONE, ARAUTOINC, ARDEFAULT )');
 SIRegisterTLOOKUPLIST(Cl);
 SIRegisterTFIELD(Cl);

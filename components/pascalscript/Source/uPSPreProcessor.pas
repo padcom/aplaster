@@ -13,12 +13,12 @@ type
   TPSPreProcessor = class;
   TPSPascalPreProcessorParser = class;
 
-  TPSOnNeedFile = function (Sender: TPSPreProcessor; const callingfilename: string; var FileName, Output: string): Boolean;
+  TPSOnNeedFile = function (Sender: TPSPreProcessor; const callingfilename: tbtstring; var FileName, Output: tbtstring): Boolean;
   TPSOnProcessDirective = procedure (
                             Sender: TPSPreProcessor;
                             Parser: TPSPascalPreProcessorParser;
                             const Active: Boolean;
-                            const DirectiveName, DirectiveParam: String;
+                            const DirectiveName, DirectiveParam: tbtString;
                             Var Continue: Boolean); //- jgv - application set continue to false to stop the normal directive processing
   
   TPSLineInfo = class(TObject)
@@ -28,11 +28,11 @@ type
   protected
     FEndPos: Cardinal;
     FStartPos: Cardinal;
-    FFileName: string;
+    FFileName: tbtstring;
     FLineOffsets: TIfList;
   public
     
-    property FileName: string read FFileName;
+    property FileName: tbtstring read FFileName;
     
     property StartPos: Cardinal read FStartPos;
     
@@ -54,7 +54,7 @@ type
     Col,
     Pos: Cardinal;
     
-    Name: string;
+    Name: tbtstring;
   end;
   
   TPSLineInfoList = class(TObject)
@@ -74,7 +74,7 @@ type
 
     procedure Clear;
     
-    function GetLineInfo(Pos: Cardinal; var Res: TPSLineInfoResults): Boolean;
+    function GetLineInfo(const ModuleName: tbtstring; Pos: Cardinal; var Res: TPSLineInfoResults): Boolean;
     
     property Current: Longint read FCurrent write FCurrent;
 
@@ -94,12 +94,12 @@ type
     FAddedPosition: Cardinal;
     FDefineState: TPSDefineStates;
     FMaxLevel: Longint;
-    FMainFileName: string;
-    FMainFile: string;
+    FMainFileName: tbtstring;
+    FMainFile: tbtstring;
     FOnProcessDirective: TPSOnProcessDirective;
     FOnProcessUnknowDirective: TPSOnProcessDirective;
     procedure ParserNewLine(Sender: TPSPascalPreProcessorParser; Row, Col, Pos: Cardinal);
-    procedure IntPreProcess(Level: Integer; const OrgFileName: string; FileName: string; Dest: TStream);
+    procedure IntPreProcess(Level: Integer; const OrgFileName: tbtstring; FileName: tbtstring; Dest: TStream);
   protected
     procedure doAddStdPredefines; virtual; // jgv
   public
@@ -111,16 +111,16 @@ type
 
     property Defines: TStringList read FDefines write FDefines;
 
-    property MainFile: string read FMainFile write FMainFile;
+    property MainFile: tbtstring read FMainFile write FMainFile;
 
-    property MainFileName: string read FMainFileName write FMainFileName;
+    property MainFileName: tbtstring read FMainFileName write FMainFileName;
 
     property ID: Pointer read FID write FID;
 
     procedure AdjustMessages(Comp: TPSPascalCompiler);
     procedure AdjustMessage(Msg: TPSPascalCompilerMessage); //-jgv
 
-    procedure PreProcess(const Filename: string; var Output: string);
+    procedure PreProcess(const Filename: tbtstring; var Output: tbtstring);
 
     procedure Clear;
 
@@ -139,19 +139,19 @@ type
   
   TPSPascalPreProcessorParser = class(TObject)
   private
-    FData: string;
-    FText: Pchar;
-    FToken: string;
+    FData: tbtstring;
+    FText: PAnsichar;
+    FToken: tbtstring;
     FTokenId: TPSPascalPreProcessorType;
     FLastEnterPos, FLen, FRow, FCol, FPos: Cardinal;
     FOnNewLine: TPSOnNewLine;
   public
     
-    procedure SetText(const dta: string);
+    procedure SetText(const dta: tbtstring);
     
     procedure Next;
     
-    property Token: string read FToken;
+    property Token: tbtstring read FToken;
     
     property TokenId: TPSPascalPreProcessorType read FTokenId;
     
@@ -181,6 +181,7 @@ type
     function GetCount: Longint;
     function GetItem(I: Integer): TPSDefineState;
     function GetWrite: Boolean;
+    function GetPrevWrite: Boolean; //JeromeWelsh - nesting fix
   public
 
     property Count: Longint read GetCount;
@@ -199,6 +200,7 @@ type
     procedure Clear;
     
     property DoWrite: Boolean read GetWrite;
+    property DoPrevWrite: Boolean read GetPrevWrite; //JeromeWelsh - nesting fix
   end;
 
 implementation
@@ -258,17 +260,20 @@ begin
   Result := TPSLineInfo(FItems[i]);
 end;
 
-function TPSLineInfoList.GetLineInfo(Pos: Cardinal;
-  var Res: TPSLineInfoResults): Boolean;
+function TPSLineInfoList.GetLineInfo(const ModuleName: tbtstring; Pos: Cardinal; var Res: TPSLineInfoResults): Boolean;
 var
   i,j: Longint;
   linepos: Cardinal;
   Item: TPSLineInfo;
+  lModuleName: tbtstring;
 begin
+  lModuleName := FastUpperCase(ModuleName);
+
   for i := FItems.Count -1 downto 0 do
   begin
     Item := FItems[i];
-    if (Pos >= Item.StartPos) and (Pos < Item.EndPos) then
+    if (Pos >= Item.StartPos) and (Pos < Item.EndPos) and
+      (lModuleName = '') or (lModuleName = Item.FileName) then
     begin
       Res.Name := Item.FileName;
       Pos := Pos - Item.StartPos;
@@ -354,11 +359,13 @@ begin
               inc(ci);
             FLastEnterPos := ci -1;
             if @FOnNewLine <> nil then FOnNewLine(Self, FRow, FPos - FLastEnterPos + 1, ci+1);
+            break;
           end else if FText[ci] = #10 then
           begin
             inc(FRow);
             FLastEnterPos := ci -1;
             if @FOnNewLine <> nil then FOnNewLine(Self, FRow, FPos - FLastEnterPos + 1, ci+1);
+            break;
           end;
         end;
         FLen := ci - FPos + 1;
@@ -469,10 +476,10 @@ begin
   FToken := Copy(FData, FPos +1, FLen);
 end;
 
-procedure TPSPascalPreProcessorParser.SetText(const dta: string);
+procedure TPSPascalPreProcessorParser.SetText(const dta: tbtstring);
 begin
   FData := dta;
-  FText := pchar(FData);
+  FText := pAnsichar(FData);
   FLen := 0;
   FPos := 0;
   FCol := 1;
@@ -488,7 +495,7 @@ procedure TPSPreProcessor.AdjustMessage(Msg: TPSPascalCompilerMessage);
 var
   Res: TPSLineInfoResults;
 begin
-  if CurrentLineInfo.GetLineInfo(Msg.Pos, Res) then
+  if CurrentLineInfo.GetLineInfo(Msg.ModuleName, Msg.Pos, Res) then
   begin
     Msg.SetCustomPos(res.Pos, Res.Row, Res.Col);
     Msg.ModuleName := Res.Name;
@@ -551,12 +558,12 @@ begin
   {$ENDIF }
 end;
 
-procedure TPSPreProcessor.IntPreProcess(Level: Integer; const OrgFileName: string; FileName: string; Dest: TStream);
+procedure TPSPreProcessor.IntPreProcess(Level: Integer; const OrgFileName: tbtstring; FileName: tbtstring; Dest: TStream);
 var
   Parser: TPSPascalPreProcessorParser;
-  dta: string;
+  dta: tbtstring;
   item: TPSLineInfo;
-  s, name: string;
+  s, name: tbtstring;
   current, i: Longint;
   ds: TPSDefineState;
   AppContinue: Boolean;
@@ -593,7 +600,7 @@ begin
         end;
         //-- end_jgv
 
-        if pos(' ', s) = 0 then
+        if pos(tbtChar(' '), s) = 0 then
         begin
           name := uppercase(s);
           s := '';
@@ -638,11 +645,15 @@ begin
           end else if (Name = 'IFDEF') then
           begin
             if pos(' ', s) <> 0 then raise EPSPreProcessor.CreateFmt(RPS_DefineTooManyParameters, [Parser.Row, Parser.Col]);
-            FDefineState.Add.DoWrite := FCurrentDefines.IndexOf(Uppercase(s)) <> -1;
+            //JeromeWelsh - nesting fix
+            FDefineState.Add.DoWrite := (FCurrentDefines.IndexOf(Uppercase(s)) <> -1)
+              and FDefineState.DoWrite;
           end else if (Name = 'IFNDEF') then
           begin
             if pos(' ', s) <> 0 then raise EPSPreProcessor.CreateFmt(RPS_DefineTooManyParameters, [Parser.Row, Parser.Col]);
-            FDefineState.Add.DoWrite := FCurrentDefines.IndexOf(Uppercase(s)) = -1;
+            //JeromeWelsh - nesting fix
+            FDefineState.Add.DoWrite := (FCurrentDefines.IndexOf(Uppercase(s)) = -1)
+              and FDefineState.DoWrite;
           end else if (Name = 'ENDIF') then
           begin
             //- jgv remove - borland use it (sysutils.pas)
@@ -659,7 +670,8 @@ begin
             if ds.InElse then
               raise EPSPreProcessor.CreateFmt(RPS_ElseTwice, [Parser.Row, Parser.Col]);
             ds.FInElse := True;
-            ds.DoWrite := not ds.DoWrite;
+            //JeromeWelsh - nesting fix
+            ds.DoWrite := not ds.DoWrite and FDefineState.DoPrevWrite;
           end
 
           //-- 20050710_jgv custom application error process
@@ -699,7 +711,7 @@ begin
   end;
 end;
 
-procedure TPSPreProcessor.PreProcess(const Filename: string; var Output: string);
+procedure TPSPreProcessor.PreProcess(const Filename: tbtstring; var Output: tbtstring);
 var
   Stream: TMemoryStream;
 begin
@@ -772,6 +784,14 @@ begin
   if FItems.Count = 0 then
     result := true
   else Result := TPSDefineState(FItems[FItems.Count -1]).DoWrite;
+end;
+
+//JeromeWelsh - nesting fix
+function TPSDefineStates.GetPrevWrite: Boolean;
+begin
+  if FItems.Count < 2 then
+    result := true
+  else Result := TPSDefineState(FItems[FItems.Count -2]).DoWrite;
 end;
 
 end.

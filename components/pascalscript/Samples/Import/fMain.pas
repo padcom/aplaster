@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, StdCtrls, uPSCompiler, uPSRuntime, uPSPreprocessor, uPSUtils,
+  ExtCtrls, StdCtrls, uPSCompiler, uPSRuntime, uPSDisassembly, uPSPreprocessor, uPSUtils,
   Menus, uPSC_comobj, uPSR_comobj;
 
 type
@@ -55,7 +55,7 @@ var
 implementation
 
 uses
-  uPSDisassembly, uPSC_dll, uPSR_dll, uPSDebugger,
+  uPSC_dll, uPSR_dll, uPSDebugger,
   uPSR_std, uPSC_std, uPSR_stdctrls, uPSC_stdctrls,
   uPSR_forms, uPSC_forms,
 
@@ -85,7 +85,7 @@ begin
   end;
 end;
 
-function OnNeedFile(Sender: TPSPreProcessor; const callingfilename: string; var FileName, Output: string): Boolean;
+function OnNeedFile(Sender: TPSPreProcessor; const callingfilename: AnsiString; var FileName, Output: AnsiString): Boolean;
 var
   s: string;
 begin
@@ -100,7 +100,7 @@ begin
     Result := False;
 end;
 
-function MyOnUses(Sender: TPSPascalCompiler; const Name: string): Boolean;
+function MyOnUses(Sender: TPSPascalCompiler; const Name: AnsiString): Boolean;
 begin
   if Name = 'SYSTEM' then
   begin
@@ -172,7 +172,7 @@ begin
   if i = 0 then Application.ProcessMessages;
 end;
 
-function MyExportCheck(Sender: TPSPascalCompiler; Proc: TPSInternalProcedure; const ProcDecl: string): Boolean;
+function MyExportCheck(Sender: TPSPascalCompiler; Proc: TPSInternalProcedure; const ProcDecl: AnsiString): Boolean;
 begin
   Result := True;
 end;
@@ -183,7 +183,7 @@ var
   x1: TPSPascalCompiler;
   x2: TPSDebugExec;
   xpre: TPSPreProcessor;
-  s, d: string;
+  s, d: AnsiString;
 
   procedure Outputtxt(const s: string);
   begin
@@ -220,6 +220,7 @@ begin
     x1.OnExportCheck := MyExportCheck;
     x1.OnUses := MyOnUses;
     x1.OnExternalProc := DllExternalProc;
+    x1.AllowNoEnd := true;
     if x1.Compile(s) then
     begin
       Outputtxt('Succesfully compiled');
@@ -378,7 +379,8 @@ procedure TMainForm.CompileandDisassemble1Click(Sender: TObject);
 var
   x1: TPSPascalCompiler;
   xpre: TPSPreProcessor;
-  s, s2: string;
+  s: AnsiString;
+  s2: string;
 
   procedure OutputMsgs;
   var

@@ -11,7 +11,7 @@
 
 {$INCLUDE eDefines.inc}
 
-{$IFDEF FPC}{$MODE DELPHI}{$ENDIF}
+{$IFDEF FPC}{$MODE DELPHI}{$H+}{$ENDIF}
 
 {$IFDEF VER125}{C4}{$B-}{$X+}{$T-}{$H+}{$ENDIF}
 {$IFDEF VER110}{C3}{$B-}{$X+}{$T-}{$H+}{$ENDIF}
@@ -48,7 +48,11 @@
 
 {
 Defines:
-  IFPS3_NOSMARTLIST    - Don't use the smart list option
+  PS_NOSMARTLIST    - Don't use the smart list option
+  PS_NOIDISPATCH
+  PS_NOWIDESTRING
+  PS_NOINT64
+  PS_DELPHIDIV
 }
 
 {$UNDEF DEBUG}
@@ -58,10 +62,5 @@ Defines:
 {$ENDIF}
 
 {$IFDEF FPC}
-  {$DEFINE PS_HAVEVARIANT}
-  {$DEFINE PS_DYNARRAY}
-  {$DEFINE PS_NOIDISPATCH}
-  {$DEFINE PS_FPCSTRINGWORKAROUND}
-  {$DEFINE DELPHI3UP}
-  {$DEFINE DELPHI6UP}
+  {$I PascalScriptFPC.inc}
 {$ENDIF}
