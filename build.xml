@@ -50,7 +50,7 @@
     </zip>
   </target>
   <target name="zip-src">
-    <zip zipfile="graphed-${date}.zip" basedir=".">
+    <zip zipfile="aplaster-${date}.zip" basedir=".">
       <include name="**/*.pas"/>
       <include name="**/*.dfm"/>
       <include name="**/*.dpr"/>
