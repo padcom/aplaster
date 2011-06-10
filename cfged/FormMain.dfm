@@ -27,11 +27,11 @@ object FrmMain: TFrmMain
   object SplWorkspace: TSplitter
     Left = 233
     Top = 29
-    Height = 541
+    Height = 533
   end
   object StatusBar: TStatusBar
     Left = 0
-    Top = 570
+    Top = 562
     Width = 904
     Height = 19
     Panels = <>
@@ -41,14 +41,14 @@ object FrmMain: TFrmMain
     Left = 0
     Top = 29
     Width = 233
-    Height = 541
+    Height = 533
     Align = alLeft
     BevelOuter = bvNone
     Caption = 'PnlInspector'
     TabOrder = 1
     DesignSize = (
       233
-      541)
+      533)
     object TbcNetworkItem: TTabControl
       Left = 0
       Top = 24
@@ -96,7 +96,7 @@ object FrmMain: TFrmMain
     Left = 236
     Top = 29
     Width = 668
-    Height = 541
+    Height = 533
     ActivePage = TbsConfigEditor
     Align = alClient
     TabOrder = 2
@@ -106,7 +106,7 @@ object FrmMain: TFrmMain
         Left = 0
         Top = 0
         Width = 660
-        Height = 513
+        Height = 505
         Align = alClient
         HideSelection = False
         Images = ImlIcons
@@ -126,7 +126,7 @@ object FrmMain: TFrmMain
       ImageIndex = 1
       object SplCodeEditor: TSplitter
         Left = 0
-        Top = 432
+        Top = 424
         Width = 660
         Height = 3
         Cursor = crVSplit
@@ -134,7 +134,7 @@ object FrmMain: TFrmMain
       end
       object LbxMessages: TListBox
         Left = 0
-        Top = 435
+        Top = 427
         Width = 660
         Height = 78
         Align = alBottom
@@ -147,7 +147,7 @@ object FrmMain: TFrmMain
         Left = 0
         Top = 0
         Width = 660
-        Height = 432
+        Height = 424
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText

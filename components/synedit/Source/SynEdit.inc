@@ -401,4 +401,6 @@
 
 {$ENDIF}
 
+{$DEFINE SYN_DELPHI_PE}
+
 // $Id: SynEdit.inc,v 1.20 2005/12/31 07:34:36 skyweb Exp $

@@ -1,4 +1,8 @@
 *.dcu
+*.~*
+*.exe
+cfged/netconfig.xml
+doc/manual/manual.html
 cfged/cfged.exe
 cfged/cfged.log
 cfged/cfged.mo

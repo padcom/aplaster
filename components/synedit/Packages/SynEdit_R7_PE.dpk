@@ -27,6 +27,7 @@ package SynEdit_R7_PE;
 {$DESCRIPTION 'SynEdit component suite runtime'}
 {$RUNONLY}
 {$IMPLICITBUILD OFF}
+{$DEFINE SYN_DELPHI_PE}
 
 requires
   vcl,

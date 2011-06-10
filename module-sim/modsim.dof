@@ -95,7 +95,7 @@ UnitOutputDir=.
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=$(DELPHI)\Lib\Debug;..\components\fastmm;..\components\log4d;..\components\pxlib
-Packages=vcl;rtl;vclx;VclSmp;vclshlctrls;SynEdit_D7_PE;JvUIBD7R
+Packages=vcl;rtl;vclx;VclSmp;vclshlctrls;SynEdit_D7_PE;JvUIBD7R;SynEdit_R7_PE
 Conditionals=HOOK_LOADRESSTRING
 DebugSourceDirs=
 UsePackages=0
@@ -130,6 +130,8 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+[Excluded Packages]
+C:\Program Files\Borland\Delphi7\Projects\Bpl\SynEdit_R7_PE.bpl=SynEdit component suite runtime
 [HistoryLists\hlConditionals]
 Count=1
 Item0=HOOK_LOADRESSTRING

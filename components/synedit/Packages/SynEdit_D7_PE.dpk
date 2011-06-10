@@ -25,7 +25,6 @@ package SynEdit_D7_PE;
 {$IMAGEBASE $400000}
 {$DESCRIPTION 'SynEdit component suite'}
 {$IMPLICITBUILD OFF}
-{$DEFINE SYN_DELPHI_PE}
 
 requires
   vcl,
@@ -35,6 +34,7 @@ requires
 
 contains
   SynEditReg in '..\Source\SynEditReg.pas',
+  SynHighlighterManager in '..\Source\SynHighlighterManager.pas',
   SynEditPropertyReg in '..\Source\SynEditPropertyReg.pas';
 
 end.
