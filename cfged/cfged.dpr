@@ -38,7 +38,6 @@ uses
   uPSI_Config in '..\common\uPSI_Config.pas',
   uPSI_ConfigFile in '..\common\uPSI_ConfigFile.pas';
 
-
 {$R *.res}
 
 begin
